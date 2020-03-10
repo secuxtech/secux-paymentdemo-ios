@@ -1,0 +1,310 @@
+//
+//  ViewController.swift
+//  MySecuXPay
+//
+//  Created by Maochun Sun on 2020/1/16.
+//  Copyright © 2020 SecuX. All rights reserved.
+//
+
+import UIKit
+import swiftScan
+import secux_paymentkit
+
+
+
+class PaymentMainViewController: BaseViewController {
+    
+    lazy var scanQRCodeButton:  UIRoundedButtonWithGradientAndShadow = {
+        
+        let btn = UIRoundedButtonWithGradientAndShadow(gradientColors: [UIColor(red: 0xEB/0xFF, green: 0xCB/0xFF, blue: 0x56/0xFF, alpha: 1), UIColor(red: 0xEB/0xFF, green: 0xCB/0xFF, blue: 0x56/0xFF, alpha: 1)])
+        
+        
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        
+        btn.titleLabel?.font = UIFont(name: "Arial", size: 22)
+        btn.setTitle(NSLocalizedString("Scan QR code", comment: ""), for: .normal)
+        btn.setTitleColor(UIColor(red: 0x1F/0xFF, green: 0x20/0xFF, blue: 0x20/0xFF, alpha: 1), for: .normal)
+        btn.addTarget(self, action: #selector(scanQRCodeAction), for: .touchUpInside)
+        
+        
+        btn.layer.shadowColor = UIColor.black.cgColor
+        btn.layer.shadowRadius = 2
+        btn.layer.shadowOffset = CGSize(width: 2, height: 2)
+        btn.layer.shadowOpacity = 0.3
+        
+        
+        self.view.addSubview(btn)
+        
+        
+        NSLayoutConstraint.activate([
+            
+            btn.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -10),
+            btn.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            
+            btn.heightAnchor.constraint(equalToConstant: 48.63),
+            btn.widthAnchor.constraint(equalToConstant: 199.54)
+            
+        ])
+       
+        return btn
+    }()
+    
+    lazy var itemImg: UIImageView = {
+
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "icon_payment_history")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(imageView)
+        
+        NSLayoutConstraint.activate([
+           
+            imageView.centerYAnchor.constraint(equalTo: self.historyButton.centerYAnchor),
+            imageView.rightAnchor.constraint(equalTo: self.historyButton.leftAnchor, constant: -5)
+           
+        ])
+        
+        return imageView
+    }()
+
+    lazy var historyButton: UIButton = {
+       
+        let btn = UIButton()
+        btn.translatesAutoresizingMaskIntoConstraints = false
+
+        
+        let btnAttributes: [NSAttributedString.Key: Any] = [
+                            .font: UIFont(name: "Arial", size: 17)!,
+                            .foregroundColor: UIColor.black,
+                            .underlineStyle: NSUnderlineStyle.single.rawValue]
+        
+        let attributeString = NSMutableAttributedString(string: "Payment History",
+                                                        attributes: btnAttributes)
+        btn.setAttributedTitle(attributeString, for: .normal)
+        
+        //btn.titleLabel?.font = UIFont(name: "Arial", size: 17)
+        //btn.setTitle("Payment History", for: .normal)
+        //btn.setTitleColor(.black, for: .normal)
+        
+        btn.addTarget(self, action: #selector(historyAction), for: .touchUpInside)
+        
+
+        self.view.addSubview(btn)
+
+        NSLayoutConstraint.activate([
+           
+            btn.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            btn.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -28)
+           
+        ])
+
+        return btn
+    }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        
+        self.view.backgroundColor = .white
+        
+        var _ = self.scanQRCodeButton
+        var _ = self.itemImg
+        var _ = self.historyButton
+        
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationItem.title = ""
+    }
+    
+    
+    func getAccountInfo(){
+        let accountManager = SecuXAccountManager()
+        let theUserAccount = SecuXUserAccount(email: "maochuntest7@secuxtech.com", phone: "0975123456", password: "12345678")
+        
+
+        //Login test
+        var (ret, data) = accountManager.loginUserAccount(userAccount: theUserAccount)
+        guard ret == SecuXRequestResult.SecuXRequestOK else{
+            print("login failed!")
+            if let data = data{
+                print("Error: \(String(data: data, encoding: String.Encoding.utf8) ?? "")")
+            }
+            return
+        }
+        print("login done")
+        
+        //Get account balance
+        (ret, data) = accountManager.getAccountBalance(userAccount: theUserAccount)
+        guard ret == SecuXRequestResult.SecuXRequestOK else{
+            print("get balance failed!")
+            if let data = data{
+                print("Error: \(String(data: data, encoding: String.Encoding.utf8) ?? "")")
+            }
+            return
+        }
+        print("get account balance done")
+        
+        MyAccount.shared.setUserAccount(userAccount: theUserAccount)
+    }
+    
+    @objc func historyAction(){
+        
+        let vc = PaymentHistoryViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
+    @objc func scanQRCodeAction(){
+        
+        var style = LBXScanViewStyle()
+        style.centerUpOffset = 44
+        style.photoframeAngleStyle = LBXScanViewPhotoframeAngleStyle.On
+        style.photoframeLineW = 6
+        style.photoframeAngleW = 24
+        style.photoframeAngleH = 24
+        style.colorAngle = UIColor(red: 0xEB/0xFF, green: 0xCB/0xFF, blue: 0x56/0xFF, alpha: 1)
+        style.isNeedShowRetangle = true
+        
+        style.anmiationStyle = LBXScanViewAnimationStyle.NetGrid
+
+        style.animationImage = UIImage(named: "CodeScan.bundle/qrcode_scan_part_net")
+        
+        let vc = LBXScanViewController()
+        vc.scanStyle = style
+        vc.scanResultDelegate = self
+        
+        //vc.modalPresentationStyle = .overCurrentContext
+        //self.present(vc, animated: true, completion: nil)
+        
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
+
+    func handlePaymentInfo(payinfo:String){
+        DispatchQueue.global(qos: .default).async {
+            
+            guard let theCoinAccountArr = MyAccount.shared.theCoinTokenAccountArray, theCoinAccountArr.count > 0 else{
+                self.showMessageInMainThread(title: "No valid payment account available!", message: "")
+                return
+            }
+            
+            let paymentManager = SecuXPaymentManager()
+            let (ret, data) = paymentManager.getPaymentInfo(paymentInfo: payinfo)
+            if ret == SecuXRequestResult.SecuXRequestOK, let data = data{
+                print("get payment info. done")
+                
+                guard let payInfo = String(data: data, encoding: String.Encoding.utf8) else{
+                    self.showMessageInMainThread(title: "Invalid payment info. from server!", message: "Please try again.")
+                    return
+                }
+                
+                guard let payinfoJson = try? JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] else{
+                    print("Invalid json response from server")
+                    self.showMessageInMainThread(title: "Invalid json response from server!", message: "Please try again.")
+                    return
+                }
+                
+                guard let devIDHash = payinfoJson["deviceIDhash"] as? String,
+                      let devID = payinfoJson["deviceID"] as? String else{
+                    print("Response has no hashed devID")
+                    self.showMessageInMainThread(title: "Server response has no hashed devID!", message: "Please try again.")
+                    return
+                }
+                
+                var showAccountSelection = false
+                var amount = "0"
+                if let amountinfo = payinfoJson["amount"] as? String, amountinfo != "null"{
+                    amount = amountinfo
+                }
+                
+                var cointype = ""
+                var token = ""
+                
+                if let type = payinfoJson["coinType"] as? String, type != "null"{
+                    cointype = type
+                }else{
+                    showAccountSelection = true
+                }
+                
+                if let tokeninfo = payinfoJson["token"] as? String, tokeninfo != "null"{
+                    token = tokeninfo
+                }else{
+                    showAccountSelection = true
+                }
+                
+                var theAccount : CoinTokenAccount
+                if cointype.count > 0, token.count > 0{
+                    if let account = MyAccount.shared.getCoinTokenAccount(coinType: cointype, token: token){
+                        theAccount = account
+                    }else{
+                        self.showMessageInMainThread(title: "No valid payment account available!", message: "")
+                        return
+                    }
+                }else if cointype.count > 0{
+                    if let account = MyAccount.shared.getCoinTokenAccount(coinType: cointype){
+                        theAccount = account
+                    }else{
+                        self.showMessageInMainThread(title: "No valid payment account available!", message: "")
+                        return
+                    }
+                }else if token.count > 0{
+                    if let account = MyAccount.shared.getCoinTokenAccount(token: token){
+                        theAccount = account
+                    }else{
+                        self.showMessageInMainThread(title: "No valid payment account available!", message: "")
+                        return
+                    }
+                }else{
+                    theAccount = theCoinAccountArr[0]
+                    cointype = theCoinAccountArr[0].coinType
+                    token = theCoinAccountArr[0].token
+                }
+                
+                DispatchQueue.main.async {
+                    let vc = PaymentDetailsViewController()
+                    vc.paymentInfo = payInfo
+                    vc.amount = amount
+                    vc.coinType = cointype
+                    vc.token = token
+                    vc.deviceID = devID
+                    vc.deviceIDhash = devIDHash
+                    vc.showAccountSelection = showAccountSelection
+                    vc.theAccount = theAccount
+                    self.navigationController?.pushViewController(vc, animated: false)
+                }
+                
+                
+                
+            }else if ret == SecuXRequestResult.SecuXRequestUnauthorized || ret == SecuXRequestResult.SecuXRequestNoToken{
+                self.handleUnauthorizedError()
+            }else{
+                self.showMessageInMainThread(title: "Invalid QRCode!", message: "Please try again.")
+            }
+        }
+    }
+}
+
+extension PaymentMainViewController: LBXScanViewControllerDelegate{
+    func scanFinished(scanResult: LBXScanResult, error: String?) {
+        
+        print("scan ret = \(scanResult.strScanned ?? "")")
+        
+        /*
+         {"amount":"100", "coinType":"DCT", "deviceID": "4ab10000726b"}
+        */
+        
+        if let payInfoStr = scanResult.strScanned{
+            
+            self.handlePaymentInfo(payinfo: payInfoStr)
+            return
+        }
+        
+        self.showMessage(title: "Invalid QRCode!", message: "Please try again.")
+    }
+    
+    
+}
+
