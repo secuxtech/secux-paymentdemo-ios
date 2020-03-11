@@ -29,6 +29,21 @@ class LoginAndRegisterViewController: BaseViewController{
         return bkview
     }()
     
+    lazy var titleView: UIView = {
+        let titleImgView = UIImageView(image: UIImage(named: "SecuX_Logo"))
+        titleImgView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(titleImgView)
+        
+        NSLayoutConstraint.activate([
+            
+            titleImgView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60),
+            titleImgView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+            
+        ])
+        
+        return titleImgView
+    }()
+    
     lazy var stateControl : UISegmentedControl = {
         var segCtrl = UISegmentedControl(items: [NSLocalizedString("Login", comment: ""), NSLocalizedString("Register", comment: "")])
         
@@ -63,9 +78,9 @@ class LoginAndRegisterViewController: BaseViewController{
         
         NSLayoutConstraint.activate([
             
-            segCtrl.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
-            segCtrl.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
-            segCtrl.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+            segCtrl.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30),
+            segCtrl.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30),
+            segCtrl.topAnchor.constraint(equalTo: self.titleView.bottomAnchor, constant: 20),
             segCtrl.heightAnchor.constraint(equalToConstant: 40)
             
         ])
@@ -81,9 +96,59 @@ class LoginAndRegisterViewController: BaseViewController{
      }()
     
     
+    lazy var theLoginView: LoginView = {
+        
+        let loginView = LoginView()
+        loginView.isHidden = false
+        
+        loginView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.view.addSubview(loginView)
+        
+        NSLayoutConstraint.activate([
+            
+            loginView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
+            loginView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
+            loginView.topAnchor.constraint(equalTo: self.stateControl.bottomAnchor, constant: 20),
+            loginView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+            
+        ])
+        
+        return loginView
+        
+    }()
+    
+    lazy var theRegisterView: RegisterView = {
+        
+        let regView = RegisterView()
+        regView.isHidden = true
+        
+        regView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.view.addSubview(regView)
+        
+        NSLayoutConstraint.activate([
+            
+            regView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
+            regView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
+            regView.topAnchor.constraint(equalTo: self.stateControl.bottomAnchor, constant: 20),
+            regView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+            
+        ])
+        
+        return regView
+        
+    }()
+    
     
     @objc func onTabSwitch(){
-        
+        if self.stateControl.selectedSegmentIndex == 0{
+            self.theLoginView.isHidden = false
+            self.theRegisterView.isHidden = true
+        }else{
+            self.theLoginView.isHidden = true
+            self.theRegisterView.isHidden = false
+        }
     }
     
     
@@ -91,16 +156,85 @@ class LoginAndRegisterViewController: BaseViewController{
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        self.view.backgroundColor = .white
+        //self.view.backgroundColor = //.white
         
-        let _ = self.stateCtrlBKView
-        let _ = self.stateControl
+        //let _ = self.stateCtrlBKView
+        //let _ = self.stateControl
         self.stateControl.selectedSegmentIndex = 0
+        
+        self.theLoginView.loginDelegate = self
+        self.theRegisterView.registerDelegate = self
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationItem.title = ""
+        
+        
     }
+    
+    override func viewDidLayoutSubviews() {
+        //self.theLoginView.setBackgrounImg()
+        
+        
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        UIImage(named: "login_bk_img")?.draw(in: self.view.bounds)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        if let image = image{
+            self.view.backgroundColor = UIColor.init(patternImage: image)
+        }
+    }
+    
+}
+
+extension LoginAndRegisterViewController: LoginViewDelegate{
+    func showLoginMessage(message: String) {
+        self.showMessageInMainThread(title: message, message: "")
+    }
+    
+    func loginStart() {
+        self.showProgress(info: "Login...")
+    }
+    
+    func loginDone(ret: Bool, errorMsg: String) {
+        self.hideProgress()
+        
+        DispatchQueue.main.async {
+            if ret{
+                let vc = MainTabBarController()
+                vc.modalPresentationStyle = .overFullScreen
+                self.present(vc, animated: true)
+            }else{
+                self.showMessage(title: errorMsg, message: "")
+            }
+        }
+    }
+}
+
+extension LoginAndRegisterViewController: RegisterViewDelegate{
+    func showRegisterMessage(message:String){
+        self.showMessageInMainThread(title: message, message: "")
+    }
+    
+    func registerStart() {
+        self.showProgress(info: "Register...")
+    }
+    
+    func registerDone(ret: Bool, errorMsg: String) {
+        self.hideProgress()
+        
+        DispatchQueue.main.async {
+            if ret{
+                let vc = MainTabBarController()
+                vc.modalPresentationStyle = .overFullScreen
+                self.present(vc, animated: true)
+            }else{
+                self.showMessage(title: errorMsg, message: "")
+            }
+        }
+    }
+    
     
 }

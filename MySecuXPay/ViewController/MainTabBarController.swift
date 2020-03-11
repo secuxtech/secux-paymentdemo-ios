@@ -14,8 +14,8 @@ class MainTabBarController: UITabBarController{
         super.viewDidLoad()
         
         
-        let paymentMainVC = PaymentMainViewController()
-        let accountListVC = AccountListViewController()
+        let paymentMainVC = BaseUINavigationController(rootViewController: PaymentMainViewController())
+        let accountListVC = BaseUINavigationController(rootViewController: AccountListViewController())
         
         let paymentTab = UITabBarItem()
         paymentTab.title = "Payment"

@@ -118,7 +118,7 @@ class PaymentMainViewController: BaseViewController {
         self.navigationController?.navigationItem.title = ""
     }
     
-    
+    /*
     func getAccountInfo(){
         let accountManager = SecuXAccountManager()
         let theUserAccount = SecuXUserAccount(email: "maochuntest7@secuxtech.com", phone: "0975123456", password: "12345678")
@@ -148,6 +148,7 @@ class PaymentMainViewController: BaseViewController {
         
         MyAccount.shared.setUserAccount(userAccount: theUserAccount)
     }
+    */
     
     @objc func historyAction(){
         

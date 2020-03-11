@@ -8,8 +8,40 @@
 
 import UIKit
 import secux_paymentkit
+import Floaty
 
 class AccountListViewController: BaseViewController{
+    
+    lazy var titleLabel : UILabel = {
+        let label = UILabel()
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Accounts"
+        
+        label.font = UIFont(name: "Helvetica-Bold", size: 20)
+        label.adjustsFontForContentSizeCategory = true
+        label.textColor = UIColor(red: 0.44, green: 0.44, blue: 0.44,alpha:1)
+        label.textAlignment = NSTextAlignment.left
+        
+        label.numberOfLines = 0
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.sizeToFit()
+        
+        
+        self.view.addSubview(label)
+        
+        
+        NSLayoutConstraint.activate([
+        
+            label.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
+            label.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10),
+         
+        
+        ])
+        
+        
+        return label
+    }()
     
     lazy var theTableView: UITableView = {
         let tableView = UITableView()
@@ -37,14 +69,14 @@ class AccountListViewController: BaseViewController{
         //tableView.addSubview(refreshControl)
         //refreshControl.addTarget(self, action: #selector(refreshData), for: UIControl.Event.valueChanged)
         
-        view.addSubview(tableView)
+        self.view.addSubview(tableView)
 
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 15),
+            tableView.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 15),
             tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
             tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
-            tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -30)
+            tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -30)
             
         ])
         
@@ -54,21 +86,55 @@ class AccountListViewController: BaseViewController{
     }()
     
     
+    lazy var floatButton : Floaty = {
+        let floaty = Floaty()
+        
+        
+        floaty.buttonColor = UISetting.shared.buttonColor
+        floaty.plusColor = UISetting.shared.titleBKColor
+        floaty.overlayColor = UIColor(red: 255, green: 255, blue: 255, alpha:0)
+        floaty.openAnimationType = .fade
+        floaty.itemTitleColor = .gray
+        floaty.itemShadowColor = UIColor(red: 255, green: 255, blue: 255, alpha:0)
+        floaty.itemButtonColor = UISetting.shared.titleBKColor
+        floaty.itemSize = 60
+        floaty.itemSpace = 30
+        
+        
+        floaty.addItem("Logout", icon: UIImage(named: "logout_btn")!, handler: { item in
+            self.logout()
+            floaty.close()
+        })
+        
+        floaty.addItem("Account info.", icon: UIImage(named: "account_info_btn")!, handler: { item in
+            self.showAccountInfo()
+            floaty.close()
+        })
+        
+        self.theTableView.addSubview(floaty)
+        
+        return floaty
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = UISetting.shared.portfolioBKColor
       
-        DispatchQueue.global(qos: .default).async{
-            self.getAccountInfo()
-        }
+        //DispatchQueue.global(qos: .default).async{
+        //    self.getAccountInfo()
+        //}
+        
+        let _ = self.floatButton
+        self.theTableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationItem.title = ""
     }
     
+    /*
     func getAccountInfo(){
         let accountManager = SecuXAccountManager()
         let theUserAccount = SecuXUserAccount(email: "maochuntest7@secuxtech.com", phone: "0975123456", password: "12345678")
@@ -102,6 +168,14 @@ class AccountListViewController: BaseViewController{
             self.theTableView.reloadData()
         }
         
+    }
+    */
+    
+    
+    
+    func showAccountInfo(){
+        let vc = SettingViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

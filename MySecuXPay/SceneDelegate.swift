@@ -26,11 +26,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //let rootVC = ViewController();
         let rootVC = LoginAndRegisterViewController();
         
+        /*
         let navRootVC = UINavigationController(navigationBarClass: nil, toolbarClass: nil)
         
         navRootVC.viewControllers = [rootVC]
     
-        navRootVC.navigationBar.barStyle = .black
+        navRootVC.navigationBar.barStyle =  .black
         navRootVC.navigationBar.tintColor = UIColor.white
         //navRootVC.navigationBar.barTintColor = .blue
         navRootVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white];
@@ -39,7 +40,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         navRootVC.navigationBar.backIndicatorImage = UIImage()
         navRootVC.navigationBar.isTranslucent = false
         
-        navRootVC.navigationBar.barTintColor = UIColor(red: 0x1F/0xFF, green: 0x20/0xFF, blue: 0x20/0xFF, alpha: 1)
+        //navRootVC.navigationBar.barTintColor = UIColor(red: 0x1F/0xFF, green: 0x20/0xFF, blue: 0x20/0xFF, alpha: 1)
         navRootVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Arial", size: 24)!,
                                                                        NSAttributedString.Key.foregroundColor: UIColor.white]
         
@@ -49,12 +50,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         navRootVC.navigationBar.addSubview(titleImgView)
         titleImgView.centerXAnchor.constraint(equalTo: navRootVC.navigationBar.centerXAnchor).isActive = true
         titleImgView.centerYAnchor.constraint(equalTo: navRootVC.navigationBar.centerYAnchor).isActive = true
+        */
         
         
-        
-        
-        
-        self.window?.rootViewController = navRootVC
+        self.window?.rootViewController = rootVC
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

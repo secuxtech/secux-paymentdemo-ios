@@ -41,6 +41,14 @@
 		2E845E0B23D00C710043D0FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E845E0923D00C710043D0FA /* Main.storyboard */; };
 		2E845E0D23D00C730043D0FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E845E0C23D00C730043D0FA /* Assets.xcassets */; };
 		2E845E1023D00C730043D0FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E845E0E23D00C730043D0FA /* LaunchScreen.storyboard */; };
+		2EA7D870241876EA00827C24 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA7D86F241876EA00827C24 /* LoginView.swift */; };
+		2EA7D872241876F700827C24 /* ReigsterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA7D871241876F700827C24 /* ReigsterView.swift */; };
+		2EA7D874241878DA00827C24 /* IconUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA7D873241878D900827C24 /* IconUITextField.swift */; };
+		2EA7D87624188B6100827C24 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA7D87524188B6100827C24 /* File.swift */; };
+		2EA7D8782418937500827C24 /* BaseUINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA7D8772418937500827C24 /* BaseUINavigationController.swift */; };
+		2EA7D87A2418D39E00827C24 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA7D8792418D39E00827C24 /* SettingViewController.swift */; };
+		2EA7D87C2418D7A300827C24 /* AccountSettingTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA7D87B2418D7A300827C24 /* AccountSettingTitleView.swift */; };
+		2EA7D87E2418E68900827C24 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA7D87D2418E68900827C24 /* LoginViewController.swift */; };
 		E8A8CFD0942C2888A3AA3B7E /* Pods_MySecuXPay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5792CE8AD185F238CFA0F784 /* Pods_MySecuXPay.framework */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +89,14 @@
 		2E845E0C23D00C730043D0FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E845E0F23D00C730043D0FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2E845E1123D00C730043D0FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2EA7D86F241876EA00827C24 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		2EA7D871241876F700827C24 /* ReigsterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReigsterView.swift; sourceTree = "<group>"; };
+		2EA7D873241878D900827C24 /* IconUITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconUITextField.swift; sourceTree = "<group>"; };
+		2EA7D87524188B6100827C24 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		2EA7D8772418937500827C24 /* BaseUINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUINavigationController.swift; sourceTree = "<group>"; };
+		2EA7D8792418D39E00827C24 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		2EA7D87B2418D7A300827C24 /* AccountSettingTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingTitleView.swift; sourceTree = "<group>"; };
+		2EA7D87D2418E68900827C24 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5792CE8AD185F238CFA0F784 /* Pods_MySecuXPay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MySecuXPay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		673253BD72485B55848D74A4 /* Pods-MySecuXPay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySecuXPay.release.xcconfig"; path = "Target Support Files/Pods-MySecuXPay/Pods-MySecuXPay.release.xcconfig"; sourceTree = "<group>"; };
 		BCFBABE7DAFB55FBE26A70D9 /* Pods-MySecuXPay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySecuXPay.debug.xcconfig"; path = "Target Support Files/Pods-MySecuXPay/Pods-MySecuXPay.debug.xcconfig"; sourceTree = "<group>"; };
@@ -102,7 +118,9 @@
 			isa = PBXGroup;
 			children = (
 				2E042A2B23D0286E0051E74E /* BaseViewController.swift */,
+				2EA7D8772418937500827C24 /* BaseUINavigationController.swift */,
 				2E67167924179C07004D2862 /* LoginAndRegisterViewController.swift */,
+				2EA7D87D2418E68900827C24 /* LoginViewController.swift */,
 				2E67167224179147004D2862 /* MainTabBarController.swift */,
 				2E042A4223D02CE90051E74E /* PaymentAccountSelectionViewController.swift */,
 				2E042A3E23D02C9C0051E74E /* PaymentHistoryViewController.swift */,
@@ -111,6 +129,7 @@
 				2E845E0723D00C710043D0FA /* PaymentMainViewController.swift */,
 				2E67167024178C88004D2862 /* TransactionDetailsViewController.swift */,
 				2E6716742417929E004D2862 /* AccountListViewController.swift */,
+				2EA7D8792418D39E00827C24 /* SettingViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -118,6 +137,7 @@
 		2E042A1223D015DD0051E74E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2EA7D873241878D900827C24 /* IconUITextField.swift */,
 				2E042A4A23D02EF00051E74E /* PaymentHistoryTableViewCell.swift */,
 				2E042A4423D02D0B0051E74E /* AccountTableViewCell.swift */,
 				2E042A4023D02CA60051E74E /* SettingTableViewCell.swift */,
@@ -126,6 +146,9 @@
 				2E042A1423D016590051E74E /* TitleView.swift */,
 				2E042A1523D0165A0051E74E /* UIRoundedButtonWithGradientAndShadow.swift */,
 				2E67166E24177F2D004D2862 /* BaseTableViewCell.swift */,
+				2EA7D86F241876EA00827C24 /* LoginView.swift */,
+				2EA7D871241876F700827C24 /* ReigsterView.swift */,
+				2EA7D87B2418D7A300827C24 /* AccountSettingTitleView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -156,6 +179,7 @@
 			children = (
 				2E042A2523D0188E0051E74E /* Double+Extension.swift */,
 				2E042A4823D02EAC0051E74E /* UITableViewCell+Extension.swift */,
+				2EA7D87524188B6100827C24 /* File.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -332,24 +356,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EA7D874241878DA00827C24 /* IconUITextField.swift in Sources */,
 				2E67167124178C88004D2862 /* TransactionDetailsViewController.swift in Sources */,
 				2E042A4123D02CA60051E74E /* SettingTableViewCell.swift in Sources */,
 				2E042A1623D0165A0051E74E /* AccountInfoView.swift in Sources */,
 				2E845E0823D00C710043D0FA /* PaymentMainViewController.swift in Sources */,
+				2EA7D87A2418D39E00827C24 /* SettingViewController.swift in Sources */,
 				2E67166F24177F2D004D2862 /* BaseTableViewCell.swift in Sources */,
 				2E042A4923D02EAC0051E74E /* UITableViewCell+Extension.swift in Sources */,
 				2E845E0423D00C710043D0FA /* AppDelegate.swift in Sources */,
 				2E845E0623D00C710043D0FA /* SceneDelegate.swift in Sources */,
 				2E042A2923D028120051E74E /* PaymentResultViewController.swift in Sources */,
+				2EA7D872241876F700827C24 /* ReigsterView.swift in Sources */,
 				2E042A3223D02A610051E74E /* Setting.swift in Sources */,
+				2EA7D8782418937500827C24 /* BaseUINavigationController.swift in Sources */,
 				2E042A2C23D0286F0051E74E /* BaseViewController.swift in Sources */,
 				2E042A3F23D02C9C0051E74E /* PaymentHistoryViewController.swift in Sources */,
+				2EA7D87C2418D7A300827C24 /* AccountSettingTitleView.swift in Sources */,
 				2E042A4323D02CE90051E74E /* PaymentAccountSelectionViewController.swift in Sources */,
 				2E042A2323D0182F0051E74E /* QRCodeHandler.swift in Sources */,
 				2E042A2623D0188E0051E74E /* Double+Extension.swift in Sources */,
 				2E042A3B23D02BC80051E74E /* LogHandler.swift in Sources */,
 				2E042A2223D0182F0051E74E /* Observable.swift in Sources */,
 				2E67166B24173081004D2862 /* CoinTokenAccount.swift in Sources */,
+				2EA7D870241876EA00827C24 /* LoginView.swift in Sources */,
+				2EA7D87E2418E68900827C24 /* LoginViewController.swift in Sources */,
 				2E042A2A23D028120051E74E /* PaymentDetailsViewController.swift in Sources */,
 				2E042A1723D0165A0051E74E /* TitleView.swift in Sources */,
 				2E67167324179147004D2862 /* MainTabBarController.swift in Sources */,
@@ -360,6 +391,7 @@
 				2E042A4B23D02EF00051E74E /* PaymentHistoryTableViewCell.swift in Sources */,
 				2E67167A24179C07004D2862 /* LoginAndRegisterViewController.swift in Sources */,
 				2E6716752417929E004D2862 /* AccountListViewController.swift in Sources */,
+				2EA7D87624188B6100827C24 /* File.swift in Sources */,
 				2E042A3423D02AE50051E74E /* UnderlineIconTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

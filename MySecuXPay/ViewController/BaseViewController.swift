@@ -101,7 +101,23 @@ class BaseViewController: UIViewController {
     }
     
     func handleUnauthorizedError(){
-        
+        DispatchQueue.main.async {
+         
+            let rootVC = LoginViewController();
+            rootVC.modalPresentationStyle = .overFullScreen
+            self.present(rootVC, animated: true)
+            
+        }
+    }
+    
+    func logout(){
+        DispatchQueue.main.async {
+         
+            let rootVC = LoginAndRegisterViewController();
+            rootVC.modalPresentationStyle = .overFullScreen
+            self.present(rootVC, animated: true)
+            
+        }
     }
 }
 

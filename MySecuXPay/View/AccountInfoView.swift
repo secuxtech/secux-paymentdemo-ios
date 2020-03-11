@@ -201,8 +201,13 @@ class AccountInfoView: UIView {
         
         
         self.itemNameLabel.text = account.accountName
-        self.itemValLabel.text = "\(account.accountBalance?.theFormattedBalance ?? 0) " + account.coinType
+        //self.itemValLabel.text = "\(account.accountBalance?.theFormattedBalance ?? 0) " + account.coinType
         
+        if let balance = account.accountBalance{
+            self.itemValLabel.text = "\(String(format: "%.2f", NSDecimalNumber(decimal: balance.theFormattedBalance).doubleValue)) \(account.token)"
+        }else{
+            self.itemValLabel.text = "0.0 \(account.token)"
+        }
         
         if let balance = account.accountBalance{
             self.itemBalanceLabel.text = "$ \(String(format: "%.2f", NSDecimalNumber(decimal: balance.theUsdBalance).doubleValue))"
@@ -249,7 +254,13 @@ class AccountInfoView: UIView {
     
         
         self.itemNameLabel.text = account.accountName
-        self.itemValLabel.text = "\(account.accountBalance?.theFormattedBalance ?? 0)" + account.token
+        //self.itemValLabel.text = "\(account.accountBalance?.theFormattedBalance ?? 0)" + account.token
+        
+        if let balance = account.accountBalance{
+            self.itemValLabel.text = "\(String(format: "%.2f", NSDecimalNumber(decimal: balance.theFormattedBalance).doubleValue)) \(account.token)"
+        }else{
+            self.itemValLabel.text = "0.0 \(account.token)"
+        }
         
         if let balance = account.accountBalance{
             self.itemBalanceLabel.text = "$ \(String(format: "%.2f", NSDecimalNumber(decimal: balance.theUsdBalance).doubleValue))"
