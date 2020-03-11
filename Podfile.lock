@@ -1,4 +1,5 @@
 PODS:
+  - Floaty (4.2.0)
   - JGProgressHUD (2.1)
   - secux-paymentkit (1.0.0):
     - SPManager (~> 0.0.2)
@@ -6,12 +7,14 @@ PODS:
   - swiftScan (1.2.0)
 
 DEPENDENCIES:
+  - Floaty (~> 4.2.0)
   - JGProgressHUD
   - secux-paymentkit
   - swiftScan (from `https://github.com/MxABC/swiftScan.git`)
 
 SPEC REPOS:
   trunk:
+    - Floaty
     - JGProgressHUD
     - secux-paymentkit
     - SPManager
@@ -26,11 +29,12 @@ CHECKOUT OPTIONS:
     :git: https://github.com/MxABC/swiftScan.git
 
 SPEC CHECKSUMS:
+  Floaty: e2bd5a0f6f7f70899e26ff2da31081c8bee8d1b0
   JGProgressHUD: aa403e9a5b45cae98903c4600cccdd98c0c3ec90
   secux-paymentkit: 565f3db73171b0c3e7f1e9f8edf5390f874dad88
   SPManager: 90be8b63c4e4440a131b3a2ecd6042cc9d01633b
   swiftScan: d7f91607b1a47cc04e6eb654c2c01e2e940e337d
 
-PODFILE CHECKSUM: 8544462dcfa82070bf1dc8ebbf4350871bd3bdec
+PODFILE CHECKSUM: 901e064b0eeb9ae2b24eadd2ef624da77c470406
 
 COCOAPODS: 1.9.0.beta.2
