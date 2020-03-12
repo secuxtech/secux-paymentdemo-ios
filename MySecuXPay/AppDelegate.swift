@@ -7,14 +7,19 @@
 //
 
 import UIKit
+import Network
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    let internetMonitor = NWPathMonitor()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        Thread.sleep(forTimeInterval: 1.0)
+        
+        self.startMonitorNetwork()
         return true
     }
 
@@ -32,6 +37,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
+    
+    func startMonitorNetwork(){
+        logw("startMonitorNetwork")
+        
+        internetMonitor.pathUpdateHandler = { pathUpdateHandler in
+            if pathUpdateHandler.status == .satisfied {
+                
+                logw("Internet connection is on.")
+                Setting.shared.hasInternet.value = true
+               
+                
+            } else {
+                
+              
+                logw("No internet connection")
+                Setting.shared.hasInternet.value = false
+                    
+            }
+        }
+        
+        internetMonitor.start(queue: DispatchQueue.global())
+    }
 
 }
 
