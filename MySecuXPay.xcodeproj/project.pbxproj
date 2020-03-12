@@ -73,6 +73,7 @@
 		2E042A4423D02D0B0051E74E /* AccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
 		2E042A4823D02EAC0051E74E /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
 		2E042A4A23D02EF00051E74E /* PaymentHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentHistoryTableViewCell.swift; sourceTree = "<group>"; };
+		2E090F7C2419D1D6003D4AA3 /* MySecuXPay.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MySecuXPay.entitlements; sourceTree = "<group>"; };
 		2E67166A24173081004D2862 /* CoinTokenAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTokenAccount.swift; sourceTree = "<group>"; };
 		2E67166C241742E6004D2862 /* MyAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccount.swift; sourceTree = "<group>"; };
 		2E67166E24177F2D004D2862 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
@@ -205,6 +206,7 @@
 		2E845E0223D00C710043D0FA /* MySecuXPay */ = {
 			isa = PBXGroup;
 			children = (
+				2E090F7C2419D1D6003D4AA3 /* MySecuXPay.entitlements */,
 				2E81F93023D056D800BEB11E /* paysuccess.wav */,
 				2E042A2E23D029A70051E74E /* CodeScan.bundle */,
 				2E042A2423D018610051E74E /* Extension */,
@@ -537,6 +539,7 @@
 			baseConfigurationReference = BCFBABE7DAFB55FBE26A70D9 /* Pods-MySecuXPay.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MySecuXPay/MySecuXPay.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 439P2P24S8;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -548,6 +551,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.secux.MySecuXPay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -560,6 +564,7 @@
 			baseConfigurationReference = 673253BD72485B55848D74A4 /* Pods-MySecuXPay.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MySecuXPay/MySecuXPay.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 439P2P24S8;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -571,6 +576,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.secux.MySecuXPay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
