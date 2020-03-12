@@ -55,13 +55,12 @@ class LoginAndRegisterViewController: BaseViewController{
          
          
          
-        segCtrl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.init(red: 255, green: 255, blue: 255, alpha: 0.41)], for: .normal)
-        segCtrl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.blue], for: .selected)
+        segCtrl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white,
+                                        NSAttributedString.Key.font: UIFont.init(name: UISetting.shared.fontName, size: 16)!], for: .normal)
+        segCtrl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UISetting.shared.titleBKColor,
+                                        NSAttributedString.Key.font: UIFont.init(name: UISetting.shared.fontName, size: 17)!], for: .selected)
          
-        segCtrl.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)],for: .normal)
-         
-        segCtrl.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)],for: .selected)
-         
+       
         
         //segCtrl.borderColor = UIColor.white
         //segCtrl.borderWidth = 1.0
@@ -75,15 +74,24 @@ class LoginAndRegisterViewController: BaseViewController{
          
         self.view.addSubview(segCtrl)
         
-        
-        NSLayoutConstraint.activate([
-            
-            segCtrl.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30),
-            segCtrl.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30),
-            segCtrl.topAnchor.constraint(equalTo: self.titleView.bottomAnchor, constant: 20),
-            segCtrl.heightAnchor.constraint(equalToConstant: 40)
-            
-        ])
+        if UIScreen.main.bounds.width > 460{
+            NSLayoutConstraint.activate([
+                
+                segCtrl.topAnchor.constraint(equalTo: self.titleView.bottomAnchor, constant: 20),
+                segCtrl.widthAnchor.constraint(equalToConstant: UISetting.shared.maxUIControlLen),
+                segCtrl.heightAnchor.constraint(equalToConstant: 40),
+                segCtrl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            ])
+        }else{
+            NSLayoutConstraint.activate([
+                
+                segCtrl.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30),
+                segCtrl.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30),
+                segCtrl.topAnchor.constraint(equalTo: self.titleView.bottomAnchor, constant: 20),
+                segCtrl.heightAnchor.constraint(equalToConstant: 40)
+                
+            ])
+        }
          
          
         segCtrl.addTarget(
@@ -156,7 +164,7 @@ class LoginAndRegisterViewController: BaseViewController{
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        //self.view.backgroundColor = //.white
+        self.view.backgroundColor = .black
         
         //let _ = self.stateCtrlBKView
         //let _ = self.stateControl
@@ -168,6 +176,7 @@ class LoginAndRegisterViewController: BaseViewController{
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.navigationController?.navigationItem.title = ""
         
         
@@ -175,7 +184,6 @@ class LoginAndRegisterViewController: BaseViewController{
     
     override func viewDidLayoutSubviews() {
         //self.theLoginView.setBackgrounImg()
-        
         
         UIGraphicsBeginImageContext(self.view.frame.size)
         UIImage(named: "login_bk_img")?.draw(in: self.view.bounds)

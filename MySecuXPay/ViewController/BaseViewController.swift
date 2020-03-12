@@ -22,11 +22,12 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        self.view.backgroundColor = UISetting.shared.vcBKColor
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
+        /*
         Setting.shared.hasInternet.addObserver({ (value) in
             if !value{
                 
@@ -34,9 +35,12 @@ class BaseViewController: UIViewController {
             }
             
         })
+        */
+        
+        //let tt = Setting.shared.hasInternet.value
         
         if !Setting.shared.hasInternet.value{
-            self.showMessage(title: "No internet connection!", message: "Please check the Wifi")
+            self.showMessageInMainThread(title: "No internet connection!", message: "Please check the Wifi")
         }
         
     }

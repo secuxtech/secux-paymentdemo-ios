@@ -26,7 +26,7 @@ class PaymentAccountSelectionViewController: UIViewController {
         tableView.allowsSelection = true
         tableView.separatorStyle = .none
         tableView.isScrollEnabled = true
-        tableView.backgroundColor = UISetting.shared.portfolioBKColor
+        tableView.backgroundColor = UISetting.shared.vcBKColor
         
         self.view.addSubview(tableView)
         
@@ -50,7 +50,7 @@ class PaymentAccountSelectionViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        self.view.backgroundColor = UISetting.shared.portfolioBKColor
+        self.view.backgroundColor = UISetting.shared.vcBKColor
         self.showDCTAcc = true
         
         if let usrAcc = MyAccount.shared.theUserAccount{

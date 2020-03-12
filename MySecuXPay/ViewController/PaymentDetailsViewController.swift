@@ -95,7 +95,7 @@ class PaymentDetailsViewController: BaseViewController {
     lazy var storeImg: UIImageView = {
 
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "store_loading_icon")
+        imageView.image = UIImage(named: "storeinfo_error")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(imageView)
         
@@ -104,8 +104,8 @@ class PaymentDetailsViewController: BaseViewController {
                
                 imageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
                 imageView.topAnchor.constraint(equalTo: self.storeNameLabel.bottomAnchor, constant: 10),
-                imageView.widthAnchor.constraint(equalToConstant: 100),
-                imageView.heightAnchor.constraint(equalToConstant: 100)
+                imageView.widthAnchor.constraint(equalToConstant: 90),
+                imageView.heightAnchor.constraint(equalToConstant: 90)
                
             ])
         }else{
@@ -113,8 +113,8 @@ class PaymentDetailsViewController: BaseViewController {
                
                 imageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
                 imageView.topAnchor.constraint(equalTo: self.storeNameLabel.bottomAnchor, constant: 10),
-                imageView.widthAnchor.constraint(equalToConstant: 150),
-                imageView.heightAnchor.constraint(equalToConstant: 150)
+                imageView.widthAnchor.constraint(equalToConstant: 90),
+                imageView.heightAnchor.constraint(equalToConstant: 90)
                
             ])
         }
@@ -361,6 +361,7 @@ class PaymentDetailsViewController: BaseViewController {
                 }
             }else{
                 print("get store info. failed")
+                
                 self.showMessage(title: "Invalid device ID!", message: "")
                 self.payButton.isEnabled = false
             }
@@ -631,7 +632,7 @@ extension PaymentDetailsViewController: UITextFieldDelegate{
     func textFieldDidEndEditing(_ textField: UITextField){
         if textField == self.amountInputField.theTextField,
             let amtTxt = self.amountInputField.text, amtTxt.count > 0,
-            let nAmt = Int(amtTxt), nAmt > 0{
+            let nAmt = Double(amtTxt), nAmt > 0{
             
             self.amount = String(nAmt)
             self.payButton.isEnabled = true

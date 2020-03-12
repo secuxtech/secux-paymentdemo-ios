@@ -17,6 +17,7 @@ public protocol RegisterViewDelegate{
 
 class RegisterView: UIView{
     
+    let maxInputFieldLen: CGFloat = 400
     
     var inputBoxOffset = 30.0
     var registerDelegate : RegisterViewDelegate?
@@ -30,7 +31,10 @@ class RegisterView: UIView{
         
         input.returnKeyType = .done
         
-        input.placeholder = "Email"
+        input.attributedPlaceholder = NSAttributedString(string: "Email",
+                                                         attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray,
+                                                         NSAttributedString.Key.font: UIFont(name: "Arial", size: 17.0)!])
+        
         
         input.layer.masksToBounds = true
         input.layer.cornerRadius = 5.0
@@ -44,16 +48,26 @@ class RegisterView: UIView{
         
         self.addSubview(input)
         
-        NSLayoutConstraint.activate([
-            
-            input.topAnchor.constraint(equalTo: self.topAnchor, constant: 60),
-            input.leftAnchor.constraint(equalTo: self.leftAnchor, constant: CGFloat(inputBoxOffset)),
-            input.rightAnchor.constraint(equalTo: self.rightAnchor, constant: CGFloat(0-inputBoxOffset)),
-            //input.widthAnchor.constraint(equalToConstant: 200),
-            input.heightAnchor.constraint(equalToConstant: 45),
-            input.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-            
-        ])
+        if UIScreen.main.bounds.width > 460{
+            NSLayoutConstraint.activate([
+                
+                input.topAnchor.constraint(equalTo: self.topAnchor, constant: 60),
+                input.widthAnchor.constraint(equalToConstant: maxInputFieldLen),
+                input.heightAnchor.constraint(equalToConstant: 45),
+                input.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            ])
+        }else{
+            NSLayoutConstraint.activate([
+                
+                input.topAnchor.constraint(equalTo: self.topAnchor, constant: 60),
+                input.leftAnchor.constraint(equalTo: self.leftAnchor, constant: CGFloat(inputBoxOffset)),
+                input.rightAnchor.constraint(equalTo: self.rightAnchor, constant: CGFloat(0-inputBoxOffset)),
+                //input.widthAnchor.constraint(equalToConstant: 200),
+                input.heightAnchor.constraint(equalToConstant: 45),
+                input.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+                
+            ])
+        }
         
         
         return input
@@ -65,7 +79,10 @@ class RegisterView: UIView{
         input.translatesAutoresizingMaskIntoConstraints = false
         //input.borderStyle = .roundRect
         input.keyboardType = UIKeyboardType.phonePad
-        input.placeholder = "Phone number"
+        input.attributedPlaceholder = NSAttributedString(string: "Phone number",
+                                                         attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray,
+                                                         NSAttributedString.Key.font: UIFont(name: "Arial", size: 17.0)!])
+        
         input.returnKeyType = .done
         
         input.layer.masksToBounds = true
@@ -80,16 +97,26 @@ class RegisterView: UIView{
         
         self.addSubview(input)
         
-        NSLayoutConstraint.activate([
-            
-            input.topAnchor.constraint(equalTo: self.emailInput.bottomAnchor, constant: 30),
-            input.leftAnchor.constraint(equalTo: self.leftAnchor, constant: CGFloat(inputBoxOffset)),
-            input.rightAnchor.constraint(equalTo: self.rightAnchor, constant: CGFloat(0-inputBoxOffset)),
-            //input.widthAnchor.constraint(equalToConstant: 200),
-            input.heightAnchor.constraint(equalToConstant: 45),
-            input.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-            
-        ])
+        if UIScreen.main.bounds.width > 460{
+            NSLayoutConstraint.activate([
+                
+                input.topAnchor.constraint(equalTo: self.emailInput.bottomAnchor, constant: 30),
+                input.widthAnchor.constraint(equalToConstant: maxInputFieldLen),
+                input.heightAnchor.constraint(equalToConstant: 45),
+                input.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            ])
+        }else{
+            NSLayoutConstraint.activate([
+                
+                input.topAnchor.constraint(equalTo: self.emailInput.bottomAnchor, constant: 30),
+                input.leftAnchor.constraint(equalTo: self.leftAnchor, constant: CGFloat(inputBoxOffset)),
+                input.rightAnchor.constraint(equalTo: self.rightAnchor, constant: CGFloat(0-inputBoxOffset)),
+                //input.widthAnchor.constraint(equalToConstant: 200),
+                input.heightAnchor.constraint(equalToConstant: 45),
+                input.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+                
+            ])
+        }
         
         
         return input
@@ -105,7 +132,10 @@ class RegisterView: UIView{
         //input.borderStyle = .roundRect
         input.keyboardType = UIKeyboardType.alphabet
         input.returnKeyType = .done
-        input.placeholder = "Password"
+        input.attributedPlaceholder = NSAttributedString(string: "Password",
+                                                         attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray,
+                                                         NSAttributedString.Key.font: UIFont(name: "Arial", size: 17.0)!])
+        
         
         //input.cornerRadius = 60
         input.layer.masksToBounds = true
@@ -120,18 +150,28 @@ class RegisterView: UIView{
         
         self.addSubview(input)
         
-        NSLayoutConstraint.activate([
-            
-           
-            input.topAnchor.constraint(equalTo: self.phoneInput.bottomAnchor, constant: 30),
-            input.leftAnchor.constraint(equalTo: self.leftAnchor, constant: CGFloat(inputBoxOffset)),
-            input.rightAnchor.constraint(equalTo: self.rightAnchor, constant: CGFloat(0-inputBoxOffset)),
-            //input.widthAnchor.constraint(equalToConstant: 200),
-            input.heightAnchor.constraint(equalToConstant: 45),
-            input.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-            
-            
-        ])
+        if UIScreen.main.bounds.width > 460{
+            NSLayoutConstraint.activate([
+                
+                input.topAnchor.constraint(equalTo: self.phoneInput.bottomAnchor, constant: 30),
+                input.widthAnchor.constraint(equalToConstant: maxInputFieldLen),
+                input.heightAnchor.constraint(equalToConstant: 45),
+                input.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            ])
+        }else{
+            NSLayoutConstraint.activate([
+                
+               
+                input.topAnchor.constraint(equalTo: self.phoneInput.bottomAnchor, constant: 30),
+                input.leftAnchor.constraint(equalTo: self.leftAnchor, constant: CGFloat(inputBoxOffset)),
+                input.rightAnchor.constraint(equalTo: self.rightAnchor, constant: CGFloat(0-inputBoxOffset)),
+                //input.widthAnchor.constraint(equalToConstant: 200),
+                input.heightAnchor.constraint(equalToConstant: 45),
+                input.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+                
+                
+            ])
+        }
         
         
         return input
@@ -148,7 +188,10 @@ class RegisterView: UIView{
         //input.borderStyle = .roundRect
         input.keyboardType = UIKeyboardType.alphabet
         input.returnKeyType = .done
-        input.placeholder = "Password confirmation"
+        input.attributedPlaceholder = NSAttributedString(string: "Confirm password",
+                                                         attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray,
+                                                         NSAttributedString.Key.font: UIFont(name: "Arial", size: 17.0)!])
+        
         
         //input.cornerRadius = 60
         input.layer.masksToBounds = true
@@ -163,16 +206,26 @@ class RegisterView: UIView{
         
         self.addSubview(input)
         
-        NSLayoutConstraint.activate([
-            
-            input.topAnchor.constraint(equalTo: self.pwdInput.bottomAnchor, constant: 30),
-            input.leftAnchor.constraint(equalTo: self.leftAnchor, constant: CGFloat(inputBoxOffset)),
-            input.rightAnchor.constraint(equalTo: self.rightAnchor, constant: CGFloat(0-inputBoxOffset)),
-            //input.widthAnchor.constraint(equalToConstant: 200),
-            input.heightAnchor.constraint(equalToConstant: 45),
-            input.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-            
-        ])
+        if UIScreen.main.bounds.width > 460{
+            NSLayoutConstraint.activate([
+                
+                input.topAnchor.constraint(equalTo: self.pwdInput.bottomAnchor, constant: 30),
+                input.widthAnchor.constraint(equalToConstant: maxInputFieldLen),
+                input.heightAnchor.constraint(equalToConstant: 45),
+                input.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            ])
+        }else{
+            NSLayoutConstraint.activate([
+                
+                input.topAnchor.constraint(equalTo: self.pwdInput.bottomAnchor, constant: 30),
+                input.leftAnchor.constraint(equalTo: self.leftAnchor, constant: CGFloat(inputBoxOffset)),
+                input.rightAnchor.constraint(equalTo: self.rightAnchor, constant: CGFloat(0-inputBoxOffset)),
+                //input.widthAnchor.constraint(equalToConstant: 200),
+                input.heightAnchor.constraint(equalToConstant: 45),
+                input.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+                
+            ])
+        }
         
         return input
     }()
@@ -198,17 +251,26 @@ class RegisterView: UIView{
         
         self.addSubview(btn)
         
-        
-        NSLayoutConstraint.activate([
-            
-            btn.topAnchor.constraint(equalTo: self.pwdConfirmInput.bottomAnchor, constant: 30),
-            btn.leftAnchor.constraint(equalTo: self.leftAnchor, constant: CGFloat(inputBoxOffset)),
-            btn.rightAnchor.constraint(equalTo: self.rightAnchor, constant: CGFloat(0-inputBoxOffset)),
-            //input.widthAnchor.constraint(equalToConstant: 200),
-            btn.heightAnchor.constraint(equalToConstant: 45),
-            btn.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-            
-        ])
+        if UIScreen.main.bounds.width > 460{
+            NSLayoutConstraint.activate([
+                
+                btn.topAnchor.constraint(equalTo: self.pwdConfirmInput.bottomAnchor, constant: 30),
+                btn.widthAnchor.constraint(equalToConstant: self.maxInputFieldLen),
+                btn.heightAnchor.constraint(equalToConstant: 45),
+                btn.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+            ])
+        }else{
+            NSLayoutConstraint.activate([
+                
+                btn.topAnchor.constraint(equalTo: self.pwdConfirmInput.bottomAnchor, constant: 30),
+                btn.leftAnchor.constraint(equalTo: self.leftAnchor, constant: CGFloat(inputBoxOffset)),
+                btn.rightAnchor.constraint(equalTo: self.rightAnchor, constant: CGFloat(0-inputBoxOffset)),
+                //input.widthAnchor.constraint(equalToConstant: 200),
+                btn.heightAnchor.constraint(equalToConstant: 45),
+                btn.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+                
+            ])
+        }
        
         return btn
     }()
@@ -260,7 +322,7 @@ class RegisterView: UIView{
         }
         
         guard pwd == pwdConfirm else {
-            self.registerDelegate?.showRegisterMessage(message: "Password and confirmation DOES NOT match!")
+            self.registerDelegate?.showRegisterMessage(message: "Passwords NOT match!")
             return
         }
         

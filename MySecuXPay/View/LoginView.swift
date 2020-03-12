@@ -17,6 +17,7 @@ public protocol LoginViewDelegate{
 
 class LoginView: UIView{
     
+    let maxInputFieldLen: CGFloat = 400
     var inputBoxOffset = 30.0
     var loginDelegate : LoginViewDelegate?
     
@@ -29,7 +30,10 @@ class LoginView: UIView{
         input.keyboardType = UIKeyboardType.emailAddress
         input.returnKeyType = .done
         
-        input.placeholder = "Email"
+        //input.placeholder = "Email"
+        input.attributedPlaceholder = NSAttributedString(string: "Email",
+                                                         attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray,
+                                                                      NSAttributedString.Key.font: UIFont(name: "Arial", size: 17.0)!])
         
         input.layer.masksToBounds = true
         input.layer.cornerRadius = 5.0
@@ -43,16 +47,26 @@ class LoginView: UIView{
         
         self.addSubview(input)
         
-        NSLayoutConstraint.activate([
-            
-            input.topAnchor.constraint(equalTo: self.topAnchor, constant: 60),
-            input.leftAnchor.constraint(equalTo: self.leftAnchor, constant: CGFloat(inputBoxOffset)),
-            input.rightAnchor.constraint(equalTo: self.rightAnchor, constant: CGFloat(0-inputBoxOffset)),
-            //input.widthAnchor.constraint(equalToConstant: 200),
-            input.heightAnchor.constraint(equalToConstant: 45),
-            input.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-            
-        ])
+        if UIScreen.main.bounds.width > 460{
+            NSLayoutConstraint.activate([
+                
+                input.topAnchor.constraint(equalTo: self.topAnchor, constant: 60),
+                input.widthAnchor.constraint(equalToConstant: maxInputFieldLen),
+                input.heightAnchor.constraint(equalToConstant: 45),
+                input.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            ])
+        }else{
+            NSLayoutConstraint.activate([
+                
+                input.topAnchor.constraint(equalTo: self.topAnchor, constant: 60),
+                input.leftAnchor.constraint(equalTo: self.leftAnchor, constant: CGFloat(inputBoxOffset)),
+                input.rightAnchor.constraint(equalTo: self.rightAnchor, constant: CGFloat(0-inputBoxOffset)),
+                
+                //input.widthAnchor.constraint(equalToConstant: 200),
+                input.heightAnchor.constraint(equalToConstant: 45),
+                input.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            ])
+        }
         
         
         return input
@@ -69,7 +83,10 @@ class LoginView: UIView{
         input.keyboardType = UIKeyboardType.alphabet
         input.returnKeyType = .done
         
-        input.placeholder = "Password"
+        input.attributedPlaceholder = NSAttributedString(string: "Password",
+                                                         attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray,
+                                                         NSAttributedString.Key.font: UIFont(name: "Arial", size: 17.0)!])
+        
         
         //input.cornerRadius = 60
         input.layer.masksToBounds = true
@@ -82,19 +99,31 @@ class LoginView: UIView{
         input.leftPadding = 5
         input.font = UIFont(name: "Arial", size: 19.0)
         
+        
+        
         self.addSubview(input)
         
-        NSLayoutConstraint.activate([
-            
-            input.topAnchor.constraint(equalTo: self.emailInput.bottomAnchor, constant: 30),
-            input.leftAnchor.constraint(equalTo: self.leftAnchor, constant: CGFloat(inputBoxOffset)),
-            input.rightAnchor.constraint(equalTo: self.rightAnchor, constant: CGFloat(0-inputBoxOffset)),
-            //input.widthAnchor.constraint(equalToConstant: 200),
-            input.heightAnchor.constraint(equalToConstant: 45),
-            input.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-            
-        ])
-        
+        if UIScreen.main.bounds.width > 460{
+            NSLayoutConstraint.activate([
+                
+                input.topAnchor.constraint(equalTo: self.emailInput.bottomAnchor, constant: 30),
+                input.widthAnchor.constraint(equalToConstant: maxInputFieldLen),
+                input.heightAnchor.constraint(equalToConstant: 45),
+                input.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            ])
+        }else{
+            NSLayoutConstraint.activate([
+                
+                input.topAnchor.constraint(equalTo: self.emailInput.bottomAnchor, constant: 30),
+                input.leftAnchor.constraint(equalTo: self.leftAnchor, constant: CGFloat(inputBoxOffset)),
+                input.rightAnchor.constraint(equalTo: self.rightAnchor, constant: CGFloat(0-inputBoxOffset)),
+                //input.widthAnchor.constraint(equalToConstant: 200),
+                input.heightAnchor.constraint(equalToConstant: 45),
+                input.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                input.widthAnchor.constraint(lessThanOrEqualToConstant: self.maxInputFieldLen)
+                
+            ])
+        }
         
         return input
     }()
@@ -121,17 +150,27 @@ class LoginView: UIView{
         
         self.addSubview(btn)
         
-        
-        NSLayoutConstraint.activate([
-            
-            btn.topAnchor.constraint(equalTo: self.pwdInput.bottomAnchor, constant: 30),
-            btn.leftAnchor.constraint(equalTo: self.leftAnchor, constant: CGFloat(inputBoxOffset)),
-            btn.rightAnchor.constraint(equalTo: self.rightAnchor, constant: CGFloat(0-inputBoxOffset)),
-            //input.widthAnchor.constraint(equalToConstant: 200),
-            btn.heightAnchor.constraint(equalToConstant: 45),
-            btn.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-            
-        ])
+        if UIScreen.main.bounds.width > 460{
+            NSLayoutConstraint.activate([
+                
+                btn.topAnchor.constraint(equalTo: self.pwdInput.bottomAnchor, constant: 30),
+                btn.widthAnchor.constraint(equalToConstant: self.maxInputFieldLen),
+                btn.heightAnchor.constraint(equalToConstant: 45),
+                btn.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+            ])
+        }else{
+            NSLayoutConstraint.activate([
+                
+                btn.topAnchor.constraint(equalTo: self.pwdInput.bottomAnchor, constant: 30),
+                btn.leftAnchor.constraint(equalTo: self.leftAnchor, constant: CGFloat(inputBoxOffset)),
+                btn.rightAnchor.constraint(equalTo: self.rightAnchor, constant: CGFloat(0-inputBoxOffset)),
+                //input.widthAnchor.constraint(equalToConstant: 200),
+                btn.heightAnchor.constraint(equalToConstant: 45),
+                btn.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+             
+                
+            ])
+        }
        
         return btn
     }()

@@ -76,7 +76,7 @@ class PaymentHistoryViewController: BaseViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = UISetting.shared.portfolioBKColor
+        tableView.backgroundColor = UISetting.shared.vcBKColor
         //tableView.estimatedRowHeight = 60
         tableView.rowHeight = 150 //UITableView.automaticDimension
         //tableView.allowsSelection = true
@@ -128,7 +128,7 @@ class PaymentHistoryViewController: BaseViewController {
         var _ = self.titleLabel
         var _ = self.theTableView
         
-        self.view.backgroundColor = UISetting.shared.portfolioBKColor
+        self.view.backgroundColor = UISetting.shared.vcBKColor
         
         //let payInfo = PaymentHistoryInfo(storeName: "Test store-1 ", accountName: "MyBitCoin", coinType: "BTC", timestamp: "2019-11-12 13:33:11", amount: "0.00001", amountUSD: "0.12")
         
@@ -177,7 +177,9 @@ class PaymentHistoryViewController: BaseViewController {
         }
         */
         self.showProgress(info: "Loading...")
+        self.paymentInfoArr.removeAll()
         DispatchQueue.global(qos: .default).async {
+            
             self.loadHistoryItems()
         }
     }
@@ -250,7 +252,6 @@ class PaymentHistoryViewController: BaseViewController {
         DispatchQueue.main.async {
            self.refreshControl.endRefreshing()
         }
-   
 
    }
 
@@ -260,8 +261,6 @@ class PaymentHistoryViewController: BaseViewController {
 
 
 extension PaymentHistoryViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         

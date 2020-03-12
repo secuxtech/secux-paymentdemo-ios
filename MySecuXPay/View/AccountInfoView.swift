@@ -189,11 +189,12 @@ class AccountInfoView: UIView {
             self.itemNameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             self.itemNameLabel.widthAnchor.constraint(lessThanOrEqualTo: self.widthAnchor, multiplier: 1/2, constant: -55),
             
-            self.itemBalanceLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -35),
-            self.itemBalanceLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 15.46),
+            //self.itemBalanceLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -35),
+            //self.itemBalanceLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 15.46),
             
-            self.itemValLabel.rightAnchor.constraint(equalTo: itemBalanceLabel.rightAnchor, constant: 0),
-            self.itemValLabel.topAnchor.constraint(equalTo: self.itemBalanceLabel.bottomAnchor, constant: 3)
+            self.itemValLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -35),
+            //self.itemValLabel.topAnchor.constraint(equalTo: self.itemBalanceLabel.bottomAnchor, constant: 3)
+            self.itemValLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor)
 
         ])
             
@@ -215,6 +216,7 @@ class AccountInfoView: UIView {
             self.itemBalanceLabel.text = "$ 0.0"
         }
         
+        self.itemBalanceLabel.isHidden = true
         
         //print("setup account \(self.itemValLabel.text)  \(self.itemBalanceLabel.text)")
     }
@@ -244,12 +246,12 @@ class AccountInfoView: UIView {
             self.itemNameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             self.itemNameLabel.widthAnchor.constraint(lessThanOrEqualTo: self.widthAnchor, multiplier: 1/2, constant: -35),
             
-            self.itemBalanceLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -13.1),
-            self.itemBalanceLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 15.46),
+            //self.itemBalanceLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -13.1),
+            //self.itemBalanceLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 15.46),
             
             self.itemValLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -12.7),
-            self.itemValLabel.topAnchor.constraint(equalTo: self.itemBalanceLabel.bottomAnchor, constant: 3)
-
+            //self.itemValLabel.topAnchor.constraint(equalTo: self.itemBalanceLabel.bottomAnchor, constant: 3)
+            self.itemValLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor)
         ])
     
         
@@ -268,6 +270,7 @@ class AccountInfoView: UIView {
             self.itemBalanceLabel.text = "$ 0.0"
         }
         
+        self.itemBalanceLabel.isHidden = true
       
         //print("setup account \(self.itemValLabel.text)  \(self.itemBalanceLabel.text)")
     }

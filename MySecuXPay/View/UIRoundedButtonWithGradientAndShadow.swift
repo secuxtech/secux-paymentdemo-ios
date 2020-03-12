@@ -143,8 +143,8 @@ class UIRoundedButtonWithGradientAndShadow: UIButton {
             }
             layer.shadowRadius = newRadius
             
-            let xScale : CGFloat = isHighlighted ? 1.025 : 1.0
-            let yScale : CGFloat = isHighlighted ? 1.05 : 1.0
+            let xScale : CGFloat = isHighlighted ? 1.1 : 1.0 //1.025 : 1.0
+            let yScale : CGFloat = isHighlighted ? 1.1 : 1.0//1.05 : 1.0
             UIView.animate(withDuration: 0.1) {
                 let transformation = CGAffineTransform(scaleX: xScale, y: yScale)
                 self.transform = transformation

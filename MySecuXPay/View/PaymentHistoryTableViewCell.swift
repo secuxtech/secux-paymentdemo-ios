@@ -175,8 +175,8 @@ class PaymentHistoryTableViewCell: BaseTableViewCell {
     
     func setup(historyInfo: SecuXPaymentHistory){
         
-        self.contentView.backgroundColor = UISetting.shared.portfolioBKColor
-        self.backgroundColor = UISetting.shared.portfolioBKColor
+        self.contentView.backgroundColor = UISetting.shared.vcBKColor
+        self.backgroundColor = UISetting.shared.vcBKColor
         var _ = self.bkView
         
         

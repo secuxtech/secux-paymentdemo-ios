@@ -216,7 +216,7 @@ class PaymentResultViewController: BaseViewController {
 
         // Do any additional setup after loading the view.
         
-        self.view.backgroundColor = UISetting.shared.portfolioBKColor
+        self.view.backgroundColor = UISetting.shared.vcBKColor
         
         var _ = self.itemImage
         var _ = self.resultLabel

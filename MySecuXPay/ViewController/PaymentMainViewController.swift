@@ -9,10 +9,46 @@
 import UIKit
 import swiftScan
 import secux_paymentkit
-
+import CoreNFC
 
 
 class PaymentMainViewController: BaseViewController {
+    
+    /*
+    lazy var detectNFCButton:  UIRoundedButtonWithGradientAndShadow = {
+        
+        let btn = UIRoundedButtonWithGradientAndShadow(gradientColors: [UIColor(red: 0xEB/0xFF, green: 0xCB/0xFF, blue: 0x56/0xFF, alpha: 1), UIColor(red: 0xEB/0xFF, green: 0xCB/0xFF, blue: 0x56/0xFF, alpha: 1)])
+        
+        
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        
+        btn.titleLabel?.font = UIFont(name: "Arial", size: 22)
+        btn.setTitle(NSLocalizedString("Detect NFC", comment: ""), for: .normal)
+        btn.setTitleColor(UIColor(red: 0x1F/0xFF, green: 0x20/0xFF, blue: 0x20/0xFF, alpha: 1), for: .normal)
+        btn.addTarget(self, action: #selector(detectNFCAction), for: .touchUpInside)
+        
+        
+        btn.layer.shadowColor = UIColor.black.cgColor
+        btn.layer.shadowRadius = 2
+        btn.layer.shadowOffset = CGSize(width: 2, height: 2)
+        btn.layer.shadowOpacity = 0.3
+        
+        
+        self.view.addSubview(btn)
+        
+        
+        NSLayoutConstraint.activate([
+            
+            btn.bottomAnchor.constraint(equalTo: self.scanQRCodeButton.topAnchor, constant: -30),
+            btn.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            
+            btn.heightAnchor.constraint(equalToConstant: 48.63),
+            btn.widthAnchor.constraint(equalToConstant: 199.54)
+            
+        ])
+       
+        return btn
+    }()
     
     lazy var scanQRCodeButton:  UIRoundedButtonWithGradientAndShadow = {
         
@@ -47,6 +83,116 @@ class PaymentMainViewController: BaseViewController {
         ])
        
         return btn
+    }()
+    
+    */
+    
+    lazy var titleView: UIView = {
+     
+        let theView = UIView()
+        theView.backgroundColor = UISetting.shared.titleBKColor
+        theView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.view.addSubview(theView)
+        
+        NSLayoutConstraint.activate([
+            theView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            theView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+            theView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+            theView.heightAnchor.constraint(equalToConstant: 100)
+        ])
+       
+        return theView
+    }()
+    
+    lazy var detectNFCButton: UIButton = {
+        let btn = UIButton()
+        btn.setBackgroundImage(UIImage(named: "payment_nfc_btn"), for: .normal)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.addTarget(self, action: #selector(detectNFCAction), for: .touchUpInside)
+        
+         
+        self.view.addSubview(btn)
+
+        NSLayoutConstraint.activate([
+         
+            btn.topAnchor.constraint(equalTo: self.titleView.bottomAnchor, constant: 80),
+            //btn.bottomAnchor.constraint(equalTo: self.historyButton.topAnchor, constant: -130),
+            btn.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: -86)
+         
+        ])
+
+        return btn
+    }()
+    
+    lazy var detectNFCLabel : UILabel = {
+        let label = UILabel()
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        label.font = UIFont.init(name: UISetting.shared.fontName, size: 16)
+        label.text = "Pay by NFC"
+        label.textColor = .gray
+        label.textAlignment = NSTextAlignment.center
+        
+        label.numberOfLines = 0
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.sizeToFit()
+        
+        self.view.addSubview(label)
+        NSLayoutConstraint.activate([
+         
+            label.topAnchor.constraint(equalTo: self.detectNFCButton.bottomAnchor, constant: 5),
+            label.centerXAnchor.constraint(equalTo: self.detectNFCButton.centerXAnchor)
+         
+        ])
+        
+        return label
+    }()
+    
+    lazy var scanQRCodeButton: UIButton = {
+        let btn = UIButton()
+        btn.setBackgroundImage(UIImage(named: "payment_qrcode_btn"), for: .normal)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.addTarget(self, action: #selector(scanQRCodeAction), for: .touchUpInside)
+        
+        self.view.addSubview(btn)
+
+        NSLayoutConstraint.activate([
+
+            btn.topAnchor.constraint(equalTo: self.titleView.bottomAnchor, constant: 80),
+            //btn.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -230),
+            //btn.bottomAnchor.constraint(equalTo: self.historyButton.topAnchor, constant: -130),
+            btn.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 86)
+
+        ])
+
+        return btn
+    }()
+    
+    lazy var scanQRCodeLabel : UILabel = {
+        let label = UILabel()
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        label.font = UIFont.init(name: UISetting.shared.fontName, size: 16)
+        label.text = "Pay by QRCode"
+        label.textColor = .gray
+        label.textAlignment = NSTextAlignment.center
+        
+        label.numberOfLines = 0
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.sizeToFit()
+        
+        self.view.addSubview(label)
+        NSLayoutConstraint.activate([
+         
+            label.topAnchor.constraint(equalTo: self.scanQRCodeButton.bottomAnchor, constant: 5),
+            label.centerXAnchor.constraint(equalTo: self.scanQRCodeButton.centerXAnchor)
+         
+        ])
+        
+        return label
     }()
     
     lazy var itemImg: UIImageView = {
@@ -93,28 +239,33 @@ class PaymentMainViewController: BaseViewController {
         NSLayoutConstraint.activate([
            
             btn.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            btn.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -28)
+            btn.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -18)
            
         ])
 
         return btn
     }()
+    
+    var session: NFCNDEFReaderSession?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        self.view.backgroundColor = .white
+      
         
-        var _ = self.scanQRCodeButton
-        var _ = self.itemImg
+        var _ = self.titleView
         var _ = self.historyButton
-        
-        
+        var _ = self.scanQRCodeButton
+        var _ = self.detectNFCButton
+        var _ = self.itemImg
+        var _ = self.detectNFCLabel
+        var _ = self.scanQRCodeLabel
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.navigationController?.navigationItem.title = ""
     }
     
@@ -181,6 +332,18 @@ class PaymentMainViewController: BaseViewController {
         
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
+    @objc func detectNFCAction(){
+        
+        if NFCNDEFReaderSession.readingAvailable {
+            session = NFCNDEFReaderSession(delegate: self, queue: DispatchQueue.main, invalidateAfterFirstRead: false)
+            session?.begin()
+        }else{
+            self.showMessage(title: "Your phone DOES NOT support NFC!", message: "")
+        }
+        
         
     }
 
@@ -277,12 +440,10 @@ class PaymentMainViewController: BaseViewController {
                     self.navigationController?.pushViewController(vc, animated: false)
                 }
                 
-                
-                
             }else if ret == SecuXRequestResult.SecuXRequestUnauthorized || ret == SecuXRequestResult.SecuXRequestNoToken{
                 self.handleUnauthorizedError()
             }else{
-                self.showMessageInMainThread(title: "Invalid QRCode!", message: "Please try again.")
+                self.showMessageInMainThread(title: "Invalid payment information!", message: "Please try again.")
             }
         }
     }
@@ -309,3 +470,51 @@ extension PaymentMainViewController: LBXScanViewControllerDelegate{
     
 }
 
+extension PaymentMainViewController:NFCNDEFReaderSessionDelegate{
+  
+    
+    func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
+        print(error.localizedDescription)
+        
+        
+    }
+    
+    func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
+        for message in messages {
+            
+            for record in message.records {
+                if let string = String(data: record.payload, encoding: .ascii) {
+                    print(string)
+                    
+                    if let startPos = string.firstIndex(of: "{"), let endPos = string.lastIndex(of: "}"){
+                        let payInfoJson = String(string[startPos...endPos])
+                        print(payInfoJson)
+                        
+                        self.handlePaymentInfo(payinfo: payInfoJson)
+                        session.invalidate()
+                    }
+                    
+                }
+                
+                //print("Type name format: \(record.typeNameFormat)")
+                //print("Payload: \(record.payload)")
+                //print("Type: \(record.type)")
+                //print("Identifier: \(record.identifier)")
+            }
+
+        }
+    }
+    
+    /*
+    @available(iOS 13.0, *)
+    func readerSession(_ session: NFCNDEFReaderSession, didDetect tags: [NFCNDEFTag]){
+        print("readSession didDetect nfcTag")
+        
+    }
+    */
+    
+    @available(iOS 13.0, *)
+    func readerSessionDidBecomeActive(_ session: NFCNDEFReaderSession){
+        print("readerSessionDidBecomeActive")
+    }
+}

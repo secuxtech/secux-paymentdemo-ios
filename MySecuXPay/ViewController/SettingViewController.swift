@@ -22,7 +22,7 @@ class SettingViewController: BaseViewController{
             theView.topAnchor.constraint(equalTo: self.view.topAnchor),
             theView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             theView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
-            theView.heightAnchor.constraint(equalToConstant: 260)
+            theView.heightAnchor.constraint(equalToConstant: 230)
         
         ])
         
@@ -41,10 +41,10 @@ class SettingViewController: BaseViewController{
         //tableView.separatorStyle = .none
         tableView.backgroundColor = .white
         tableView.allowsSelection = true
-        tableView.isScrollEnabled = true
+        //tableView.isScrollEnabled = true
         
         
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = UISetting.shared.vcBKColor
 
         
         view.addSubview(tableView)
@@ -67,7 +67,7 @@ class SettingViewController: BaseViewController{
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        self.view.backgroundColor = UISetting.shared.portfolioBKColor
+        self.view.backgroundColor = UISetting.shared.vcBKColor
       
         //DispatchQueue.global(qos: .default).async{
         //    self.getAccountInfo()
@@ -78,6 +78,7 @@ class SettingViewController: BaseViewController{
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.navigationController?.navigationItem.title = ""
         
      
@@ -89,12 +90,16 @@ class SettingViewController: BaseViewController{
 extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 3
+        if section == 0{
+            return 3
+        }else{
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -119,6 +124,13 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 commonCell.setup(title: "Logout", value: "")
                 
+            }else if indexPath.section == 1 && indexPath.row == 0{
+                
+                if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String{
+                    commonCell.setup(title: "Version", value: appVersion)
+                }else{
+                    commonCell.setup(title: "Version", value: "")
+                }
             }
         }
         return cell
@@ -127,7 +139,11 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
-        return "Account"
+        if section == 0{
+            return "Account"
+        }else{
+            return "About"
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

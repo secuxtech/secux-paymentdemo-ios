@@ -58,6 +58,7 @@ class LoginViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.navigationController?.navigationItem.title = ""
         
         let localAuthContext = LAContext()
@@ -79,7 +80,6 @@ class LoginViewController: BaseViewController {
     
     override func viewDidLayoutSubviews() {
         //self.theLoginView.setBackgrounImg()
-        
         
         UIGraphicsBeginImageContext(self.view.frame.size)
         UIImage(named: "login_bk_img")?.draw(in: self.view.bounds)

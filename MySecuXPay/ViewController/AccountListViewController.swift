@@ -48,7 +48,7 @@ class AccountListViewController: BaseViewController{
         tableView.delegate = self
         tableView.dataSource = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = UISetting.shared.portfolioBKColor
+        tableView.backgroundColor = UISetting.shared.vcBKColor
         //tableView.estimatedRowHeight = 60
         tableView.rowHeight = 80 //UITableView.automaticDimension
         //tableView.allowsSelection = true
@@ -120,17 +120,18 @@ class AccountListViewController: BaseViewController{
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        self.view.backgroundColor = UISetting.shared.portfolioBKColor
+        self.view.backgroundColor = UISetting.shared.vcBKColor
       
         //DispatchQueue.global(qos: .default).async{
         //    self.getAccountInfo()
         //}
         
-        let _ = self.floatButton
+        //let _ = self.floatButton
         self.theTableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.navigationController?.navigationItem.title = ""
     }
     

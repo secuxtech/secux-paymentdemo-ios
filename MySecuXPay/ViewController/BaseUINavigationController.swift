@@ -32,6 +32,8 @@ class BaseUINavigationController: UINavigationController{
         self.navigationBar.addSubview(titleImgView)
         titleImgView.centerXAnchor.constraint(equalTo: self.navigationBar.centerXAnchor).isActive = true
         titleImgView.centerYAnchor.constraint(equalTo: self.navigationBar.centerYAnchor).isActive = true
+        
+      
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

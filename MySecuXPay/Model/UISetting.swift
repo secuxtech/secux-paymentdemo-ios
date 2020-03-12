@@ -11,14 +11,15 @@ import UIKit
 
 class UISetting: NSObject {
     
-    var portfolioBKColor = UIColor(red: 0.97, green: 0.97, blue: 0.97, alpha: 1)
-    var titleBKColor = UIColor(red: 0x1F/255, green: 0x20/255, blue: 0x20/255, alpha: 1)
-    var buttonColor = UIColor(red: 0xEB/0xFF, green: 0xCB/0xFF, blue: 0x56/0xFF, alpha: 1)
+    let vcBKColor = UIColor(red: 0.97, green: 0.97, blue: 0.97, alpha: 1)
+    let titleBKColor = UIColor(red: 0x1F/255, green: 0x20/255, blue: 0x20/255, alpha: 1)
+    let buttonColor = UIColor(red: 0xEB/0xFF, green: 0xCB/0xFF, blue: 0x56/0xFF, alpha: 1)
+
     
-    var fontName = "Helvetica"
-    var boldFontName = "Helvetica-Bold"
+    let fontName = "Helvetica"
+    let boldFontName = "Helvetica-Bold"
     
-    
+    let maxUIControlLen: CGFloat = 400
     
     static let shared: UISetting = {
         let shared = UISetting()
@@ -29,8 +30,6 @@ class UISetting: NSObject {
     private override init(){
         super.init()
         print("UISetting init")
-        
- 
     }
     
     deinit {

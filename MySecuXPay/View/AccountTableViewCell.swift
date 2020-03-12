@@ -137,8 +137,8 @@ class AccountTableViewCell: UITableViewCell{
     
     func setup(account: CoinTokenAccount){
         
-        self.contentView.backgroundColor = UISetting.shared.portfolioBKColor
-        self.backgroundColor = UISetting.shared.portfolioBKColor
+        self.contentView.backgroundColor = UISetting.shared.vcBKColor
+        self.backgroundColor = UISetting.shared.vcBKColor
         var _ = self.bkView
       
         self.itemImg.image = account.getCoinLogo()
@@ -159,11 +159,12 @@ class AccountTableViewCell: UITableViewCell{
             self.itemNameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             self.itemNameLabel.widthAnchor.constraint(lessThanOrEqualTo: self.widthAnchor, multiplier: 1/2, constant: -35),
             
-            self.itemBalanceLabel.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -13.1),
-            self.itemBalanceLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 15.46),
+            //self.itemBalanceLabel.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -13.1),
+            //self.itemBalanceLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 15.46),
             
             self.itemValLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -13.1),
-            self.itemValLabel.topAnchor.constraint(equalTo: self.itemBalanceLabel.bottomAnchor, constant: 3)
+            //self.itemValLabel.topAnchor.constraint(equalTo: self.itemBalanceLabel.bottomAnchor, constant: 3)
+            self.itemValLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
 
         ])
 
@@ -182,6 +183,7 @@ class AccountTableViewCell: UITableViewCell{
             self.itemBalanceLabel.text = "$ 0.0"
         }
         
+        self.itemBalanceLabel.isHidden = true
     }
     
     func removeAccountBalanceObserver(){
