@@ -454,8 +454,7 @@ class PaymentDetailsViewController: BaseViewController {
                 let biometricType = localAuthContext.biometryType == LABiometryType.faceID ? "Face ID" : "Touch ID"
                 logw("Supported Biometric type is: \( biometricType )")
                 
-                localAuthContext.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: "Pay \(self.amount) \(self.coinType) to \(self.storeName)") { success, evaluateError in
-                    
+                localAuthContext.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: "Pay \(self.amount) \(self.token) to \(self.storeName)") { success, evaluateError in
                     
                     if success{
                         self.showProgress(info: "Processing...")
@@ -482,7 +481,15 @@ class PaymentDetailsViewController: BaseViewController {
 extension PaymentDetailsViewController: SecuXPaymentManagerDelegate{
     
     //Called when payment is completed. Returns payment result and error message.
-    func paymentDone(ret: Bool, errorMsg: String) {
+    func paymentDone(ret: Bool, transactionCode: String, errorMsg: String) {
+        
+        var payTransHis : SecuXPaymentHistory?
+        if ret, let payMgr = self.paymentMgr{
+            let (reqret, tranHis) = payMgr.getPaymentHistory(token: self.token, transactionCode: transactionCode)
+            if reqret == SecuXRequestResult.SecuXRequestOK{
+                payTransHis = tranHis
+            }
+        }
         
         self.hideProgress()
         
@@ -518,10 +525,13 @@ extension PaymentDetailsViewController: SecuXPaymentManagerDelegate{
                 AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
 
                 
-                vc.amount = "\(self.amount) \(self.coinType)"
+                vc.amount = "\(self.amount) \(self.token)"
                 vc.result = true
                 vc.timestamp = dateString
                 vc.storeName = self.storeName
+                vc.payToken = self.token
+                vc.transCode = transactionCode
+                vc.transHistory = payTransHis
                 
                 //let customSoundId: SystemSoundID = 1005
                 //AudioServicesPlaySystemSound(customSoundId)
@@ -577,7 +587,7 @@ extension PaymentDetailsViewController: SecuXPaymentManagerDelegate{
                 usleep(500000)
                 AudioServicesPlaySystemSound(soundID)
                 
-                vc.amount = "\(self.amount) \(self.coinType)"
+                vc.amount = "\(self.amount) \(self.token)"
                 vc.result = false
                 vc.timestamp = dateString
                 vc.storeName = self.storeName
@@ -586,7 +596,7 @@ extension PaymentDetailsViewController: SecuXPaymentManagerDelegate{
                 //self.showMessage(title: "Payment fail!", message: errorMsg)
             }
             
-            self.navigationController?.pushViewController(vc, animated: false)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     

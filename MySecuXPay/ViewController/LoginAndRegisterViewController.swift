@@ -173,6 +173,9 @@ class LoginAndRegisterViewController: BaseViewController{
         self.theLoginView.loginDelegate = self
         self.theRegisterView.registerDelegate = self
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -185,14 +188,27 @@ class LoginAndRegisterViewController: BaseViewController{
     override func viewDidLayoutSubviews() {
         //self.theLoginView.setBackgrounImg()
         
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        UIImage(named: "login_bk_img")?.draw(in: self.view.bounds)
+        UIGraphicsBeginImageContext(UIScreen.main.bounds.size)//   self.view.frame.size)
+        UIImage(named: "login_bk_img")?.draw(in: CGRect(x: -1, y: -1, width: UIScreen.main.bounds.width+2, height: UIScreen.main.bounds.height+2)) // UIScreen.main.bounds) //self.view.bounds)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
         if let image = image{
             self.view.backgroundColor = UIColor.init(patternImage: image)
         }
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        
+      
+        if !self.theRegisterView.isHidden && self.view.frame.origin.y == 0 && self.view.bounds.height < 800{
+            self.view.frame.origin.y -= 50 //keyboardSize.height
+        }
+        
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        self.view.frame.origin.y = 0
     }
     
 }

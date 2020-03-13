@@ -31,14 +31,22 @@ class PaymentHistoryViewController: BaseViewController {
         
         self.view.addSubview(label)
         
-        
-        NSLayoutConstraint.activate([
-        
-            label.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
-            label.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10),
-         
-        
-        ])
+        if UIScreen.main.bounds.width > 460{
+            NSLayoutConstraint.activate([
+                
+                label.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 116),
+                label.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10),
+
+            ])
+        }else{
+            NSLayoutConstraint.activate([
+            
+                label.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
+                label.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10),
+             
+            
+            ])
+        }
         
         
         return label
@@ -99,14 +107,24 @@ class PaymentHistoryViewController: BaseViewController {
         
         view.addSubview(tableView)
 
-        
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 15),
-            tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
-            tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
-            tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -30)
-            
-        ])
+        if UIScreen.main.bounds.width > 460{
+            NSLayoutConstraint.activate([
+                
+                tableView.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 15),
+                tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 116),
+                tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -116),
+                tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -30)
+
+            ])
+        }else{
+            NSLayoutConstraint.activate([
+                tableView.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 15),
+                tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
+                tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
+                tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -30)
+                
+            ])
+        }
         
         tableView.register(PaymentHistoryTableViewCell.self, forCellReuseIdentifier: PaymentHistoryTableViewCell.cellIdentifier())
         
@@ -291,9 +309,14 @@ extension PaymentHistoryViewController: UITableViewDelegate, UITableViewDataSour
         
         let historyItem = self.paymentInfoArr[indexPath.row]
         if historyItem.detailsUrl.count > 0{
-            let vc = TransactionDetailsViewController()
-            vc.detailURL = historyItem.detailsUrl
-            self.navigationController?.pushViewController(vc, animated: false)
+            //let vc = TransactionDetailsViewController()
+            //vc.detailURL = historyItem.detailsUrl
+            
+            
+            let vc = PaymentReceiptViewController()
+            vc.transHistory = historyItem
+            
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         
     }

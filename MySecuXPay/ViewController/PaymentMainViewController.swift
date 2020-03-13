@@ -267,6 +267,7 @@ class PaymentMainViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationItem.title = ""
+        //self.navigationController?.
     }
     
     /*
@@ -330,7 +331,7 @@ class PaymentMainViewController: BaseViewController {
         //vc.modalPresentationStyle = .overCurrentContext
         //self.present(vc, animated: true, completion: nil)
         
-        self.navigationController?.navigationBar.isHidden = false
+        //self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
@@ -437,7 +438,7 @@ class PaymentMainViewController: BaseViewController {
                     vc.deviceIDhash = devIDHash
                     vc.showAccountSelection = showAccountSelection
                     vc.theAccount = theAccount
-                    self.navigationController?.pushViewController(vc, animated: false)
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
                 
             }else if ret == SecuXRequestResult.SecuXRequestUnauthorized || ret == SecuXRequestResult.SecuXRequestNoToken{

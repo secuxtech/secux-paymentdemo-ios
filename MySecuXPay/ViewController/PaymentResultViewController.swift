@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import secux_paymentkit
 
 class PaymentResultViewController: BaseViewController {
     
@@ -40,6 +41,12 @@ class PaymentResultViewController: BaseViewController {
         }
     }
     
+    var payToken: String = ""
+    
+    var transCode: String = ""
+    
+    var transHistory: SecuXPaymentHistory?
+    
     var timestamp: String = ""{
         didSet{
             self.timestampLabel.text = timestamp
@@ -71,14 +78,23 @@ class PaymentResultViewController: BaseViewController {
         
         view.addSubview(tableView)
 
-        
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: self.timestampLabel.bottomAnchor, constant: 30),
-            tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
-            tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
-            tableView.heightAnchor.constraint(equalToConstant: 115)
-            
-        ])
+        if UIScreen.main.bounds.width > 460{
+            NSLayoutConstraint.activate([
+                
+                tableView.topAnchor.constraint(equalTo: self.timestampLabel.bottomAnchor, constant: 30),
+                tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 116),
+                tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -116),
+                tableView.heightAnchor.constraint(equalToConstant: 115)
+            ])
+        }else{
+            NSLayoutConstraint.activate([
+                tableView.topAnchor.constraint(equalTo: self.timestampLabel.bottomAnchor, constant: 30),
+                tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
+                tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
+                tableView.heightAnchor.constraint(equalToConstant: 115)
+                
+            ])
+        }
         
         tableView.register(SettingTableViewCell.self, forCellReuseIdentifier: SettingTableViewCell.cellIdentifier())
         
@@ -233,24 +249,28 @@ class PaymentResultViewController: BaseViewController {
         
         super.viewWillAppear(animated)
         
-        self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.navigationBar.backItem?.title = "Back"
+        //self.navigationController?.navigationBar.isHidden = false
+        //self.navigationController?.navigationBar.backItem?.title = "Back"
         
+        /*
+        guard let navigationController = self.navigationController else { return }
+        var navigationArray = navigationController.viewControllers
+        //navigationArray.remove(at: navigationArray.count - 2)
         var idx = 0
-        for vc in self.navigationController!.viewControllers{
-            
+        for vc in navigationArray{
             if vc.isKind(of: PaymentDetailsViewController.self){
-    
-                self.navigationController!.viewControllers.remove(at: idx)
-                
-                vc.removeFromParent()
-                break
-                
-            }
             
-            idx = idx + 1
+                navigationArray.remove(at: idx)
+                
+            }else{
+                idx = idx + 1
+            }
         }
+        self.navigationController?.viewControllers = navigationArray
+        */
         
+        let navBase = self.navigationController as? BaseUINavigationController
+        navBase?.popToRootFlag = true
         self.theTableView.reloadData()
     }
 
@@ -276,8 +296,11 @@ extension PaymentResultViewController: UITableViewDelegate, UITableViewDataSourc
             
             if indexPath.row == 0{
                 commonCell.setup(title: "Store", value: self.storeName)
+            }else if let _ = self.transHistory{
+                commonCell.setup(title: "Receipt", value: "")
+                commonCell.accessoryType = .disclosureIndicator
             }else{
-                commonCell.setup(title: "Payment History", value: "")
+                commonCell.setup(title: "History", value: "")
                 commonCell.accessoryType = .disclosureIndicator
             }
             
@@ -290,9 +313,14 @@ extension PaymentResultViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.row == 1{
-            let vc = PaymentHistoryViewController()
-            
-            self.navigationController?.pushViewController(vc, animated: true)
+            if let payHis = self.transHistory{
+                let vc = PaymentReceiptViewController()
+                vc.transHistory = payHis
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else{
+                let vc = PaymentReceiptViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
    

@@ -22,7 +22,7 @@ class SettingViewController: BaseViewController{
             theView.topAnchor.constraint(equalTo: self.view.topAnchor),
             theView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             theView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
-            theView.heightAnchor.constraint(equalToConstant: 230)
+            theView.heightAnchor.constraint(equalToConstant: 200)
         
         ])
         

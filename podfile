@@ -7,5 +7,5 @@ target 'MySecuXPay' do
   # Pods for MySecuXPay
   pod 'swiftScan', :git => 'https://github.com/MxABC/swiftScan.git'
   pod 'JGProgressHUD'
-  pod 'secux-paymentkit'
+  pod 'secux-paymentkit','~> 1.0.2'
 end

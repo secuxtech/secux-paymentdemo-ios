@@ -229,6 +229,12 @@ class LoginView: UIView{
                 }
                 
             }else{
+                
+                DispatchQueue.main.async {
+                    self.emailInput.shake()
+                    self.pwdInput.shake()
+                }
+                
                 var errorMsg = "Invalid email/password!"
                 if let data = data, let error = String(data: data, encoding: String.Encoding.utf8){
                     errorMsg = error

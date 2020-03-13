@@ -49,6 +49,9 @@
 		2EA7D87A2418D39E00827C24 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA7D8792418D39E00827C24 /* SettingViewController.swift */; };
 		2EA7D87C2418D7A300827C24 /* AccountSettingTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA7D87B2418D7A300827C24 /* AccountSettingTitleView.swift */; };
 		2EA7D87E2418E68900827C24 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA7D87D2418E68900827C24 /* LoginViewController.swift */; };
+		2ED14D02241B3BE900E91095 /* PaymentReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED14D01241B3BE900E91095 /* PaymentReceiptViewController.swift */; };
+		2ED14D04241B3DBC00E91095 /* PaymentReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED14D03241B3DBC00E91095 /* PaymentReceiptView.swift */; };
+		2ED14D06241B91A300E91095 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED14D05241B91A300E91095 /* UIView+Extension.swift */; };
 		E8A8CFD0942C2888A3AA3B7E /* Pods_MySecuXPay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5792CE8AD185F238CFA0F784 /* Pods_MySecuXPay.framework */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +101,9 @@
 		2EA7D8792418D39E00827C24 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		2EA7D87B2418D7A300827C24 /* AccountSettingTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingTitleView.swift; sourceTree = "<group>"; };
 		2EA7D87D2418E68900827C24 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		2ED14D01241B3BE900E91095 /* PaymentReceiptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentReceiptViewController.swift; sourceTree = "<group>"; };
+		2ED14D03241B3DBC00E91095 /* PaymentReceiptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentReceiptView.swift; sourceTree = "<group>"; };
+		2ED14D05241B91A300E91095 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		5792CE8AD185F238CFA0F784 /* Pods_MySecuXPay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MySecuXPay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		673253BD72485B55848D74A4 /* Pods-MySecuXPay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySecuXPay.release.xcconfig"; path = "Target Support Files/Pods-MySecuXPay/Pods-MySecuXPay.release.xcconfig"; sourceTree = "<group>"; };
 		BCFBABE7DAFB55FBE26A70D9 /* Pods-MySecuXPay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySecuXPay.debug.xcconfig"; path = "Target Support Files/Pods-MySecuXPay/Pods-MySecuXPay.debug.xcconfig"; sourceTree = "<group>"; };
@@ -127,6 +133,7 @@
 				2E042A3E23D02C9C0051E74E /* PaymentHistoryViewController.swift */,
 				2E042A2823D028120051E74E /* PaymentDetailsViewController.swift */,
 				2E042A2723D028120051E74E /* PaymentResultViewController.swift */,
+				2ED14D01241B3BE900E91095 /* PaymentReceiptViewController.swift */,
 				2E845E0723D00C710043D0FA /* PaymentMainViewController.swift */,
 				2E67167024178C88004D2862 /* TransactionDetailsViewController.swift */,
 				2E6716742417929E004D2862 /* AccountListViewController.swift */,
@@ -150,6 +157,7 @@
 				2EA7D86F241876EA00827C24 /* LoginView.swift */,
 				2EA7D871241876F700827C24 /* ReigsterView.swift */,
 				2EA7D87B2418D7A300827C24 /* AccountSettingTitleView.swift */,
+				2ED14D03241B3DBC00E91095 /* PaymentReceiptView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -181,6 +189,7 @@
 				2E042A2523D0188E0051E74E /* Double+Extension.swift */,
 				2E042A4823D02EAC0051E74E /* UITableViewCell+Extension.swift */,
 				2EA7D87524188B6100827C24 /* File.swift */,
+				2ED14D05241B91A300E91095 /* UIView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -374,7 +383,9 @@
 				2EA7D8782418937500827C24 /* BaseUINavigationController.swift in Sources */,
 				2E042A2C23D0286F0051E74E /* BaseViewController.swift in Sources */,
 				2E042A3F23D02C9C0051E74E /* PaymentHistoryViewController.swift in Sources */,
+				2ED14D02241B3BE900E91095 /* PaymentReceiptViewController.swift in Sources */,
 				2EA7D87C2418D7A300827C24 /* AccountSettingTitleView.swift in Sources */,
+				2ED14D06241B91A300E91095 /* UIView+Extension.swift in Sources */,
 				2E042A4323D02CE90051E74E /* PaymentAccountSelectionViewController.swift in Sources */,
 				2E042A2323D0182F0051E74E /* QRCodeHandler.swift in Sources */,
 				2E042A2623D0188E0051E74E /* Double+Extension.swift in Sources */,
@@ -389,6 +400,7 @@
 				2E042A1823D0165A0051E74E /* UIRoundedButtonWithGradientAndShadow.swift in Sources */,
 				2E042A1D23D016E80051E74E /* UISetting.swift in Sources */,
 				2E042A4523D02D0B0051E74E /* AccountTableViewCell.swift in Sources */,
+				2ED14D04241B3DBC00E91095 /* PaymentReceiptView.swift in Sources */,
 				2E67166D241742E6004D2862 /* MyAccount.swift in Sources */,
 				2E042A4B23D02EF00051E74E /* PaymentHistoryTableViewCell.swift in Sources */,
 				2E67167A24179C07004D2862 /* LoginAndRegisterViewController.swift in Sources */,

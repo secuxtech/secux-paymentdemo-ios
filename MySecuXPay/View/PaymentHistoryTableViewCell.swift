@@ -184,8 +184,8 @@ class PaymentHistoryTableViewCell: BaseTableViewCell {
         
         NSLayoutConstraint.activate([
             
-            self.storeNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
-            self.storeNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            self.storeNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10),
+            self.storeNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             
             
             //self.itemImg.topAnchor.constraint(equalTo: self.storeNameLabel.bottomAnchor, constant: 5),
@@ -203,7 +203,7 @@ class PaymentHistoryTableViewCell: BaseTableViewCell {
             
             
             self.timestampLabel.leftAnchor.constraint(equalTo: self.storeNameLabel.leftAnchor, constant: 0),
-            self.timestampLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            self.timestampLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15),
             
             self.itemSNLabel.leftAnchor.constraint(equalTo: self.storeNameLabel.leftAnchor, constant: 0),
             self.itemSNLabel.bottomAnchor.constraint(equalTo: self.timestampLabel.topAnchor, constant: -8),

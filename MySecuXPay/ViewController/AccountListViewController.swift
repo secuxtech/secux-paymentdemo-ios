@@ -8,7 +8,7 @@
 
 import UIKit
 import secux_paymentkit
-import Floaty
+
 
 class AccountListViewController: BaseViewController{
     
@@ -30,14 +30,21 @@ class AccountListViewController: BaseViewController{
         
         self.view.addSubview(label)
         
-        
-        NSLayoutConstraint.activate([
-        
-            label.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
-            label.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10),
-         
-        
-        ])
+        if UIScreen.main.bounds.width > 460{
+            NSLayoutConstraint.activate([
+                
+                label.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 116),
+                label.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            ])
+        }else{
+            NSLayoutConstraint.activate([
+            
+                label.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
+                label.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10),
+             
+            
+            ])
+        }
         
         
         return label
@@ -71,21 +78,30 @@ class AccountListViewController: BaseViewController{
         
         self.view.addSubview(tableView)
 
-        
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 15),
-            tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
-            tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
-            tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -30)
-            
-        ])
+        if UIScreen.main.bounds.width > 460{
+            NSLayoutConstraint.activate([
+                
+                tableView.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 15),
+                tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 116),
+                tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -116),
+                tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -30)
+            ])
+        }else{
+            NSLayoutConstraint.activate([
+                tableView.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 15),
+                tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
+                tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
+                tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -30)
+                
+            ])
+        }
         
         tableView.register(AccountTableViewCell.self, forCellReuseIdentifier: AccountTableViewCell.cellIdentifier())
         
         return tableView
     }()
     
-    
+    /*
     lazy var floatButton : Floaty = {
         let floaty = Floaty()
         
@@ -115,6 +131,7 @@ class AccountListViewController: BaseViewController{
         
         return floaty
     }()
+    */
     
     override func viewDidLoad() {
         super.viewDidLoad()

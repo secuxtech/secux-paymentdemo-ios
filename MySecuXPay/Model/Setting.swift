@@ -15,7 +15,7 @@ class Setting: NSObject {
     var hasInternet = Observable<Bool>(value: true)
 
     
-    
+    let testFlag = false
 
     
     static let shared: Setting = {

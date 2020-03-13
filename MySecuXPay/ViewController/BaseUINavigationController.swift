@@ -10,6 +10,8 @@ import UIKit
 
 class BaseUINavigationController: UINavigationController{
     
+    var popToRootFlag = false
+    var gobackCount = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +42,21 @@ class BaseUINavigationController: UINavigationController{
         return .lightContent
     }
     
-    
+    override func popViewController(animated: Bool) -> UIViewController? {
+        if popToRootFlag {
+            return super.popToRootViewController(animated: animated)?.last
+        }else if self.gobackCount > 1{
+            let viewControllers = self.viewControllers
+
+            if viewControllers.count >= self.gobackCount {
+                for _ in 1..<self.gobackCount {
+                    let _ = super.popViewController(animated: false)
+                }
+
+            }
+        }
+
+        return super.popViewController(animated: animated)
+    }
     
 }
