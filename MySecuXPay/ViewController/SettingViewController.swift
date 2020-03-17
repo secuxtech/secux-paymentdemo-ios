@@ -96,7 +96,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if section == 0{
-            return 3
+            return 2
         }else{
             return 1
         }
@@ -112,15 +112,18 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let commonCell = cell as? SettingTableViewCell{
             
+            /*
             if indexPath.section == 0 && indexPath.row == 0{
                 
                 commonCell.setup(title:"Update user information", value: "")
                 
-            }else if indexPath.section == 0 && indexPath.row == 1{
+            }else
+            */
+            if indexPath.section == 0 && indexPath.row == 0{
                 
                 commonCell.setup(title: "Change password", value: "")
                 
-            }else if indexPath.section == 0 && indexPath.row == 2{
+            }else if indexPath.section == 0 && indexPath.row == 1{
                 
                 commonCell.setup(title: "Logout", value: "")
                 
@@ -153,11 +156,11 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             
         }else if indexPath.section == 0 && indexPath.row == 1{
             
-            
+            self.logout()
             
         }else if indexPath.section == 0 && indexPath.row == 2{
             
-            self.logout()
+            
             
         }
     }
