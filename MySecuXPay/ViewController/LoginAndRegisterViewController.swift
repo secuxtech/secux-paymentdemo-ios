@@ -10,6 +10,7 @@ import UIKit
 
 class LoginAndRegisterViewController: BaseViewController{
     
+    /*
     lazy var stateCtrlBKView: UIView = {
         let bkview = UIView()
         bkview.translatesAutoresizingMaskIntoConstraints = false
@@ -28,6 +29,8 @@ class LoginAndRegisterViewController: BaseViewController{
         
         return bkview
     }()
+    
+    */
     
     lazy var titleView: UIView = {
         let titleImgView = UIImageView(image: UIImage(named: "SecuX_Logo"))
@@ -51,14 +54,15 @@ class LoginAndRegisterViewController: BaseViewController{
         
         
         segCtrl.tintColor = UIColor.white
-        segCtrl.backgroundColor = UIColor.gray
+        //segCtrl.backgroundColor = UIColor.gray
+        segCtrl.backgroundColor = .none
          
          
          
-        segCtrl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white,
+        segCtrl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.lightGray,
                                         NSAttributedString.Key.font: UIFont.init(name: UISetting.shared.fontName, size: 16)!], for: .normal)
-        segCtrl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UISetting.shared.titleBKColor,
-                                        NSAttributedString.Key.font: UIFont.init(name: UISetting.shared.fontName, size: 17)!], for: .selected)
+        segCtrl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white,
+                                        NSAttributedString.Key.font: UIFont.init(name: UISetting.shared.boldFontName, size: 17)!], for: .selected)
          
        
         
@@ -66,8 +70,9 @@ class LoginAndRegisterViewController: BaseViewController{
         //segCtrl.borderWidth = 1.0
         //segCtrl.cornerRadius = 10
         
-        segCtrl.selectedSegmentTintColor = .white
-        
+        segCtrl.selectedSegmentTintColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.3) //.white
+        //segCtrl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.white], for: .selected)
+        //segCtrl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.lightGray], for: .normal)
         
         segCtrl.clipsToBounds = true
          
