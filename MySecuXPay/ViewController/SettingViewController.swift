@@ -40,6 +40,7 @@ class SettingViewController: BaseViewController{
         tableView.rowHeight = 60 //UITableView.automaticDimension
         //tableView.separatorStyle = .none
         tableView.backgroundColor = .white
+ 
         tableView.allowsSelection = true
         //tableView.isScrollEnabled = true
         
@@ -81,7 +82,10 @@ class SettingViewController: BaseViewController{
         super.viewWillAppear(animated)
         self.navigationController?.navigationItem.title = ""
         
-     
+        if MyAccount.shared.passwordChanged{
+            self.showMessage(title: "Password changed", message: "")
+            MyAccount.shared.passwordChanged = false
+        }
     }
     
 }
@@ -109,7 +113,8 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         //if indexPath.section < 2 && indexPath.row == 0{
         
         cell = tableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.cellIdentifier(), for:indexPath)
-        
+        cell.selectionStyle = .none
+        cell.tintColor = .gray
         if let commonCell = cell as? SettingTableViewCell{
             
             /*
@@ -122,10 +127,12 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             if indexPath.section == 0 && indexPath.row == 0{
                 
                 commonCell.setup(title: "Change password", value: "")
+                commonCell.accessoryType = .disclosureIndicator
                 
             }else if indexPath.section == 0 && indexPath.row == 1{
                 
                 commonCell.setup(title: "Logout", value: "")
+                commonCell.accessoryType = .disclosureIndicator
                 
             }else if indexPath.section == 1 && indexPath.row == 0{
                 
@@ -136,6 +143,9 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
         }
+        
+        
+        
         return cell
         
     }
@@ -152,7 +162,8 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 && indexPath.row == 0{
             
-            
+            let vc = ChangePasswordViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
             
         }else if indexPath.section == 0 && indexPath.row == 1{
             
@@ -163,6 +174,8 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             
             
         }
+        
+       
     }
     
 }
