@@ -136,8 +136,8 @@ class LoginView: UIView{
         
         btn.translatesAutoresizingMaskIntoConstraints = false
         
-        btn.titleLabel?.font = UIFont(name: "Arial", size: 22)
-        btn.setTitle(NSLocalizedString("Login", comment: ""), for: .normal)
+        btn.titleLabel?.font = UIFont(name: UISetting.shared.boldFontName, size: 17)
+        btn.setTitle(NSLocalizedString("LOGIN", comment: ""), for: .normal)
         btn.setTitleColor(UIColor(red: 0x1F/0xFF, green: 0x20/0xFF, blue: 0x20/0xFF, alpha: 1), for: .normal)
         btn.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         
@@ -211,9 +211,11 @@ class LoginView: UIView{
             return
         }
         
-        self.loginDelegate?.loginStart()
+        
         
         DispatchQueue.global(qos: .default).async {
+            self.loginDelegate?.loginStart()
+            
             let accManager = SecuXAccountManager()
             let usrAcc = SecuXUserAccount(email: email.lowercased(), phone: "", password: pwd)
             
