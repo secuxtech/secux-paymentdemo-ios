@@ -42,6 +42,7 @@ class BaseUINavigationController: UINavigationController{
         return .lightContent
     }
     
+    
     override func popViewController(animated: Bool) -> UIViewController? {
         if popToRootFlag {
             return super.popToRootViewController(animated: animated)?.last
