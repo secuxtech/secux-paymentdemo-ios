@@ -15,6 +15,8 @@ class MyAccount : NSObject{
     
     var theCoinTokenAccountArray : [CoinTokenAccount]?
     
+    var passwordChanged = false
+    
     static let shared: MyAccount = {
         let shared = MyAccount()
         
