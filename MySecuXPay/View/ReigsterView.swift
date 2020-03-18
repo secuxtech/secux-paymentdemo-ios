@@ -132,7 +132,7 @@ class RegisterView: UIView{
         //input.borderStyle = .roundRect
         input.keyboardType = UIKeyboardType.alphabet
         input.returnKeyType = .done
-        input.attributedPlaceholder = NSAttributedString(string: "Password",
+        input.attributedPlaceholder = NSAttributedString(string: "Password (8~10 char)",
                                                          attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray,
                                                          NSAttributedString.Key.font: UIFont(name: "Arial", size: 17.0)!])
         
@@ -237,8 +237,8 @@ class RegisterView: UIView{
         
         btn.translatesAutoresizingMaskIntoConstraints = false
         
-        btn.titleLabel?.font = UIFont(name: "Arial", size: 22)
-        btn.setTitle(NSLocalizedString("Register", comment: ""), for: .normal)
+        btn.titleLabel?.font = UIFont(name: UISetting.shared.boldFontName, size: 17)
+        btn.setTitle(NSLocalizedString("REGISTER", comment: ""), for: .normal)
         btn.setTitleColor(UIColor(red: 0x1F/0xFF, green: 0x20/0xFF, blue: 0x20/0xFF, alpha: 1), for: .normal)
         btn.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
         
@@ -311,12 +311,12 @@ class RegisterView: UIView{
             return
         }
         
-        guard let pwd = self.pwdInput.text, pwd.count > 0 else{
+        guard let pwd = self.pwdInput.text, pwd.count >= 6 else{
             self.registerDelegate?.showRegisterMessage(message: "Invalid password!")
             return
         }
         
-        guard let pwdConfirm = self.pwdConfirmInput.text, pwdConfirm.count > 0 else{
+        guard let pwdConfirm = self.pwdConfirmInput.text, pwdConfirm.count >= 6 else{
             self.registerDelegate?.showRegisterMessage(message: "Invalid password confirmation!")
             return
         }
