@@ -311,6 +311,14 @@ class PaymentMainViewController: BaseViewController {
     
     @objc func scanQRCodeAction(){
         
+        if Setting.shared.testFlag{
+            
+            let paymentInfo = "{\"amount\":\"6\", \"coinType\":\"DCT:SPC\",\"deviceIDhash\":\"723D14834D5BB96509DCDF01DC22BC8E4F81FA5C\"}"
+            self.handlePaymentInfo(payinfo: paymentInfo)
+            
+            return
+        }
+        
         var style = LBXScanViewStyle()
         style.centerUpOffset = 44
         style.photoframeAngleStyle = LBXScanViewPhotoframeAngleStyle.On
@@ -389,7 +397,15 @@ class PaymentMainViewController: BaseViewController {
                 var token = ""
                 
                 if let type = payinfoJson["coinType"] as? String, type != "null"{
-                    cointype = type
+                    
+                    
+                    if let pos = type.firstIndex(of: ":"){
+                        cointype = String(type[..<pos])
+                        token = String(type[type.index(after: pos)...])
+                    }else{
+                        cointype = type
+                    }
+                    
                 }else{
                     showAccountSelection = true
                 }
@@ -397,7 +413,7 @@ class PaymentMainViewController: BaseViewController {
                 if let tokeninfo = payinfoJson["token"] as? String, tokeninfo != "null"{
                     token = tokeninfo
                 }else{
-                    showAccountSelection = true
+                    //showAccountSelection = true
                 }
                 
                 var theAccount : CoinTokenAccount
