@@ -1,13 +1,13 @@
 PODS:
   - JGProgressHUD (2.1)
-  - secux-paymentkit (1.0.2):
+  - secux-paymentkit (1.0.3):
     - SPManager (~> 0.0.2)
   - SPManager (0.0.2)
   - swiftScan (1.2.0)
 
 DEPENDENCIES:
   - JGProgressHUD
-  - secux-paymentkit (~> 1.0.2)
+  - secux-paymentkit (~> 1.0.3)
   - swiftScan (from `https://github.com/MxABC/swiftScan.git`)
 
 SPEC REPOS:
@@ -27,10 +27,10 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   JGProgressHUD: aa403e9a5b45cae98903c4600cccdd98c0c3ec90
-  secux-paymentkit: ad25a48721cdfda4b8808aaae67fc5c9334d0041
+  secux-paymentkit: 95a8a236e840eb5bd59ec711cafb3fb05276dfcc
   SPManager: 90be8b63c4e4440a131b3a2ecd6042cc9d01633b
   swiftScan: d7f91607b1a47cc04e6eb654c2c01e2e940e337d
 
-PODFILE CHECKSUM: b5756b08e491ef0fae141f22ecaa7ebf57f8ac93
+PODFILE CHECKSUM: 41b4645801b99b9add604b9e95cbd88a55c515df
 
 COCOAPODS: 1.9.0.beta.2
