@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:MySecuXPay.xcodeproj">
+      location = "group:/Users/maochun/Projects/SecuX/Src/PaymentKit/iOS/Src/secux-paymentdemo-ios/MySecuXPay.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
