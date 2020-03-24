@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol AccountSettingTitleViewDelegate {
+    func enableTestMode()
+}
+
 class AccountSettingTitleView: UIView{
     
     lazy var accountImg: UIImageView = {
@@ -15,6 +19,13 @@ class AccountSettingTitleView: UIView{
         let imageView = UIImageView()
         imageView.image = UIImage(named: "setting_account_logo")
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(accImgTapDetected))
+        //tap.numberOfTouchesRequired = 5
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(tap)
+
+        
         self.addSubview(imageView)
         
         NSLayoutConstraint.activate([
@@ -113,6 +124,11 @@ class AccountSettingTitleView: UIView{
         return label
     }()
     
+    var theDelegate : AccountSettingTitleViewDelegate?
+    
+    @objc func accImgTapDetected(){
+        theDelegate?.enableTestMode()
+    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

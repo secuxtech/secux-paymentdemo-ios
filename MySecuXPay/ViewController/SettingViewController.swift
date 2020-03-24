@@ -14,7 +14,7 @@ class SettingViewController: BaseViewController{
        
         let theView = AccountSettingTitleView()
         theView.translatesAutoresizingMaskIntoConstraints = false
-        
+        theView.theDelegate = self
         self.view.addSubview(theView)
         
         NSLayoutConstraint.activate([
@@ -177,5 +177,19 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         
        
     }
+    
+}
+
+extension SettingViewController : AccountSettingTitleViewDelegate{
+    func enableTestMode() {
+        Setting.shared.enableTestMode = !Setting.shared.enableTestMode
+        if Setting.shared.enableTestMode{
+            self.showMessage(title: "Enable test mode", message: "")
+        }else{
+            self.showMessage(title: "Enable test mode", message: "")
+            
+        }
+    }
+    
     
 }
