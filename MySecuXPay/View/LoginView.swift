@@ -35,12 +35,19 @@ class LoginView: UIView{
                                                          attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray,
                                                                       NSAttributedString.Key.font: UIFont(name: "Arial", size: 17.0)!])
         
-        input.layer.masksToBounds = true
-        input.layer.cornerRadius = 5.0
+        //input.layer.masksToBounds = true
+        //input.layer.cornerRadius = 5.0
         
-        input.backgroundColor = .white //#colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.3)
-        input.textColor = UIColor.darkGray
+        //input.backgroundColor = .white //#colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.3)
+        //input.textColor = UIColor.darkGray
         //input.leftImage = UIImage(named: "accountIcon")
+        
+        input.backgroundColor = .clear
+        input.textColor = .white
+        input.layer.borderColor = UIColor.white.cgColor
+        input.layer.borderWidth = 1
+        
+        
         input.leftPadding = 5
         input.font = UIFont(name: "Arial", size: 19.0)
         
@@ -89,11 +96,17 @@ class LoginView: UIView{
         
         
         //input.cornerRadius = 60
-        input.layer.masksToBounds = true
-        input.layer.cornerRadius = 5.0
+        //input.layer.masksToBounds = true
+        //input.layer.cornerRadius = 5.0
         
-        input.backgroundColor = .white //#colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.3)
-        input.textColor = UIColor.darkGray
+        //input.backgroundColor = .white //#colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.3)
+        //input.textColor = UIColor.darkGray
+        
+        input.backgroundColor = .clear
+        input.textColor = .white
+        input.layer.borderColor = UIColor.white.cgColor
+        input.layer.borderWidth = 1
+        
         input.isSecureTextEntry = true
         //input.leftImage = UIImage(named: "pwdIcon")
         input.leftPadding = 5
@@ -175,6 +188,10 @@ class LoginView: UIView{
         return btn
     }()
     
+    func setFocus(){
+        self.emailInput.becomeFirstResponder()
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
@@ -191,7 +208,7 @@ class LoginView: UIView{
         let _ = self.emailInput
         let _ = self.loginButton
         
-        self.emailInput.becomeFirstResponder()
+        
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIView.endEditing(_:)))
         tap.cancelsTouchesInView = false

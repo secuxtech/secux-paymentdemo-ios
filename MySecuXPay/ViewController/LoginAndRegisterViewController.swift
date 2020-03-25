@@ -158,9 +158,11 @@ class LoginAndRegisterViewController: BaseViewController{
         if self.stateControl.selectedSegmentIndex == 0{
             self.theLoginView.isHidden = false
             self.theRegisterView.isHidden = true
+            self.theLoginView.setFocus()
         }else{
             self.theLoginView.isHidden = true
             self.theRegisterView.isHidden = false
+            self.theRegisterView.setFocus()
         }
     }
     
@@ -187,7 +189,7 @@ class LoginAndRegisterViewController: BaseViewController{
         super.viewWillAppear(animated)
         self.navigationController?.navigationItem.title = ""
         
-        
+        self.theLoginView.setFocus()
     }
     
     override func viewDidLayoutSubviews() {
@@ -206,8 +208,12 @@ class LoginAndRegisterViewController: BaseViewController{
     @objc func keyboardWillShow(notification: NSNotification) {
         
       
-        if !self.theRegisterView.isHidden && self.view.frame.origin.y == 0 && self.view.bounds.height < 800{
-            self.view.frame.origin.y -= 50 //keyboardSize.height
+        if !self.theRegisterView.isHidden && self.view.frame.origin.y == 0 && self.view.bounds.height < 900{
+            if self.view.bounds.height < 800{
+                self.view.frame.origin.y -= 140 //keyboardSize.height
+            }else{
+                self.view.frame.origin.y -= 50
+            }
         }
         
     }
@@ -240,6 +246,8 @@ extension LoginAndRegisterViewController: LoginViewDelegate{
             }
         }
     }
+    
+    
 }
 
 extension LoginAndRegisterViewController: RegisterViewDelegate{
@@ -265,5 +273,52 @@ extension LoginAndRegisterViewController: RegisterViewDelegate{
         }
     }
     
+    func showPopupSelection(vc:UIViewController){
+        //self.present(vc, animated: true, completion: nil)
+        /*
+        let vc = CoinTokenSelectionViewController()
+        //var vcHeight = 70 * MyAccount.shared.theCoinTokenAccountArray!.count + 10
+        //if vcHeight > 220{
+        //    vcHeight = 220
+        //}
+        
+        let vcHeight = 200
+        vc.preferredContentSize = CGSize(width: 340, height: vcHeight)
+        vc.modalPresentationStyle = UIModalPresentationStyle.popover
+        //vc.selAccount = self.accountInfoView.theAccount
+
+        let popoverPresentationController = vc.popoverPresentationController
+        popoverPresentationController?.sourceView = self.theRegisterView.coinTokenSelView //self.coinTokenSelView
+        popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up
+        popoverPresentationController?.sourceRect = CGRect(x: self.theRegisterView.coinTokenSelView.frame.size.width / 2 , y: self.theRegisterView.coinTokenSelView.frame.size.height-5, width: 0, height: 0)
+        popoverPresentationController?.delegate = self
+        popoverPresentationController?.backgroundColor = .white
+        */
+        self.present(vc, animated: true, completion: nil)
+    }
+}
+
+
+extension LoginAndRegisterViewController: UIPopoverPresentationControllerDelegate{
     
+    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController){
+        
+        print("popup menu dismissed")
+        
+        DispatchQueue.main.async {
+            self.theRegisterView.coinTokenSelView.dropdownToggle()
+        }
+        
+        if let vc = popoverPresentationController.presentedViewController as? CoinTokenSelectionViewController,
+            let item = vc.selCoinToken {
+            
+            //DispatchQueue.main.async {
+            //    self.coinType = vc.selAccType ?? acc.coinType
+            //}
+        }
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+       return .none
+    }
 }
