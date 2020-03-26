@@ -22,6 +22,7 @@ class CoinTokenSelectionViewController: UIViewController{
         tableView.rowHeight = 50
         tableView.allowsSelection = true
         tableView.separatorStyle = .singleLine
+        tableView.separatorColor = .white
         tableView.isScrollEnabled = true
         tableView.backgroundColor = UISetting.shared.titleBKColor
         
@@ -53,18 +54,15 @@ class CoinTokenSelectionViewController: UIViewController{
         
         //self.view.layer.cornerRadius = 5
         
+        /*
         self.theCoinTokenArray.append(("DCT", "SPC"))
         self.theCoinTokenArray.append(("LBR", "LBR"))
         self.theCoinTokenArray.append(("DASH", "DASH"))
         self.theCoinTokenArray.append(("BTC", "BTC"))
+        */
         
+        theCoinTokenArray = CoinTokenAccount.serverSupportedCoinAndTokenArray
         self.theTableView.reloadData()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        
-        
-        
     }
     
 }
