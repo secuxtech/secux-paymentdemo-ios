@@ -27,7 +27,7 @@ class RegisterView: UIView{
     lazy var coinTokenSelView: CoinTokenSelectionView = {
         let theView = CoinTokenSelectionView()
         theView.translatesAutoresizingMaskIntoConstraints = false
-        
+        theView.isHidden = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(coinTokenSelViewTappedAction(_:)))
 
         theView.isUserInteractionEnabled = true
@@ -343,16 +343,19 @@ class RegisterView: UIView{
     
     @objc func coinTokenSelViewTappedAction(_ sender: UITapGestureRecognizer){
         
+        if CoinTokenAccount.serverSupportedCoinAndTokenArray.count == 0{
+            return
+        }
+        
         self.coinTokenSelView.dropdownToggle()
         
         
         let vc = CoinTokenSelectionViewController()
-        //var vcHeight = 70 * MyAccount.shared.theCoinTokenAccountArray!.count + 10
-        //if vcHeight > 220{
-        //    vcHeight = 220
-        //}
+        var vcHeight = 50 * CoinTokenAccount.serverSupportedCoinAndTokenArray.count + 10
+        if vcHeight > 300{
+            vcHeight = 300
+        }
         
-        let vcHeight = 300
         let vcWidth = 320 //self.coinTokenSelView.frame.width
         vc.preferredContentSize = CGSize(width: vcWidth, height: vcHeight)
         vc.modalPresentationStyle = UIModalPresentationStyle.popover
@@ -386,7 +389,6 @@ class RegisterView: UIView{
         pwdInput.delegate = self
         pwdConfirmInput.delegate = self
         let _ = registerButton
-        
         
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIView.endEditing(_:)))
@@ -426,7 +428,7 @@ class RegisterView: UIView{
             let accManager = SecuXAccountManager()
             let usrAcc = SecuXUserAccount(email: email.lowercased(), phone: phone, password: String(pwd))
             
-            var (ret, data) = accManager.registerUserAccount(userAccount: usrAcc)
+            var (ret, data) = accManager.registerUserAccount(userAccount: usrAcc, coinType: self.coinTokenSelView.coin, token: self.coinTokenSelView.token)
             
             if ret == SecuXRequestResult.SecuXRequestOK{
                 (ret, data) = accManager.loginUserAccount(userAccount: usrAcc)
