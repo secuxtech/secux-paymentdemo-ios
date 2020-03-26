@@ -318,7 +318,7 @@ extension PaymentResultViewController: UITableViewDelegate, UITableViewDataSourc
                 vc.transHistory = payHis
                 self.navigationController?.pushViewController(vc, animated: true)
             }else{
-                let vc = PaymentReceiptViewController()
+                let vc = PaymentHistoryViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }
