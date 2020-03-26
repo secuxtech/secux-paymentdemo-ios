@@ -366,101 +366,105 @@ class PaymentMainViewController: BaseViewController {
             
             let paymentManager = SecuXPaymentManager()
             let (ret, data) = paymentManager.getPaymentInfo(paymentInfo: payinfo)
-            if ret == SecuXRequestResult.SecuXRequestOK, let data = data{
-                print("get payment info. done")
-                
-                guard let payInfo = String(data: data, encoding: String.Encoding.utf8) else{
-                    self.showMessageInMainThread(title: "Invalid payment info. from server!", message: "Please try again.")
-                    return
-                }
-                
-                guard let payinfoJson = try? JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] else{
-                    print("Invalid json response from server")
-                    self.showMessageInMainThread(title: "Invalid json response from server!", message: "Please try again.")
-                    return
-                }
-                
-                guard let devIDHash = payinfoJson["deviceIDhash"] as? String,
-                      let devID = payinfoJson["deviceID"] as? String else{
-                    print("Response has no hashed devID")
-                    self.showMessageInMainThread(title: "Server response has no hashed devID!", message: "Please try again.")
-                    return
-                }
-                
-                var showAccountSelection = false
-                var amount = "0"
-                if let amountinfo = payinfoJson["amount"] as? String, amountinfo != "null"{
-                    amount = amountinfo
-                }
-                
-                var cointype = ""
-                var token = ""
-                
-                if let type = payinfoJson["coinType"] as? String, type != "null"{
-                    
-                    
-                    if let pos = type.firstIndex(of: ":"){
-                        cointype = String(type[..<pos])
-                        token = String(type[type.index(after: pos)...])
-                    }else{
-                        cointype = type
-                    }
-                    
+            guard ret == SecuXRequestResult.SecuXRequestOK, let payInfoData = data else{
+                if ret == SecuXRequestResult.SecuXRequestUnauthorized || ret == SecuXRequestResult.SecuXRequestNoToken{
+                    self.handleUnauthorizedError()
                 }else{
-                    showAccountSelection = true
+                    self.showMessageInMainThread(title: "Invalid payment information!", message: "Please try again.")
                 }
+                return
+            }
+            
+            
+            
+            print("get payment info. done")
+            
+            guard let payInfo = String(data: payInfoData, encoding: String.Encoding.utf8) else{
+                self.showMessageInMainThread(title: "Invalid payment info. from server!", message: "Please try again.")
+                return
+            }
+            
+            guard let payinfoJson = try? JSONSerialization.jsonObject(with: payInfoData, options: []) as? [String:Any] else{
+                print("Invalid json response from server")
+                self.showMessageInMainThread(title: "Invalid json response from server!", message: "Please try again.")
+                return
+            }
+            
+            guard let devIDHash = payinfoJson["deviceIDhash"] as? String,
+                  let devID = payinfoJson["deviceID"] as? String else{
+                print("Response has no hashed devID")
+                self.showMessageInMainThread(title: "Server response has no hashed devID!", message: "Please try again.")
+                return
+            }
                 
-                if let tokeninfo = payinfoJson["token"] as? String, tokeninfo != "null"{
-                    token = tokeninfo
+            
+            var amount = "0"
+            if let amountinfo = payinfoJson["amount"] as? String, amountinfo != "null"{
+                amount = amountinfo
+            }
+            
+            var cointype = ""
+            var token = ""
+            
+            if let type = payinfoJson["coinType"] as? String, type != "null"{
+                
+                
+                if let pos = type.firstIndex(of: ":"){
+                    cointype = String(type[..<pos])
+                    token = String(type[type.index(after: pos)...])
                 }else{
-                    //showAccountSelection = true
+                    cointype = type
                 }
                 
-                var theAccount : CoinTokenAccount
-                if cointype.count > 0, token.count > 0{
-                    if let account = MyAccount.shared.getCoinTokenAccount(coinType: cointype, token: token){
-                        theAccount = account
-                    }else{
-                        self.showMessageInMainThread(title: "No valid payment account available!", message: "")
-                        return
-                    }
-                }else if cointype.count > 0{
-                    if let account = MyAccount.shared.getCoinTokenAccount(coinType: cointype){
-                        theAccount = account
-                    }else{
-                        self.showMessageInMainThread(title: "No valid payment account available!", message: "")
-                        return
-                    }
-                }else if token.count > 0{
-                    if let account = MyAccount.shared.getCoinTokenAccount(token: token){
-                        theAccount = account
-                    }else{
-                        self.showMessageInMainThread(title: "No valid payment account available!", message: "")
-                        return
-                    }
-                }else{
-                    theAccount = theCoinAccountArr[0]
-                    cointype = theCoinAccountArr[0].coinType
-                    token = theCoinAccountArr[0].token
-                }
+            }
                 
-                DispatchQueue.main.async {
-                    let vc = PaymentDetailsViewController()
-                    vc.paymentInfo = payInfo
-                    vc.amount = amount
-                    vc.coinType = cointype
-                    vc.token = token
-                    vc.deviceID = devID
-                    vc.deviceIDhash = devIDHash
-                    vc.showAccountSelection = showAccountSelection
-                    vc.theAccount = theAccount
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
+            let (reqRet, storeInfo, img, supportedCoinTokenArray) = paymentManager.getStoreInfo(devID: devIDHash)
+            guard reqRet == SecuXRequestResult.SecuXRequestOK, storeInfo.count > 0, let imgStore = img,
+                let storeData = storeInfo.data(using: String.Encoding.utf8),
+                let coinTokenArray = supportedCoinTokenArray, coinTokenArray.count > 0,
+                let storeInfoJson = try? JSONSerialization.jsonObject(with: storeData, options: []) as? [String:Any],
+                let storeName = storeInfoJson["name"] as? String else{
+                    self.showMessageInMainThread(title: "Get store information from server failed!", message: "")
+                    return
+            }
                 
-            }else if ret == SecuXRequestResult.SecuXRequestUnauthorized || ret == SecuXRequestResult.SecuXRequestNoToken{
-                self.handleUnauthorizedError()
+                
+            var theAccountArray = [CoinTokenAccount]()
+            if cointype.count > 0, token.count > 0{
+                let accountArray = MyAccount.shared.getCoinTokenAccountArray(coin: cointype, token: token)
+                if accountArray.count > 0{
+                    theAccountArray.append(contentsOf: accountArray)
+                }
             }else{
-                self.showMessageInMainThread(title: "Invalid payment information!", message: "Please try again.")
+                for item in coinTokenArray{
+                    let accountArray = MyAccount.shared.getCoinTokenAccountArray(coin: item.coin, token: item.token)
+                    if accountArray.count > 0{
+                        theAccountArray.append(contentsOf: accountArray)
+                    }
+                }
+            }
+            
+            if theAccountArray.count == 0{
+                
+                self.showMessageInMainThread(title: "No valid payment account available!", message: "")
+                return
+                
+            }
+                
+            DispatchQueue.main.async {
+                let vc = PaymentDetailsViewController()
+                vc.paymentInfo = payInfo
+                vc.amount = amount
+                
+                vc.storeImg.image = imgStore
+                vc.storeName = storeName
+                vc.storeInfo = storeInfo
+       
+                vc.deviceID = devID
+                vc.deviceIDhash = devIDHash
+                
+                vc.theAccountArray = theAccountArray
+                self.navigationController?.pushViewController(vc, animated: true)
             }
         }
     }
