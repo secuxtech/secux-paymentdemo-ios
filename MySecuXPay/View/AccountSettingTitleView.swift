@@ -21,7 +21,7 @@ class AccountSettingTitleView: UIView{
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(accImgTapDetected))
-        //tap.numberOfTouchesRequired = 5
+        tap.numberOfTapsRequired = 5
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(tap)
 
@@ -62,7 +62,6 @@ class AccountSettingTitleView: UIView{
         
         ])
         
-        
         return label
     }()
     
@@ -91,7 +90,6 @@ class AccountSettingTitleView: UIView{
         
         ])
         
-        
         return label
     }()
     
@@ -117,7 +115,6 @@ class AccountSettingTitleView: UIView{
             label.topAnchor.constraint(equalTo: self.emailLabel.bottomAnchor, constant: 6),
             label.centerXAnchor.constraint(equalTo: self.emailLabel.centerXAnchor)
          
-        
         ])
         
         
@@ -132,8 +129,6 @@ class AccountSettingTitleView: UIView{
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-
-    
     }
     
     override init(frame: CGRect) {
