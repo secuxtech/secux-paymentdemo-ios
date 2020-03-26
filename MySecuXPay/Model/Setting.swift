@@ -16,8 +16,7 @@ class Setting: NSObject {
 
     
     let testFlag = false
-    var enableTestMode = false
-
+   
     
     static let shared: Setting = {
         let shared = Setting()
