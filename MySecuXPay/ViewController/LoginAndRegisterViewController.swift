@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import secux_paymentkit
 
 class LoginAndRegisterViewController: BaseViewController{
     
@@ -57,7 +58,7 @@ class LoginAndRegisterViewController: BaseViewController{
         //segCtrl.backgroundColor = UIColor.gray
         segCtrl.backgroundColor = .none
          
-         
+        
          
         segCtrl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.lightGray,
                                         NSAttributedString.Key.font: UIFont.init(name: UISetting.shared.fontName, size: 16)!], for: .normal)
@@ -166,6 +167,20 @@ class LoginAndRegisterViewController: BaseViewController{
         }
     }
     
+    @objc func swipe(recognizer:UISwipeGestureRecognizer) {
+        
+        if recognizer.direction == .left {
+            print("Go Left")
+            
+            self.stateControl.selectedSegmentIndex = 0
+            
+        } else if recognizer.direction == .right {
+            print("Go Right")
+            self.stateControl.selectedSegmentIndex = 1
+        }
+        
+        self.onTabSwitch()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -182,6 +197,40 @@ class LoginAndRegisterViewController: BaseViewController{
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipe))
+        rightSwipe.direction = .right
+        self.view.addGestureRecognizer(rightSwipe)
+        
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipe))
+        leftSwipe.direction = .left
+        self.view.addGestureRecognizer(leftSwipe)
+        
+        DispatchQueue.global(qos: .default).async {
+            let accManager = SecuXAccountManager()
+            let (ret, data, coinTokenArray) = accManager.getSupportedCoinTokenArray()
+            guard ret == SecuXRequestResult.SecuXRequestOK else{
+                var error = ""
+                if let data = data{
+                    error = String(data: data, encoding: .utf8) ?? ""
+                }
+                self.showMessage(title: "Get supported coin&token from server failed!", message: error)
+                return
+            }
+            
+            if let coinTokenArr = coinTokenArray{
+                CoinTokenAccount.serverSupportedCoinAndTokenArray.removeAll()
+                CoinTokenAccount.serverSupportedCoinAndTokenArray.append(contentsOf: coinTokenArr)
+                
+                if coinTokenArr.count > 0{
+                    DispatchQueue.main.async {
+                        self.theRegisterView.coinTokenSelView.setup(coin: coinTokenArr[0].coin, token: coinTokenArr[1].token)
+                        self.theRegisterView.coinTokenSelView.isHidden = false
+                    }
+                    
+                }
+            }
+        }
         
     }
     
@@ -294,7 +343,10 @@ extension LoginAndRegisterViewController: RegisterViewDelegate{
         popoverPresentationController?.delegate = self
         popoverPresentationController?.backgroundColor = .white
         */
+        
         self.present(vc, animated: true, completion: nil)
+        
+        
     }
 }
 
