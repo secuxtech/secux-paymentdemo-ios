@@ -16,21 +16,24 @@ import secux_paymentkit
 
 class PaymentDetailsViewController: BaseViewController {
     
-    var theAccount: CoinTokenAccount? = nil{
+    var theAccountArray = [CoinTokenAccount](){
         didSet{
-            if self.showAccountSelection{
-                self.accountInfoView.setupWithDropdownBtn(account: theAccount!)
+            if theAccountArray.count > 1{
+                self.accountInfoView.setupWithDropdownBtn(account: theAccountArray[0])
                 
             }else{
-                self.accountInfoView.setup(account: theAccount!)
+                self.accountInfoView.setup(account: theAccountArray[0])
             }
             
             
-            if let coinImg = self.theAccount?.getCoinLogo(){
+            if let coinImg = theAccountArray[0].getCoinLogo(){
                 self.amountInputField.leftImage = coinImg
             }
             
-            self.amountInputField.rightTxt = self.theAccount?.token ?? ""
+            self.coinType = theAccountArray[0].coinType
+            self.token = theAccountArray[0].token
+            
+            self.amountInputField.rightTxt = theAccountArray[0].token
         }
     }
     
@@ -45,8 +48,11 @@ class PaymentDetailsViewController: BaseViewController {
         didSet{
             if self.amount == "0"{
                 self.amountInputField.editText = ""
+                self.payButton.isEnabled = false
             }else{
                 self.amountInputField.editText = amount
+                self.payButton.isEnabled = true
+                self.amountInputField.enableTextField = false
             }
         }
     }
@@ -54,7 +60,6 @@ class PaymentDetailsViewController: BaseViewController {
     var coinType : String = ""
     var token : String = ""
     
-    var showAccountSelection = false
     var deviceID : String = ""
     var deviceIDhash : String = ""
 
@@ -99,25 +104,16 @@ class PaymentDetailsViewController: BaseViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(imageView)
         
-        if self.showAccountSelection{
-            NSLayoutConstraint.activate([
-               
-                imageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-                imageView.topAnchor.constraint(equalTo: self.storeNameLabel.bottomAnchor, constant: 10),
-                imageView.widthAnchor.constraint(equalToConstant: 90),
-                imageView.heightAnchor.constraint(equalToConstant: 90)
-               
-            ])
-        }else{
-            NSLayoutConstraint.activate([
-               
-                imageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-                imageView.topAnchor.constraint(equalTo: self.storeNameLabel.bottomAnchor, constant: 10),
-                imageView.widthAnchor.constraint(equalToConstant: 90),
-                imageView.heightAnchor.constraint(equalToConstant: 90)
-               
-            ])
-        }
+    
+        NSLayoutConstraint.activate([
+           
+            imageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            imageView.topAnchor.constraint(equalTo: self.storeNameLabel.bottomAnchor, constant: 10),
+            imageView.widthAnchor.constraint(equalToConstant: 90),
+            imageView.heightAnchor.constraint(equalToConstant: 90)
+           
+        ])
+        
         
         
         return imageView
@@ -157,17 +153,6 @@ class PaymentDetailsViewController: BaseViewController {
     lazy var accountInfoView : AccountInfoView = {
         let cell = AccountInfoView()
         cell.translatesAutoresizingMaskIntoConstraints = false
-        
-        
-        if let account = self.theAccount {
-            if self.showAccountSelection{
-                cell.setupWithDropdownBtn(account: account)
-            }else{
-                cell.setup(account: account)
-            }
-        }
-        
-        
         
         self.view.addSubview(cell)
         
@@ -320,15 +305,6 @@ class PaymentDetailsViewController: BaseViewController {
         logw("Payment details page")
         super.viewWillAppear(animated)
         
-        
-        self.payButton.isEnabled = false
-        
-        self.showProgress(info: "Loading...")
-       
-        DispatchQueue.global(qos: .default).async{
-            self.getStoreInfo()
-        }
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -337,9 +313,9 @@ class PaymentDetailsViewController: BaseViewController {
     }
     
     
-    
+    /*
     func getStoreInfo(){
-        let (reqRet, storeInfo, img) = self.paymentMgr!.getStoreInfo(devID: self.deviceIDhash)
+        let (reqRet, storeInfo, img, supportedCoinTokenArray) = self.paymentMgr!.getStoreInfo(devID: self.deviceIDhash)
         self.hideProgress()
         
         DispatchQueue.main.async {
@@ -368,12 +344,12 @@ class PaymentDetailsViewController: BaseViewController {
         }
         
     }
-    
+    */
 
     @objc func accountTappedAction(_ sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
         
-        if !self.showAccountSelection{
+        if self.theAccountArray.count < 2{
             return
         }
         
@@ -424,7 +400,7 @@ class PaymentDetailsViewController: BaseViewController {
             return
         }
         
-        if let acc = self.theAccount{
+        if let acc = self.accountInfoView.theAccount{
         
             if let dbamount = Decimal(string:self.amount), let accBalance = acc.accountBalance?.theFormattedBalance,
                 dbamount > accBalance{
@@ -623,7 +599,9 @@ extension PaymentDetailsViewController: UIPopoverPresentationControllerDelegate{
             let acc = vc.selAccount {
             
             DispatchQueue.main.async {
-                self.coinType = vc.selAccType ?? acc.coinType
+                self.accountInfoView.setup(account: acc)
+                self.coinType = acc.coinType
+                self.token = acc.token
             }
         }
     }
