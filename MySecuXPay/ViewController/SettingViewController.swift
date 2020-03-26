@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import secux_paymentkit
 
 class SettingViewController: BaseViewController{
     
@@ -180,13 +181,21 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension SettingViewController : AccountSettingTitleViewDelegate{
     func enableTestMode() {
-        Setting.shared.enableTestMode = !Setting.shared.enableTestMode
-        if Setting.shared.enableTestMode{
-            self.showMessage(title: "Enable test mode", message: "")
-        }else{
-            self.showMessage(title: "Enable test mode", message: "")
+        let alert = UIAlertController(title: "Enable test mode?", message: "", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "CANCEL", style: .cancel, handler: nil)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: {
+            action in
             
-        }
+            let accMgr = SecuXAccountManager()
+            //accMgr.setBaseServer(url: "https://test.com.io")
+            
+            self.logout()
+        })
+        
+        alert.addAction(cancelAction)
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
     }
     
     
