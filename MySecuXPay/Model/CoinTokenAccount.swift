@@ -16,6 +16,8 @@ class CoinTokenAccount: NSObject{
     var token = ""
     var accountBalance: SecuXCoinTokenBalance?
     
+    static var serverSupportedCoinAndTokenArray = [(coin:String, token:String)]()
+    
     init(account:SecuXCoinAccount, token:String){
         self.accountName = account.accountName
         self.coinType = account.coinType
