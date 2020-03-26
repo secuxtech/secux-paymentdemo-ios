@@ -84,4 +84,21 @@ class MyAccount : NSObject{
         
         return nil
     }
+    
+    public func getCoinTokenAccountArray(coin:String, token:String) -> [CoinTokenAccount]{
+        
+        var accountArrRet = [CoinTokenAccount]()
+        
+        guard let accountArray = self.theCoinTokenAccountArray else {
+            return accountArrRet
+        }
+        
+        for account in accountArray{
+            if account.coinType == coin, account.token == token{
+                accountArrRet.append(account)
+            }
+        }
+        
+        return accountArrRet
+    }
 }
