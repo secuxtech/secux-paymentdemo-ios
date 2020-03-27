@@ -170,13 +170,8 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             
         }else if indexPath.section == 0 && indexPath.row == 2{
             
-            
-            
         }
-        
-       
     }
-    
 }
 
 extension SettingViewController : AccountSettingTitleViewDelegate{
@@ -187,7 +182,7 @@ extension SettingViewController : AccountSettingTitleViewDelegate{
         let okAction = UIAlertAction(title: "OK", style: .default, handler: {
             action in
             
-            let accMgr = SecuXAccountManager()
+            //let accMgr = SecuXAccountManager()
             //accMgr.setBaseServer(url: "https://test.com.io")
             
             self.logout()
@@ -197,6 +192,5 @@ extension SettingViewController : AccountSettingTitleViewDelegate{
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
     }
-    
     
 }

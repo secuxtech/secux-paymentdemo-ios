@@ -239,12 +239,13 @@ class LoginView: UIView{
             var (ret, data) = accManager.loginUserAccount(userAccount: usrAcc)
             if ret == SecuXRequestResult.SecuXRequestOK{
                 
-                (ret, data) = accManager.getAccountBalance(userAccount: usrAcc)
+                //(ret, data) = accManager.getAccountBalance(userAccount: usrAcc)
+                (ret, data) = accManager.getCoinAccountList(userAccount: usrAcc)
                 if ret == SecuXRequestResult.SecuXRequestOK{
                     self.loginDelegate?.loginDone(ret: true, errorMsg: "")
                     MyAccount.shared.setUserAccount(userAccount: usrAcc)
                 }else{
-                    self.loginDelegate?.loginDone(ret: false, errorMsg: "Get account balance failed!")
+                    self.loginDelegate?.loginDone(ret: false, errorMsg: "Get account list failed!")
                 }
                 
             }else{

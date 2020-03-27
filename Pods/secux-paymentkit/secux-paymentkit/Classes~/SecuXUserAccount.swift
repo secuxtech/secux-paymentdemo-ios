@@ -35,20 +35,6 @@ public class SecuXUserAccount{
         self.phone = phone
     }
     
-    public init(email:String, password:String){
-        self.name = email
-        self.password = password
-        self.email = email
-        
-        if let separatorIdx = email.firstIndex(of: "@"){
-            self.alias = String(email[..<separatorIdx])
-        }else{
-            self.alias = email
-        }
-        
-     
-    }
-    
     public func getCoinAccount(coinType:String) -> [SecuXCoinAccount]{
         
         var accountArray = [SecuXCoinAccount]()
@@ -62,21 +48,6 @@ public class SecuXUserAccount{
     
     public func addCoinAccount(coinAcc:SecuXCoinAccount){
         self.coinAccountArray.append(coinAcc)
-    }
-    
-    public func removeAllCoinAccount(){
-        self.coinAccountArray.removeAll()
-    }
-    
-    public func supportToken(coin:String, token: String) -> Bool {
-        for acc in self.coinAccountArray{
-            
-            if acc.coinType == coin, let _ = acc.getTokenBalance(token: token){
-                return true
-            }
-        }
-        
-        return false
     }
     
 }

@@ -428,7 +428,9 @@ class RegisterView: UIView{
             let accManager = SecuXAccountManager()
             let usrAcc = SecuXUserAccount(email: email.lowercased(), phone: phone, password: String(pwd))
             
-            var (ret, data) = accManager.registerUserAccount(userAccount: usrAcc, coinType: self.coinTokenSelView.coin, token: self.coinTokenSelView.token)
+            //var (ret, data) = accManager.registerUserAccount(userAccount: usrAcc, coinType: self.coinTokenSelView.coin, token: self.coinTokenSelView.token)
+            
+            var (ret, data) = accManager.registerUserAccount(userAccount: usrAcc, coinType: "DCT", token: "SPC")
             
             if ret == SecuXRequestResult.SecuXRequestOK{
                 (ret, data) = accManager.loginUserAccount(userAccount: usrAcc)
@@ -504,6 +506,6 @@ extension RegisterView: UIPopoverPresentationControllerDelegate{
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
-       return .none
+        return .none
     }
 }

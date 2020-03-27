@@ -157,12 +157,18 @@ class LoginAndRegisterViewController: BaseViewController{
     
     @objc func onTabSwitch(){
         if self.stateControl.selectedSegmentIndex == 0{
-            self.theLoginView.isHidden = false
+            
             self.theRegisterView.isHidden = true
+            UIView.transition(with: self.theLoginView, duration: 0.8, options: .transitionFlipFromRight, animations: {
+                self.theLoginView.isHidden = false
+            })
+            
             self.theLoginView.setFocus()
         }else{
             self.theLoginView.isHidden = true
-            self.theRegisterView.isHidden = false
+            UIView.transition(with: self.theRegisterView, duration: 0.8, options: .transitionFlipFromLeft, animations: {
+                self.theRegisterView.isHidden = false
+            })
             self.theRegisterView.setFocus()
         }
     }
@@ -206,31 +212,7 @@ class LoginAndRegisterViewController: BaseViewController{
         leftSwipe.direction = .left
         self.view.addGestureRecognizer(leftSwipe)
         
-        DispatchQueue.global(qos: .default).async {
-            let accManager = SecuXAccountManager()
-            let (ret, data, coinTokenArray) = accManager.getSupportedCoinTokenArray()
-            guard ret == SecuXRequestResult.SecuXRequestOK else{
-                var error = ""
-                if let data = data{
-                    error = String(data: data, encoding: .utf8) ?? ""
-                }
-                self.showMessage(title: "Get supported coin&token from server failed!", message: error)
-                return
-            }
-            
-            if let coinTokenArr = coinTokenArray{
-                CoinTokenAccount.serverSupportedCoinAndTokenArray.removeAll()
-                CoinTokenAccount.serverSupportedCoinAndTokenArray.append(contentsOf: coinTokenArr)
-                
-                if coinTokenArr.count > 0{
-                    DispatchQueue.main.async {
-                        self.theRegisterView.coinTokenSelView.setup(coin: coinTokenArr[0].coin, token: coinTokenArr[1].token)
-                        self.theRegisterView.coinTokenSelView.isHidden = false
-                    }
-                    
-                }
-            }
-        }
+        self.getSupportedCoinTokenList()
         
     }
     
@@ -251,6 +233,39 @@ class LoginAndRegisterViewController: BaseViewController{
         
         if let image = image{
             self.view.backgroundColor = UIColor.init(patternImage: image)
+        }
+    }
+    
+    func getSupportedCoinTokenList(){
+        DispatchQueue.global(qos: .default).async {
+            let accManager = SecuXAccountManager()
+            let (ret, data, coinTokenArray) = accManager.getSupportedCoinTokenArray()
+            guard ret == SecuXRequestResult.SecuXRequestOK else{
+                var error = ""
+                if let data = data{
+                    error = String(data: data, encoding: .utf8) ?? ""
+                }
+                self.showMessage(title: "Get supported coin&token from server failed!", message: error)
+                
+                DispatchQueue.global().asyncAfter(deadline: .now() + 2.0, execute: {
+                    self.getSupportedCoinTokenList()
+                })
+                
+                return
+            }
+            
+            if let coinTokenArr = coinTokenArray{
+                CoinTokenAccount.serverSupportedCoinAndTokenArray.removeAll()
+                CoinTokenAccount.serverSupportedCoinAndTokenArray.append(contentsOf: coinTokenArr)
+                
+                if coinTokenArr.count > 0{
+                    DispatchQueue.main.async {
+                        self.theRegisterView.coinTokenSelView.setup(coin: coinTokenArr[0].coin, token: coinTokenArr[1].token)
+                        self.theRegisterView.coinTokenSelView.isHidden = false
+                    }
+                    
+                }
+            }
         }
     }
     

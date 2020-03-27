@@ -133,6 +133,16 @@ class AccountTableViewCell: UITableViewCell{
         return label
     }()
     
+    lazy var updateBalanceIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.color = UISetting.shared.titleBKColor
+        indicator.style = .medium
+        self.contentView.addSubview(indicator)
+        
+        return indicator
+    }()
+    
     var theAccount : CoinTokenAccount?
     
     func setup(account: CoinTokenAccount){
@@ -162,13 +172,30 @@ class AccountTableViewCell: UITableViewCell{
             //self.itemBalanceLabel.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -13.1),
             //self.itemBalanceLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 15.46),
             
-            self.itemValLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -13.1),
+            
             //self.itemValLabel.topAnchor.constraint(equalTo: self.itemBalanceLabel.bottomAnchor, constant: 3)
-            self.itemValLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
-
+            
+            self.itemValLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -13),
+            self.itemValLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            
+            self.updateBalanceIndicator.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -13),
+            self.updateBalanceIndicator.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 0)
         ])
 
         self.itemNameLabel.text = account.accountName
+        
+        self.itemValLabel.isHidden = true
+        self.updateBalanceIndicator.startAnimating()
+        
+    }
+    
+    func showBalance(){
+        
+        self.updateBalanceIndicator.stopAnimating()
+        
+        guard let account = self.theAccount else {
+            return
+        }
         
         if let balance = account.accountBalance{
             self.itemValLabel.text = "\(String(format: "%.2f", NSDecimalNumber(decimal: balance.theFormattedBalance).doubleValue)) \(account.token)"
@@ -183,6 +210,7 @@ class AccountTableViewCell: UITableViewCell{
             self.itemBalanceLabel.text = "$ 0.0"
         }
         
+        self.itemValLabel.isHidden = false
         self.itemBalanceLabel.isHidden = true
     }
     

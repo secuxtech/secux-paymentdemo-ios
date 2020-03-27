@@ -15,13 +15,9 @@ open class SecuXAccountManager{
         
     }
     
-    public func setBaseServer(url:String){
-        SecuXServerRequestHandler.baseURL = url
-    }
-    
-    public func registerUserAccount(userAccount: SecuXUserAccount, coinType: String, token: String) -> (SecuXRequestResult, Data?){
+    public func registerUserAccount(userAccount: SecuXUserAccount) -> (SecuXRequestResult, Data?){
         logw("registerUserAccount")
-        let (ret, data) = secuXSvrReqHandler.userRegister(userAccount: userAccount, coinType: coinType, token: token)
+        let (ret, data) = secuXSvrReqHandler.userRegister(account: userAccount.name, password: userAccount.password, email: userAccount.email, alias: userAccount.alias, phonenum: userAccount.phone)
         
         if ret == SecuXRequestResult.SecuXRequestOK, let data=data{
             
@@ -72,6 +68,7 @@ open class SecuXAccountManager{
                 return (SecuXRequestResult.SecuXRequestFailed, "Invalid json response from server".data(using: String.Encoding.utf8))
             }
             
+            
             if let phone = responseJson["tel"] as? String{
                 userAccount.phone = phone
             }
@@ -88,116 +85,11 @@ open class SecuXAccountManager{
                 userAccount.type = type
             }
             
-            /*
-            guard let coinType = responseJson["coinType"] as? String,
-                let token = responseJson["symbol"] as? String,
-                let balance = responseJson["balance"]  as? Double,
-                let formattedBalance = responseJson["formattedBalance"] as? Double,
-                let usdBalance = responseJson["balance_usd"] as? Double else{
-                
-                
-                return (SecuXRequestResult.SecuXRequestFailed, "Invalid response from server".data(using: String.Encoding.utf8))
-            }
-            
-        
-            let balDec = Decimal(balance)
-            let formattedBalDec = Decimal(formattedBalance)
-            let usdBalDec = Decimal(usdBalance)
-            
-            
-            let tokenBalance = SecuXCoinTokenBalance(balance: balDec, formattedBalance: formattedBalDec, usdBalance: usdBalDec)
-            
-            var dict = [String:SecuXCoinTokenBalance]()
-            dict[token] = tokenBalance
-            
-            let _ = SecuXCoinAccount(type: coinType, name: token, tokenBalDict: dict)
-            
-            userAccount.coinAccountArray = [SecuXCoinAccount]()
-            userAccount.coinAccountArray.append(coinAccount)
-            */
             return (ret, nil)
             
         }
         
         return (ret, data)
-    }
-    
-    public func getSupportedCoinTokenArray() -> (SecuXRequestResult, Data?, [(coin:String, token:String)]?){
-        let (ret, data) = secuXSvrReqHandler.getSupportedCoinTokens()
-        guard ret == SecuXRequestResult.SecuXRequestOK, let replyData = data else{
-            return (ret, data, nil)
-        }
-            
-        guard let responseArr = try? JSONSerialization.jsonObject(with: replyData, options: []) as? [[String]] else{
-            return (SecuXRequestResult.SecuXRequestFailed, "Invalid json response from server".data(using: String.Encoding.utf8), nil)
-        }
-        
-        var coinTokenArray = [(coin:String, token:String)]()
-        for item in responseArr{
-            
-            if item.count == 2{
-            
-                let coin = item[0]
-                let token = item[1]
-                print("coin = \(coin) token = \(token)")
-                
-                coinTokenArray.append((coin:coin, token:token))
-            }else{
-                print("Invalid coin token info.")
-            }
-        }
-        
-        guard coinTokenArray.count > 0 else{
-            return (SecuXRequestResult.SecuXRequestFailed, "No supported coin & token info. from server".data(using: String.Encoding.utf8), nil)
-        }
-        
-        return (ret, data, coinTokenArray)
-    }
-    
-    public func getCoinAccountList(userAccount:SecuXUserAccount) -> (SecuXRequestResult, Data?){
-        let (ret, data) = secuXSvrReqHandler.getChainAccountList()
-        guard ret == SecuXRequestResult.SecuXRequestOK, let replyData = data else {
-            return (ret, data)
-        }
-        
-        guard let responseJson = try? JSONSerialization.jsonObject(with: replyData, options: []) as? [String:Any] else{
-            return (SecuXRequestResult.SecuXRequestFailed, "Invalid json response from server".data(using: String.Encoding.utf8))
-        }
-                
-        guard let accountInfoArray = responseJson["dataList"] as? [[String:Any]] else {
-            return (SecuXRequestResult.SecuXRequestFailed, "No dataList! Invalid response from server.".data(using: String.Encoding.utf8))
-        }
-        
-        userAccount.removeAllCoinAccount()
-        for accInfo in accountInfoArray{
-            //guard let accInfoData = accInfo.data(using: .utf8), let accInfoJson = try? JSONSerialization.jsonObject(with: accInfoData, options: []) as? [String:Any] else{
-            //    return (SecuXRequestResult.SecuXRequestFailed, "Invalid json response from server".data(using: String.Encoding.utf8))
-            //}
-            
-            guard let accountName = accInfo["account"] as? String else{
-                return (SecuXRequestResult.SecuXRequestFailed, "No account! Invalid response from server.".data(using: String.Encoding.utf8))
-            }
-            
-            guard let coinType = accInfo["coinType"] as? String else{
-                return (SecuXRequestResult.SecuXRequestFailed, "No coin type! Invalid response from server.".data(using: String.Encoding.utf8))
-            }
-            
-            guard let tokenArray = accInfo["symbol"] as? [String] else{
-                return (SecuXRequestResult.SecuXRequestFailed, "No symbol! Invalid response from server.".data(using: String.Encoding.utf8))
-            }
-            
-            var tokenBalanceDict = [String : SecuXCoinTokenBalance]()
-            let zeroBalance = SecuXCoinTokenBalance(balance: 0, formattedBalance: 0, usdBalance: 0)
-            for token in tokenArray{
-                tokenBalanceDict[token] = zeroBalance
-            }
-            
-            let newCoinAccount = SecuXCoinAccount(type: coinType, name: accountName, tokenBalDict: tokenBalanceDict)
-            
-            userAccount.addCoinAccount(coinAcc: newCoinAccount)
-        }
-        
-        return (ret, nil)
     }
     
     public func changePassword(oldPwd:String, newPwd:String) -> (SecuXRequestResult, Data?){
@@ -282,7 +174,7 @@ open class SecuXAccountManager{
             return (ret, data)
         }
         
-        //return (SecuXRequestResult.SecuXRequestFailed, nil)
+        return (SecuXRequestResult.SecuXRequestFailed, nil)
     }
     
     

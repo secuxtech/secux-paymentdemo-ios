@@ -119,6 +119,18 @@ Discover nearby peripherals
 
 -(void)doPaymentVerification:  (NSData*)encryptedData  machineControlParams:(NSDictionary *)machineControlParams withCompletedBlock:(BleGetDictionayCompleteBlock)completedBlock;
 
+
+/**
+ Enable firmware OTA mode
+ */
+-(void)doPeripheralEnableOTA:(double)timeout connectDeviceId:(NSString *)connectDeviceId checkRSSI:(int)checkRSSI withCompletedBlock:(BleCompleteBlock)completedBlock;
+
+/**
+Enable firmware OTA mode
+*/
+
+-(void)doPeripheralCleanLog:(double)timeout connectDeviceId:(NSString *)connectDeviceId checkRSSI:(int)checkRSSI withCompletedBlock:(BleCompleteBlock)completedBlock;
+
 /**
  Cancel connection between App and BLE peripheral
  */
@@ -130,5 +142,17 @@ Discover nearby peripherals
  */
 -(NSString *)getMachineControlCommand: (NSDictionary *)machineControlParams;
 
+/**
+ Activate Peripheral
+ 
+ @param timeout seconds to timeout this method
+ @param connectDeviceId peripheral device id to activate
+ @param checkRSSI minimun RSSI signal strength value to check
+ @param configuration configuration information from server to store in peripheral
+ @param completedBlock complete block
+ */
+-(void)doPeripheralActivation:(double)timeout connectDeviceId:(NSString *)connectDeviceId checkRSSI:(int)checkRSSI configuration:(NSDictionary *)configuration withCompletedBlock:(BleCompleteBlock)completedBlock;
+
+-(void)doPeripheralReActivation:(double)timeout connectDeviceId:(NSString *)connectDeviceId checkRSSI:(int)checkRSSI oldConfiguration:(NSDictionary *)oldConfiguration configuration:(NSDictionary *)configuration withCompletedBlock:(BleCompleteBlock)completedBlock;
 
 @end

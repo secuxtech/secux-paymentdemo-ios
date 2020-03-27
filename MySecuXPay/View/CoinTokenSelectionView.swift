@@ -81,15 +81,16 @@ class CoinTokenSelectionView: UIView{
         self.dropdownMenuShows = !self.dropdownMenuShows
         
         if !self.dropdownMenuShows{
-            UIView.animate(withDuration: 0.5, animations: {
+            UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 8, options: [], animations: {
                 self.dropdownImg.transform = self.dropdownImg.transform.rotated(by: -(CGFloat.pi * 0.999))
                 
             })
         }else{
-            UIView.animate(withDuration: 0.5, animations: {
+            UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 8, options: [], animations: {
                 self.dropdownImg.transform = self.dropdownImg.transform.rotated(by: CGFloat.pi * 0.999)
             })
         }
+    
     }
     
     func setup(coin:String, token:String){

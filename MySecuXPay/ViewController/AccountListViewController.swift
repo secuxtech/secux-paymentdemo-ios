@@ -133,23 +133,25 @@ class AccountListViewController: BaseViewController{
     }()
     */
     
+    let theAccountManager = SecuXAccountManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
         self.view.backgroundColor = UISetting.shared.vcBKColor
       
-        //DispatchQueue.global(qos: .default).async{
-        //    self.getAccountInfo()
-        //}
+        
         
         //let _ = self.floatButton
-        self.theTableView.reloadData()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationItem.title = ""
+        
+        self.theTableView.reloadData()
     }
     
     /*
@@ -190,7 +192,6 @@ class AccountListViewController: BaseViewController{
     */
     
     
-    
     func showAccountInfo(){
         let vc = SettingViewController()
         self.navigationController?.pushViewController(vc, animated: true)
@@ -212,8 +213,29 @@ extension AccountListViewController: UITableViewDelegate, UITableViewDataSource 
         
         let cell = tableView.dequeueReusableCell(withIdentifier: AccountTableViewCell.cellIdentifier(), for:indexPath)
         cell.selectionStyle = .none
-        if let commonCell = cell as? AccountTableViewCell{
-            commonCell.setup(account: MyAccount.shared.theCoinTokenAccountArray![indexPath.row])
+        if let commonCell = cell as? AccountTableViewCell,
+            let account = MyAccount.shared.theCoinTokenAccountArray?[indexPath.row]{
+            
+            commonCell.setup(account: account)
+            
+            DispatchQueue.global().async {
+                let (ret, data) = self.theAccountManager.getAccountBalance(userAccount: MyAccount.shared.theUserAccount!, coinType: account.coinType, token: account.token)
+                
+                if ret == SecuXRequestResult.SecuXRequestOK{
+                    DispatchQueue.main.async {
+                        commonCell.showBalance()
+                    }
+                }else if ret == SecuXRequestResult.SecuXRequestNoToken || ret == SecuXRequestResult.SecuXRequestUnauthorized{
+                    self.handleUnauthorizedError()
+                }else{
+                    var error = ""
+                    if let data = data{
+                        error = String(data: data, encoding: .utf8) ?? ""
+                    }
+                    self.showMessageInMainThread(title: "Get account \(account.accountName) balance failed!", message: error)
+                }
+            }
+            
         }
         
         return cell

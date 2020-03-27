@@ -150,8 +150,6 @@ class AccountInfoView: UIView {
             UIView.animate(withDuration: 0.5, animations: {
                 self.dropdownImage.transform = self.dropdownImage.transform.rotated(by: -(CGFloat.pi * 0.999))
                 
-                
-                
             })
         }else{
             UIView.animate(withDuration: 0.5, animations: {
