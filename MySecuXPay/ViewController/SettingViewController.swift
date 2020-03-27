@@ -182,8 +182,8 @@ extension SettingViewController : AccountSettingTitleViewDelegate{
         let okAction = UIAlertAction(title: "OK", style: .default, handler: {
             action in
             
-            //let accMgr = SecuXAccountManager()
-            //accMgr.setBaseServer(url: "https://test.com.io")
+            let accMgr = SecuXAccountManager()
+            accMgr.setBaseServer(url: "https://pmsweb-test.secux.io")
             
             self.logout()
         })

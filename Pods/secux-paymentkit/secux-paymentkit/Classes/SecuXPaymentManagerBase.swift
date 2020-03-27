@@ -20,7 +20,6 @@ open class SecuXPaymentManagerBase{
     open var delegate: SecuXPaymentManagerDelegate?
 
     
-    
     private func sendInfoToDevice(paymentInfo: PaymentInfo){
         
         logw("AccountPaymentViewModel sendInfoToDevice")
@@ -159,10 +158,10 @@ open class SecuXPaymentManagerBase{
         
         self.handlePaymentStatus(status: "Device connecting...")
         
-        self.paymentPeripheralManager.doPeripheralAuthenticityVerification(10, //Double(devConfigInfo.scanTimeout),Double(devConfigInfo.connTimeout)
+        self.paymentPeripheralManager.doPeripheralAuthenticityVerification(Double(devConfigInfo.scanTimeout),
                                                                            connectDeviceId: paymentInfo.deviceID,
                                                                            checkRSSI: Int32(devConfigInfo.rssi),
-                                                                           connectionTimeout: 30) { result, error in
+                                                                           connectionTimeout: Double(devConfigInfo.connTimeout)) { result, error in
         
             //logw("AccountPaymentViewModel doPeripheralAuthenticityVerification done \(result ?? "")")
             self.handleDeviceAuthenicationResult(paymentInfo: paymentInfo, ivKey: result, error: error)

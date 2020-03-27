@@ -245,11 +245,10 @@ class LoginAndRegisterViewController: BaseViewController{
                 if let data = data{
                     error = String(data: data, encoding: .utf8) ?? ""
                 }
-                self.showMessage(title: "Get supported coin&token from server failed!", message: error)
                 
-                DispatchQueue.global().asyncAfter(deadline: .now() + 2.0, execute: {
-                    self.getSupportedCoinTokenList()
-                })
+                sleep(2)
+                self.showMessageInMainThread(title: "Get supported coin&token from server failed!", message: error)
+                self.getSupportedCoinTokenList()
                 
                 return
             }
@@ -260,7 +259,7 @@ class LoginAndRegisterViewController: BaseViewController{
                 
                 if coinTokenArr.count > 0{
                     DispatchQueue.main.async {
-                        self.theRegisterView.coinTokenSelView.setup(coin: coinTokenArr[0].coin, token: coinTokenArr[1].token)
+                        self.theRegisterView.coinTokenSelView.setup(coin: coinTokenArr[0].coin, token: coinTokenArr[0].token)
                         self.theRegisterView.coinTokenSelView.isHidden = false
                     }
                     
