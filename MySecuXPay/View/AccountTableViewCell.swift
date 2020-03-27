@@ -137,7 +137,11 @@ class AccountTableViewCell: UITableViewCell{
         let indicator = UIActivityIndicatorView()
         indicator.translatesAutoresizingMaskIntoConstraints = false
         indicator.color = UISetting.shared.titleBKColor
-        indicator.style = .medium
+        
+        if #available(iOS 13.0, *){
+            indicator.style = .medium
+        }
+        
         self.contentView.addSubview(indicator)
         
         return indicator

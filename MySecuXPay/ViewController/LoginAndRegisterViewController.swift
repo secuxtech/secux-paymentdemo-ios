@@ -71,7 +71,11 @@ class LoginAndRegisterViewController: BaseViewController{
         //segCtrl.borderWidth = 1.0
         //segCtrl.cornerRadius = 10
         
-        segCtrl.selectedSegmentTintColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.3) //.white
+        if #available(iOS 13.0, *){
+            segCtrl.selectedSegmentTintColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.3) //.white
+        }else{
+            segCtrl.backgroundColor = .clear
+        }
         //segCtrl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.white], for: .selected)
         //segCtrl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.lightGray], for: .normal)
         
