@@ -60,10 +60,7 @@ class LoginAndRegisterViewController: BaseViewController{
          
         
          
-        segCtrl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.lightGray,
-                                        NSAttributedString.Key.font: UIFont.init(name: UISetting.shared.fontName, size: 16)!], for: .normal)
-        segCtrl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white,
-                                        NSAttributedString.Key.font: UIFont.init(name: UISetting.shared.boldFontName, size: 17)!], for: .selected)
+        
          
        
         
@@ -73,8 +70,19 @@ class LoginAndRegisterViewController: BaseViewController{
         
         if #available(iOS 13.0, *){
             segCtrl.selectedSegmentTintColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.3) //.white
+            
+            segCtrl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.lightGray,
+                                            NSAttributedString.Key.font: UIFont.init(name: UISetting.shared.fontName, size: 16)!], for: .normal)
+            segCtrl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white,
+                                            NSAttributedString.Key.font: UIFont.init(name: UISetting.shared.boldFontName, size: 17)!], for: .selected)
+            
         }else{
             segCtrl.backgroundColor = .clear
+            
+            segCtrl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.lightGray,
+                                            NSAttributedString.Key.font: UIFont.init(name: UISetting.shared.fontName, size: 16)!], for: .normal)
+            segCtrl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black,
+                                            NSAttributedString.Key.font: UIFont.init(name: UISetting.shared.boldFontName, size: 17)!], for: .selected)
         }
         //segCtrl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.white], for: .selected)
         //segCtrl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.lightGray], for: .normal)
@@ -379,6 +387,7 @@ extension LoginAndRegisterViewController: UIPopoverPresentationControllerDelegat
             self.theRegisterView.coinTokenSelView.dropdownToggle()
         }
         
+        /*
         if let vc = popoverPresentationController.presentedViewController as? CoinTokenSelectionViewController,
             let item = vc.selCoinToken {
             
@@ -386,6 +395,7 @@ extension LoginAndRegisterViewController: UIPopoverPresentationControllerDelegat
             //    self.coinType = vc.selAccType ?? acc.coinType
             //}
         }
+        */
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
