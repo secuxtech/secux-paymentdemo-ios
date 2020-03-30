@@ -143,13 +143,15 @@ class RegisterView: UIView{
         input.leftPadding = 10
         input.font = UIFont(name: "Arial", size: 19.0)
         
+        input.isHidden = true
+        
         
         self.addSubview(input)
         
         if UIScreen.main.bounds.width > 460{
             NSLayoutConstraint.activate([
                 
-                input.topAnchor.constraint(equalTo: self.emailInput.bottomAnchor, constant: 30),
+                input.topAnchor.constraint(equalTo: self.coinTokenSelView.bottomAnchor, constant: 30),
                 input.widthAnchor.constraint(equalToConstant: maxInputFieldLen),
                 input.heightAnchor.constraint(equalToConstant: 45),
                 input.centerXAnchor.constraint(equalTo: self.centerXAnchor),
@@ -157,7 +159,7 @@ class RegisterView: UIView{
         }else{
             NSLayoutConstraint.activate([
                 
-                input.topAnchor.constraint(equalTo: self.emailInput.bottomAnchor, constant: 30),
+                input.topAnchor.constraint(equalTo: self.coinTokenSelView.bottomAnchor, constant: 30),
                 input.leftAnchor.constraint(equalTo: self.leftAnchor, constant: CGFloat(inputBoxOffset)),
                 input.rightAnchor.constraint(equalTo: self.rightAnchor, constant: CGFloat(0-inputBoxOffset)),
                 //input.widthAnchor.constraint(equalToConstant: 200),
@@ -402,10 +404,10 @@ class RegisterView: UIView{
             return
         }
         
-        guard let phone = self.phoneInput.text, phone.count > 0 else{
-            self.registerDelegate?.showRegisterMessage(message: "Invalid phone number!")
-            return
-        }
+        //guard let phone = self.phoneInput.text, phone.count > 0 else{
+        //    self.registerDelegate?.showRegisterMessage(message: "Invalid phone number!")
+        //    return
+        //}
         
         guard let pwd = self.pwdInput.text, pwd.count >= 6 else{
             self.registerDelegate?.showRegisterMessage(message: "Invalid password!")
@@ -426,7 +428,7 @@ class RegisterView: UIView{
         
         DispatchQueue.global(qos: .default).async {
             let accManager = SecuXAccountManager()
-            let usrAcc = SecuXUserAccount(email: email.lowercased(), phone: phone, password: String(pwd))
+            let usrAcc = SecuXUserAccount(email: email.lowercased(), phone: "", password: String(pwd))
             
             //var (ret, data) = accManager.registerUserAccount(userAccount: usrAcc, coinType: self.coinTokenSelView.coin, token: self.coinTokenSelView.token)
             
