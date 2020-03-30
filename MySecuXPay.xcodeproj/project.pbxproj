@@ -56,6 +56,7 @@
 		2ED14D02241B3BE900E91095 /* PaymentReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED14D01241B3BE900E91095 /* PaymentReceiptViewController.swift */; };
 		2ED14D04241B3DBC00E91095 /* PaymentReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED14D03241B3DBC00E91095 /* PaymentReceiptView.swift */; };
 		2ED14D06241B91A300E91095 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED14D05241B91A300E91095 /* UIView+Extension.swift */; };
+		2EE8E2C32431A26B007E665C /* CoreNFC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EE8E2C22431A26B007E665C /* CoreNFC.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		2EEAD108242AECE100964FE0 /* CoinTokenSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEAD107242AECE100964FE0 /* CoinTokenSelectionView.swift */; };
 		E8A8CFD0942C2888A3AA3B7E /* Pods_MySecuXPay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5792CE8AD185F238CFA0F784 /* Pods_MySecuXPay.framework */; };
 /* End PBXBuildFile section */
@@ -113,6 +114,7 @@
 		2ED14D01241B3BE900E91095 /* PaymentReceiptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentReceiptViewController.swift; sourceTree = "<group>"; };
 		2ED14D03241B3DBC00E91095 /* PaymentReceiptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentReceiptView.swift; sourceTree = "<group>"; };
 		2ED14D05241B91A300E91095 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		2EE8E2C22431A26B007E665C /* CoreNFC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreNFC.framework; path = System/Library/Frameworks/CoreNFC.framework; sourceTree = SDKROOT; };
 		2EEAD107242AECE100964FE0 /* CoinTokenSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTokenSelectionView.swift; sourceTree = "<group>"; };
 		5792CE8AD185F238CFA0F784 /* Pods_MySecuXPay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MySecuXPay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		673253BD72485B55848D74A4 /* Pods-MySecuXPay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySecuXPay.release.xcconfig"; path = "Target Support Files/Pods-MySecuXPay/Pods-MySecuXPay.release.xcconfig"; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8A8CFD0942C2888A3AA3B7E /* Pods_MySecuXPay.framework in Frameworks */,
+				2EE8E2C32431A26B007E665C /* CoreNFC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,6 +254,7 @@
 		57917E7933EED693D43270F4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2EE8E2C22431A26B007E665C /* CoreNFC.framework */,
 				5792CE8AD185F238CFA0F784 /* Pods_MySecuXPay.framework */,
 			);
 			name = Frameworks;
@@ -573,7 +577,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MySecuXPay/MySecuXPay.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 439P2P24S8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -599,7 +603,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MySecuXPay/MySecuXPay.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 439P2P24S8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
