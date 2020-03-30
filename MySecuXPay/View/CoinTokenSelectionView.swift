@@ -97,7 +97,7 @@ class CoinTokenSelectionView: UIView{
         self.coin = coin
         self.token = token
         self.itemImg.image = CoinTokenAccount.getCoinLogo(type: coin)
-        self.itemNameLabel.text = "\(coin), \(token)"
+        self.itemNameLabel.text = "\(token)" //"\(coin), \(token)"
         self.layer.borderColor = UIColor.white.cgColor
     }
     
