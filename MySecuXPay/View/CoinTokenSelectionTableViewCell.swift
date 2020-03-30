@@ -89,7 +89,7 @@ class CoinTokenSelectionTableViewCell: UITableViewCell{
         if let img = CoinTokenAccount.getCoinLogo(type: coin){
             self.itemImg.image = img
         }
-        self.coinLabel.text = coin + ", "
+        self.coinLabel.text = "" //coin + ", "
         self.tokenLabel.text = token
     }
     
