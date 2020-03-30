@@ -9,8 +9,8 @@
 import UIKit
 import swiftScan
 import secux_paymentkit
-import CoreNFC
 
+import CoreNFC
 
 class PaymentMainViewController: BaseViewController {
     
