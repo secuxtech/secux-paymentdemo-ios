@@ -313,7 +313,7 @@ class PaymentMainViewController: BaseViewController {
         
         if Setting.shared.testFlag{
             
-            let paymentInfo = "{\"amount\":\"6\", \"coinType\":\"DCT:SPC\",\"deviceIDhash\":\"723D14834D5BB96509DCDF01DC22BC8E4F81FA5C\"}"
+            let paymentInfo = "{\"amount\":\"6\", \"coinType\":\"DCT:SPC\",\"deviceIDhash\":\"3e4c4594d5e7998e9bbef6e68fd472ea3882bba9\"}"
             self.handlePaymentInfo(payinfo: paymentInfo)
             
             return
