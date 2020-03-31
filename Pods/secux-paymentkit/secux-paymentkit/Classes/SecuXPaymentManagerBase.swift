@@ -95,7 +95,13 @@ open class SecuXPaymentManagerBase{
         }else{
             
             print("doPayment failed!!")
-            self.handlePaymentDone(ret: false, errorMsg: "Send request to server failed.")
+            var error = "Send request to server failed."
+            if let data = data{
+                let msg = String(data: data, encoding: .utf8) ?? ""
+                error = msg
+            }
+            
+            self.handlePaymentDone(ret: false, errorMsg:error)
             
         }
         
@@ -158,6 +164,7 @@ open class SecuXPaymentManagerBase{
         
         self.handlePaymentStatus(status: "Device connecting...")
         
+        /*
         self.paymentPeripheralManager.doPeripheralAuthenticityVerification(Double(devConfigInfo.scanTimeout),
                                                                            connectDeviceId: paymentInfo.deviceID,
                                                                            checkRSSI: Int32(devConfigInfo.rssi),
@@ -167,9 +174,10 @@ open class SecuXPaymentManagerBase{
             self.handleDeviceAuthenicationResult(paymentInfo: paymentInfo, ivKey: result, error: error)
         
         }
+        */
         
-        /*
-        paymentPeripheralManager.discoverNearbyPeripherals(Double(devConfigInfo.scanTimeout),
+        
+        paymentPeripheralManager.discoverNearbyPeripherals(1.0,
                                                            checkRSSI: Int32(devConfigInfo.rssi)) { result, error in
                      
             logw("result was \(String(describing: result)), and error was \(String(describing: error))")
@@ -196,7 +204,7 @@ open class SecuXPaymentManagerBase{
             }
             
         }
-        */
+        
     }
  
     

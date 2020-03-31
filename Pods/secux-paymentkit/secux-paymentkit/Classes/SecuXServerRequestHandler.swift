@@ -11,11 +11,8 @@ import Foundation
 
 class SecuXServerRequestHandler: RestRequestHandler {
     
-    #if DEBUG
-    static var baseURL = "https://pmsweb-test.secux.io"
-    #else
+
     static var baseURL = "https://pmsweb-sandbox.secuxtech.com" //"https://pmsweb-test.secux.io"
-    #endif
     static let adminLoginUrl = baseURL + "/api/Admin/Login"
     static let registerUrl = baseURL + "/api/Consumer/Register"
     static let userLoginUrl = baseURL + "/api/Consumer/Login"
