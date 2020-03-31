@@ -387,6 +387,11 @@ class PaymentDetailsViewController: BaseViewController {
         //    return
         //}
         
+        if Setting.shared.testFlag{
+            self.paymentDone(ret: true, transactionCode: "", errorMsg: "")
+            return
+        }
+        
         if let amtTxt = self.amountInputField.text, amtTxt.count == 0{
             self.showMessage(title: "Invalid amount!", message: "Please input payment amount")
             return
