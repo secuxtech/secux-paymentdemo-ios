@@ -51,6 +51,10 @@
 		2EA7D87A2418D39E00827C24 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA7D8792418D39E00827C24 /* SettingViewController.swift */; };
 		2EA7D87C2418D7A300827C24 /* AccountSettingTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA7D87B2418D7A300827C24 /* AccountSettingTitleView.swift */; };
 		2EA7D87E2418E68900827C24 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA7D87D2418E68900827C24 /* LoginViewController.swift */; };
+		2EAE9A94243AD7060013C648 /* CreateWalletAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAE9A93243AD7060013C648 /* CreateWalletAccountViewController.swift */; };
+		2EAE9A96243AD71B0013C648 /* RestoreWalletAcountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAE9A95243AD71B0013C648 /* RestoreWalletAcountViewController.swift */; };
+		2EAE9A98243ADD330013C648 /* BindWalletAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAE9A97243ADD330013C648 /* BindWalletAccountViewController.swift */; };
+		2EAE9A9A243B16950013C648 /* MnemonicWordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAE9A99243B16950013C648 /* MnemonicWordTableViewCell.swift */; };
 		2ECD31072421CAE4000BF97B /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECD31062421CAE4000BF97B /* ChangePasswordViewController.swift */; };
 		2ECD31092421CC1F000BF97B /* ChangePasswordTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECD31082421CC1F000BF97B /* ChangePasswordTitleView.swift */; };
 		2ED14D02241B3BE900E91095 /* PaymentReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED14D01241B3BE900E91095 /* PaymentReceiptViewController.swift */; };
@@ -109,6 +113,10 @@
 		2EA7D8792418D39E00827C24 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		2EA7D87B2418D7A300827C24 /* AccountSettingTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingTitleView.swift; sourceTree = "<group>"; };
 		2EA7D87D2418E68900827C24 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		2EAE9A93243AD7060013C648 /* CreateWalletAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWalletAccountViewController.swift; sourceTree = "<group>"; };
+		2EAE9A95243AD71B0013C648 /* RestoreWalletAcountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreWalletAcountViewController.swift; sourceTree = "<group>"; };
+		2EAE9A97243ADD330013C648 /* BindWalletAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindWalletAccountViewController.swift; sourceTree = "<group>"; };
+		2EAE9A99243B16950013C648 /* MnemonicWordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicWordTableViewCell.swift; sourceTree = "<group>"; };
 		2ECD31062421CAE4000BF97B /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		2ECD31082421CC1F000BF97B /* ChangePasswordTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordTitleView.swift; sourceTree = "<group>"; };
 		2ED14D01241B3BE900E91095 /* PaymentReceiptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentReceiptViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +161,9 @@
 				2EA7D8792418D39E00827C24 /* SettingViewController.swift */,
 				2ECD31062421CAE4000BF97B /* ChangePasswordViewController.swift */,
 				2E146677242B278A0070F22A /* CoinTokenSelectionViewController.swift */,
+				2EAE9A93243AD7060013C648 /* CreateWalletAccountViewController.swift */,
+				2EAE9A95243AD71B0013C648 /* RestoreWalletAcountViewController.swift */,
+				2EAE9A97243ADD330013C648 /* BindWalletAccountViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -176,6 +187,7 @@
 				2ECD31082421CC1F000BF97B /* ChangePasswordTitleView.swift */,
 				2EEAD107242AECE100964FE0 /* CoinTokenSelectionView.swift */,
 				2E146679242B29D90070F22A /* CoinTokenSelectionTableViewCell.swift */,
+				2EAE9A99243B16950013C648 /* MnemonicWordTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -393,6 +405,7 @@
 				2E14667A242B29D90070F22A /* CoinTokenSelectionTableViewCell.swift in Sources */,
 				2E042A1623D0165A0051E74E /* AccountInfoView.swift in Sources */,
 				2E845E0823D00C710043D0FA /* PaymentMainViewController.swift in Sources */,
+				2EAE9A96243AD71B0013C648 /* RestoreWalletAcountViewController.swift in Sources */,
 				2EA7D87A2418D39E00827C24 /* SettingViewController.swift in Sources */,
 				2E67166F24177F2D004D2862 /* BaseTableViewCell.swift in Sources */,
 				2E042A4923D02EAC0051E74E /* UITableViewCell+Extension.swift in Sources */,
@@ -403,6 +416,7 @@
 				2E042A3223D02A610051E74E /* Setting.swift in Sources */,
 				2EA7D8782418937500827C24 /* BaseUINavigationController.swift in Sources */,
 				2E042A2C23D0286F0051E74E /* BaseViewController.swift in Sources */,
+				2EAE9A98243ADD330013C648 /* BindWalletAccountViewController.swift in Sources */,
 				2E042A3F23D02C9C0051E74E /* PaymentHistoryViewController.swift in Sources */,
 				2ED14D02241B3BE900E91095 /* PaymentReceiptViewController.swift in Sources */,
 				2EA7D87C2418D7A300827C24 /* AccountSettingTitleView.swift in Sources */,
@@ -411,6 +425,7 @@
 				2E042A2323D0182F0051E74E /* QRCodeHandler.swift in Sources */,
 				2E042A2623D0188E0051E74E /* Double+Extension.swift in Sources */,
 				2E042A3B23D02BC80051E74E /* LogHandler.swift in Sources */,
+				2EAE9A94243AD7060013C648 /* CreateWalletAccountViewController.swift in Sources */,
 				2E042A2223D0182F0051E74E /* Observable.swift in Sources */,
 				2E67166B24173081004D2862 /* CoinTokenAccount.swift in Sources */,
 				2EA7D870241876EA00827C24 /* LoginView.swift in Sources */,
@@ -421,6 +436,7 @@
 				2E67167324179147004D2862 /* MainTabBarController.swift in Sources */,
 				2E042A1823D0165A0051E74E /* UIRoundedButtonWithGradientAndShadow.swift in Sources */,
 				2E042A1D23D016E80051E74E /* UISetting.swift in Sources */,
+				2EAE9A9A243B16950013C648 /* MnemonicWordTableViewCell.swift in Sources */,
 				2E042A4523D02D0B0051E74E /* AccountTableViewCell.swift in Sources */,
 				2ED14D04241B3DBC00E91095 /* PaymentReceiptView.swift in Sources */,
 				2E146678242B278A0070F22A /* CoinTokenSelectionViewController.swift in Sources */,
