@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A8C1F65070FA7A6F7BB6192 /* libPods-MySecuXPay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8961EE798F46A9174CF9460 /* libPods-MySecuXPay.a */; };
 		2E042A1623D0165A0051E74E /* AccountInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E042A1323D016590051E74E /* AccountInfoView.swift */; };
 		2E042A1723D0165A0051E74E /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E042A1423D016590051E74E /* TitleView.swift */; };
 		2E042A1823D0165A0051E74E /* UIRoundedButtonWithGradientAndShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E042A1523D0165A0051E74E /* UIRoundedButtonWithGradientAndShadow.swift */; };
@@ -28,6 +29,8 @@
 		2E042A4923D02EAC0051E74E /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E042A4823D02EAC0051E74E /* UITableViewCell+Extension.swift */; };
 		2E042A4B23D02EF00051E74E /* PaymentHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E042A4A23D02EF00051E74E /* PaymentHistoryTableViewCell.swift */; };
 		2E0DC915243C224D00E8EF42 /* MnemonicWordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0DC914243C224D00E8EF42 /* MnemonicWordCollectionViewCell.swift */; };
+		2E0DC91E243C836500E8EF42 /* JGProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E0DC91D243C836500E8EF42 /* JGProgressHUD.framework */; };
+		2E0DC91F243C836500E8EF42 /* JGProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E0DC91D243C836500E8EF42 /* JGProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E146678242B278A0070F22A /* CoinTokenSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E146677242B278A0070F22A /* CoinTokenSelectionViewController.swift */; };
 		2E14667A242B29D90070F22A /* CoinTokenSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E146679242B29D90070F22A /* CoinTokenSelectionTableViewCell.swift */; };
 		2E67166B24173081004D2862 /* CoinTokenAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E67166A24173081004D2862 /* CoinTokenAccount.swift */; };
@@ -63,8 +66,21 @@
 		2ED14D06241B91A300E91095 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED14D05241B91A300E91095 /* UIView+Extension.swift */; };
 		2EE8E2C32431A26B007E665C /* CoreNFC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EE8E2C22431A26B007E665C /* CoreNFC.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		2EEAD108242AECE100964FE0 /* CoinTokenSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEAD107242AECE100964FE0 /* CoinTokenSelectionView.swift */; };
-		E8A8CFD0942C2888A3AA3B7E /* Pods_MySecuXPay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5792CE8AD185F238CFA0F784 /* Pods_MySecuXPay.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2E0DC920243C836500E8EF42 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2E0DC91F243C836500E8EF42 /* JGProgressHUD.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2E042A1323D016590051E74E /* AccountInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoView.swift; sourceTree = "<group>"; };
@@ -89,6 +105,8 @@
 		2E042A4A23D02EF00051E74E /* PaymentHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		2E090F7C2419D1D6003D4AA3 /* MySecuXPay.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MySecuXPay.entitlements; sourceTree = "<group>"; };
 		2E0DC914243C224D00E8EF42 /* MnemonicWordCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicWordCollectionViewCell.swift; sourceTree = "<group>"; };
+		2E0DC91D243C836500E8EF42 /* JGProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JGProgressHUD.framework; path = MySecuXPay/Lib/JGProgressHUD.framework; sourceTree = "<group>"; };
+		2E0DC922243C87F100E8EF42 /* BridgeDSWallet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgeDSWallet.h; sourceTree = "<group>"; };
 		2E146677242B278A0070F22A /* CoinTokenSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTokenSelectionViewController.swift; sourceTree = "<group>"; };
 		2E146679242B29D90070F22A /* CoinTokenSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTokenSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		2E67166A24173081004D2862 /* CoinTokenAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTokenAccount.swift; sourceTree = "<group>"; };
@@ -126,9 +144,9 @@
 		2ED14D05241B91A300E91095 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		2EE8E2C22431A26B007E665C /* CoreNFC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreNFC.framework; path = System/Library/Frameworks/CoreNFC.framework; sourceTree = SDKROOT; };
 		2EEAD107242AECE100964FE0 /* CoinTokenSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTokenSelectionView.swift; sourceTree = "<group>"; };
-		5792CE8AD185F238CFA0F784 /* Pods_MySecuXPay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MySecuXPay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		673253BD72485B55848D74A4 /* Pods-MySecuXPay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySecuXPay.release.xcconfig"; path = "Target Support Files/Pods-MySecuXPay/Pods-MySecuXPay.release.xcconfig"; sourceTree = "<group>"; };
 		BCFBABE7DAFB55FBE26A70D9 /* Pods-MySecuXPay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySecuXPay.debug.xcconfig"; path = "Target Support Files/Pods-MySecuXPay/Pods-MySecuXPay.debug.xcconfig"; sourceTree = "<group>"; };
+		D8961EE798F46A9174CF9460 /* libPods-MySecuXPay.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MySecuXPay.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,8 +154,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8A8CFD0942C2888A3AA3B7E /* Pods_MySecuXPay.framework in Frameworks */,
 				2EE8E2C32431A26B007E665C /* CoreNFC.framework in Frameworks */,
+				0A8C1F65070FA7A6F7BB6192 /* libPods-MySecuXPay.a in Frameworks */,
+				2E0DC91E243C836500E8EF42 /* JGProgressHUD.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +246,14 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		2E0DC921243C879B00E8EF42 /* BridgeHeader */ = {
+			isa = PBXGroup;
+			children = (
+				2E0DC922243C87F100E8EF42 /* BridgeDSWallet.h */,
+			);
+			path = BridgeHeader;
+			sourceTree = "<group>";
+		};
 		2E845DF723D00C710043D0FA = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +275,7 @@
 		2E845E0223D00C710043D0FA /* MySecuXPay */ = {
 			isa = PBXGroup;
 			children = (
+				2E0DC921243C879B00E8EF42 /* BridgeHeader */,
 				2E090F7C2419D1D6003D4AA3 /* MySecuXPay.entitlements */,
 				2E81F93023D056D800BEB11E /* paysuccess.wav */,
 				2E042A2E23D029A70051E74E /* CodeScan.bundle */,
@@ -269,8 +297,9 @@
 		57917E7933EED693D43270F4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2E0DC91D243C836500E8EF42 /* JGProgressHUD.framework */,
 				2EE8E2C22431A26B007E665C /* CoreNFC.framework */,
-				5792CE8AD185F238CFA0F784 /* Pods_MySecuXPay.framework */,
+				D8961EE798F46A9174CF9460 /* libPods-MySecuXPay.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -296,6 +325,8 @@
 				2E845DFD23D00C710043D0FA /* Frameworks */,
 				2E845DFE23D00C710043D0FA /* Resources */,
 				4FD4C794905F3AA73422D9D6 /* [CP] Embed Pods Frameworks */,
+				5E773EF86495CE31CA6B6878 /* [CP] Copy Pods Resources */,
+				2E0DC920243C836500E8EF42 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -392,6 +423,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MySecuXPay/Pods-MySecuXPay-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5E773EF86495CE31CA6B6878 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MySecuXPay/Pods-MySecuXPay-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MySecuXPay/Pods-MySecuXPay-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MySecuXPay/Pods-MySecuXPay-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -602,6 +650,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MySecuXPay",
+					"$(PROJECT_DIR)/MySecuXPay/Lib",
 				);
 				INFOPLIST_FILE = MySecuXPay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -611,6 +660,7 @@
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.secux.MyEvPay;
 				PRODUCT_NAME = MyEvPay;
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/maochun/Projects/SecuX/Src/PaymentKit/iOS/Src/secux-paymentdemo-ios/MySecuXPay/BridgeHeader/BridgeDSWallet.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -628,6 +678,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MySecuXPay",
+					"$(PROJECT_DIR)/MySecuXPay/Lib",
 				);
 				INFOPLIST_FILE = MySecuXPay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -637,6 +688,7 @@
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.secux.MyEvPay;
 				PRODUCT_NAME = MyEvPay;
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/maochun/Projects/SecuX/Src/PaymentKit/iOS/Src/secux-paymentdemo-ios/MySecuXPay/BridgeHeader/BridgeDSWallet.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
