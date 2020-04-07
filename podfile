@@ -2,12 +2,11 @@
 
 target 'MySecuXPay' do
   # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
+  #use_frameworks!
 
   # Pods for MySecuXPay
   pod 'swiftScan', :git => 'https://github.com/MxABC/swiftScan.git'
-  pod 'JGProgressHUD'
   pod 'secux-paymentkit','~> 1.0.3'
   pod 'Floaty'
- 
+  pod 'DashSync', :git => 'https://github.com/dashevo/dashsync-iOS/', :commit => '01fba86'
 end
