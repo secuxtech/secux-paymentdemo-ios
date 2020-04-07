@@ -9,6 +9,8 @@
 import UIKit
 import secux_paymentkit
 
+import LocalAuthentication
+
 public protocol LoginViewDelegate{
     func showLoginMessage(message:String)
     func loginStart()
@@ -46,6 +48,8 @@ class LoginView: UIView{
         input.textColor = .white
         input.layer.borderColor = UIColor.white.cgColor
         input.layer.borderWidth = 1
+        
+        input.tintColor = .white
         
         
         input.leftPadding = 5
@@ -106,6 +110,7 @@ class LoginView: UIView{
         input.textColor = .white
         input.layer.borderColor = UIColor.white.cgColor
         input.layer.borderWidth = 1
+        input.tintColor = .white
         
         input.isSecureTextEntry = true
         //input.leftImage = UIImage(named: "pwdIcon")
@@ -141,6 +146,47 @@ class LoginView: UIView{
         return input
     }()
     
+    lazy var biometricLoginButton: UIButton = {
+       
+        let btn = UIButton()
+        btn.translatesAutoresizingMaskIntoConstraints = false
+
+        
+        let btnAttributes: [NSAttributedString.Key: Any] = [
+                            .font: UIFont(name: "Arial", size: 17)!,
+                            .foregroundColor: UIColor.white,
+                            .underlineStyle: NSUnderlineStyle.single.rawValue]
+        
+        let btnAttributesHighlighted: [NSAttributedString.Key: Any] = [
+                            .font: UIFont(name: "Arial", size: 17)!,
+                            .foregroundColor: UIColor.gray,
+                            .underlineStyle: NSUnderlineStyle.single.rawValue]
+        
+     
+        
+        let attributeString = NSMutableAttributedString(string: "Use TouchID / FaceID login",
+                                                        attributes: btnAttributes)
+        
+        
+        btn.setAttributedTitle(attributeString, for: .normal)
+        btn.setAttributedTitle(NSMutableAttributedString(string: "Use FingerID / FaceID login",
+                                                        attributes: btnAttributesHighlighted), for: .highlighted)
+        
+        btn.addTarget(self, action: #selector(biometricLoginAction), for: .touchUpInside)
+        
+
+        self.addSubview(btn)
+
+        NSLayoutConstraint.activate([
+           
+            btn.topAnchor.constraint(equalTo: self.pwdInput.bottomAnchor, constant: 20),
+            btn.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+           
+        ])
+
+        return btn
+    }()
+    
     
     lazy var loginButton:  UIRoundedButtonWithGradientAndShadow = {
         
@@ -174,7 +220,7 @@ class LoginView: UIView{
         }else{
             NSLayoutConstraint.activate([
                 
-                btn.topAnchor.constraint(equalTo: self.pwdInput.bottomAnchor, constant: 30),
+                btn.topAnchor.constraint(equalTo: self.biometricLoginButton.bottomAnchor, constant: 30),
                 btn.leftAnchor.constraint(equalTo: self.leftAnchor, constant: CGFloat(inputBoxOffset)),
                 btn.rightAnchor.constraint(equalTo: self.rightAnchor, constant: CGFloat(0-inputBoxOffset)),
                 //input.widthAnchor.constraint(equalToConstant: 200),
@@ -213,6 +259,30 @@ class LoginView: UIView{
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIView.endEditing(_:)))
         tap.cancelsTouchesInView = false
         self.addGestureRecognizer(tap)
+        
+        if Setting.shared.loginPwd.count > 0, Setting.shared.loginAccount.count > 0{
+            self.biometricLoginButton.isHidden = false
+            self.biometricLoginAction()
+        }else{
+            self.biometricLoginButton.isHidden = true
+            self.setFocus()
+        }
+    }
+    
+    @objc func biometricLoginAction(){
+        let localAuthContext = LAContext()
+        if localAuthContext.canEvaluatePolicy(.deviceOwnerAuthentication, error: nil){
+            
+            let biometricType = localAuthContext.biometryType == LABiometryType.faceID ? "Face ID" : "Touch ID"
+            logw("Supported Biometric type is: \( biometricType )")
+            
+            localAuthContext.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: "Auto login the account") { success, evaluateError in
+                
+                if success{
+                    self.autoLogin()
+                }
+            }
+        }
     }
     
     @objc func loginButtonTapped(){
@@ -244,6 +314,10 @@ class LoginView: UIView{
                 if ret == SecuXRequestResult.SecuXRequestOK{
                     self.loginDelegate?.loginDone(ret: true, errorMsg: "")
                     MyAccount.shared.setUserAccount(userAccount: usrAcc)
+                    
+                    Setting.shared.loginAccount = usrAcc.email
+                    Setting.shared.loginPwd = usrAcc.password
+                    Setting.shared.saveSetting()
                 }else{
                     self.loginDelegate?.loginDone(ret: false, errorMsg: "Get account list failed!")
                 }
@@ -281,12 +355,12 @@ class LoginView: UIView{
     
     public func autoLogin(){
         DispatchQueue.main.async{
-            if let account = MyAccount.shared.theUserAccount{
-                self.emailInput.text = account.email
-                self.pwdInput.text = account.password
-                
-                self.loginButtonTapped()
-            }
+            
+            self.emailInput.text = Setting.shared.loginAccount
+            self.pwdInput.text = Setting.shared.loginPwd
+            
+            self.loginButtonTapped()
+            
         }
         
     }

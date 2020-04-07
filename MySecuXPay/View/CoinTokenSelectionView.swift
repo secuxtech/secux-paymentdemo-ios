@@ -107,7 +107,7 @@ class CoinTokenSelectionView: UIView{
 
         self.backgroundColor = .clear
         self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor.gray.cgColor
+        self.layer.borderColor = UIColor.white.cgColor
         
         let _ = self.itemImg
         let _ = self.itemNameLabel

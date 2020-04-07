@@ -65,6 +65,9 @@ class CoinTokenAccount: NSObject{
         case "XRP":
             return UIImage(named: "xrp")
             
+        case "DASH":
+            return UIImage(named: "dash")
+            
         default:
             return nil
         }

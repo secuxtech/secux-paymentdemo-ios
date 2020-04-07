@@ -128,7 +128,7 @@ class RestoreWalletAccountViewController: BaseViewController {
         btn.translatesAutoresizingMaskIntoConstraints = false
         
         btn.titleLabel?.font = UIFont(name: UISetting.shared.boldFontName, size: 17)
-        btn.setTitle(NSLocalizedString("Create New Account", comment: ""), for: .normal)
+        btn.setTitle(NSLocalizedString("Restore Account", comment: ""), for: .normal)
         btn.setTitleColor(UIColor(red: 0x1F/0xFF, green: 0x20/0xFF, blue: 0x20/0xFF, alpha: 1), for: .normal)
         btn.addTarget(self, action: #selector(restoreButtonTapped), for: .touchUpInside)
         
@@ -163,7 +163,7 @@ class RestoreWalletAccountViewController: BaseViewController {
         return btn
     }()
     
-    var wordNumArray = [Int]()
+    var wordArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -172,8 +172,8 @@ class RestoreWalletAccountViewController: BaseViewController {
         
         self.view.backgroundColor = UISetting.shared.titleBKColor
         
-        for i in 1...24{
-            wordNumArray.append(i)
+        for _ in 1...24{
+            wordArray.append("")
         }
         
         let _ = self.restoreButton
@@ -186,6 +186,45 @@ class RestoreWalletAccountViewController: BaseViewController {
     
     @objc func restoreButtonTapped(){
         
+        /*
+        var idx = 0
+        for word in self.wordArray{
+            
+            if word.count > 0{
+                let wordList = Mnemonic.wordList(for: Mnemonic.Language.english).map(String.init)
+                
+                if !wordList.contains(word){
+                    self.showMessage(title: "Word #\(idx) is incorrect", message: "")
+                    return
+                }else{
+                    
+                }
+            }else{
+                self.showMessage(title: "Please input word #\(idx)", message: "")
+                return
+            }
+            
+            idx += 1
+        }
+        */
+        
+        /*
+        //pod 'DashKit.swift'
+        if let words = try? Mnemonic.generate(strength: Mnemonic.Strength.veryHigh){
+            self.wordArray = words
+            if let dashKit = try? DashKit(withWords: self.wordArray, walletId: "dash-wallet-id", syncMode: .api, networkType: .mainNet){
+                let keymgr = dashKit.bitcoinCore.publicKeyManager
+                
+            }
+            
+            let seed = Mnemonic.seed(mnemonic: self.wordArray)
+            
+            let hmac = Kit.hmacsha512(data: seed, key: "Bitcoin seed".data(using: .ascii)!)
+            
+            let network = MainNet()
+            //let hdWallet = HDWallet(seed: seed, coinType: network.coinType, xPrivKey: network.xPrivKey, xPubKey: network.xPubKey, gapLimit: 20, purpose: bip.purpose)
+        }
+        */
     }
     
 }
@@ -195,7 +234,7 @@ extension RestoreWalletAccountViewController: UITableViewDelegate, UITableViewDa
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return wordNumArray.count
+        return self.wordArray.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -205,11 +244,22 @@ extension RestoreWalletAccountViewController: UITableViewDelegate, UITableViewDa
         let cell = tableView.dequeueReusableCell(withIdentifier: MnemonicWordTableViewCell.cellIdentifier(), for:indexPath)
         //cell.selectionStyle = .none
         if let commonCell = cell as? MnemonicWordTableViewCell{
-            commonCell.setup(num: wordNumArray[indexPath.row])
+            commonCell.setup(num: indexPath.row, word:self.wordArray[indexPath.row])
+            commonCell.delegate = self
         }
         
         return cell
     }
 
 
+}
+
+
+extension RestoreWalletAccountViewController: MnemonicWordTableViewCellDelegate{
+    func inputWord(num: Int, word: String) {
+        print("inputWord \(num) \(word)")
+        self.wordArray[num] = word
+    }
+    
+    
 }

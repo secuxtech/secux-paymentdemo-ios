@@ -8,6 +8,11 @@
 
 import UIKit
 
+
+protocol MnemonicWordTableViewCellDelegate {
+    func inputWord(num: Int, word:String)
+}
+
 class MnemonicWordTableViewCell: UITableViewCell {
     
     lazy var numLabel : UILabel = {
@@ -100,14 +105,28 @@ class MnemonicWordTableViewCell: UITableViewCell {
     }()
     
     var cellNum = 0
+    var delegate : MnemonicWordTableViewCellDelegate?
 
-    func setup(num: Int){
-          
-        self.numLabel.text = "\(num)."
-        self.wordInput.placeholder = "Word #\(num)"
-        //self.wordInput.text = ""
+    func setup(num: Int, word: String){
+        print("setup \(num) \(word)")
+        self.numLabel.text = "\(num + 1)."
+        self.wordInput.placeholder = "Word #\(num + 1)"
         self.cellNum = num
+        self.wordInput.text = word
+        self.wordInput.layer.borderColor = UIColor.gray.cgColor
         
+        /*
+        if word.count > 0{
+            let wordList = Mnemonic.wordList(for: Mnemonic.Language.english).map(String.init)
+            
+            if !wordList.contains(word){
+                self.wordInput.layer.borderColor = UIColor.red.cgColor
+
+            }else{
+                self.wordInput.layer.borderColor = UIColor.gray.cgColor
+            }
+        }
+        */
     }
     
     
@@ -132,6 +151,26 @@ extension MnemonicWordTableViewCell: UITextFieldDelegate{
     }
     
     func textFieldDidEndEditing(_ textField: UITextField){
-        self.wordInput.layer.borderColor = UIColor.gray.cgColor
+        
+        let word = self.wordInput.text
+        if let word = word?.lowercased(), word.count > 0{
+            self.wordInput.text = word
+            let wordList = [String]() //Mnemonic.wordList(for: Mnemonic.Language.english).map(String.init)
+            
+            if !wordList.contains(word){
+                self.wordInput.layer.borderColor = UIColor.red.cgColor
+
+            }else{
+                self.wordInput.layer.borderColor = UIColor.gray.cgColor
+            }
+            self.delegate?.inputWord(num: self.cellNum, word: word)
+            
+        }else{
+            self.wordInput.layer.borderColor = UIColor.gray.cgColor
+            
+            self.delegate?.inputWord(num: self.cellNum, word: "")
+        }
+       
+        
     }
 }

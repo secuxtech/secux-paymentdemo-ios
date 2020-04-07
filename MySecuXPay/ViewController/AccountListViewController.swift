@@ -8,6 +8,7 @@
 
 import UIKit
 import secux_paymentkit
+import Floaty
 
 
 class AccountListViewController: BaseViewController{
@@ -101,11 +102,11 @@ class AccountListViewController: BaseViewController{
         return tableView
     }()
     
-    /*
+    
     lazy var floatButton : Floaty = {
         let floaty = Floaty()
         
-        
+        floaty.hasShadow = true
         floaty.buttonColor = UISetting.shared.buttonColor
         floaty.plusColor = UISetting.shared.titleBKColor
         floaty.overlayColor = UIColor(red: 255, green: 255, blue: 255, alpha:0)
@@ -113,25 +114,35 @@ class AccountListViewController: BaseViewController{
         floaty.itemTitleColor = .gray
         floaty.itemShadowColor = UIColor(red: 255, green: 255, blue: 255, alpha:0)
         floaty.itemButtonColor = UISetting.shared.titleBKColor
-        floaty.itemSize = 60
-        floaty.itemSpace = 30
+        floaty.itemSize = 50
+        floaty.itemSpace = 12
+        floaty.paddingX = 14
+        floaty.paddingY = 64
         
         
-        floaty.addItem("Logout", icon: UIImage(named: "logout_btn")!, handler: { item in
-            self.logout()
+        floaty.addItem("Unbind", icon: UIImage(named: "logout_btn")!, handler: { item in
+            //self.logout()
             floaty.close()
         })
         
-        floaty.addItem("Account info.", icon: UIImage(named: "account_info_btn")!, handler: { item in
-            self.showAccountInfo()
+        floaty.addItem("Bind", icon: UIImage(named: "account_info_btn")!, handler: { item in
+            //self.showAccountInfo()
+            floaty.close()
+            
+            let vc = BindWalletAccountViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        })
+        
+        floaty.addItem("Add", icon: UIImage(named: "account_info_btn")!, handler: { item in
+            //self.showAccountInfo()
             floaty.close()
         })
         
-        self.theTableView.addSubview(floaty)
+        self.view.addSubview(floaty)
         
         return floaty
     }()
-    */
+    
     
     let theAccountManager = SecuXAccountManager()
     
@@ -142,8 +153,8 @@ class AccountListViewController: BaseViewController{
         self.view.backgroundColor = UISetting.shared.vcBKColor
       
         
+        self.theTableView.reloadData()
         
-        //let _ = self.floatButton
         
     }
     
@@ -151,7 +162,11 @@ class AccountListViewController: BaseViewController{
         super.viewWillAppear(animated)
         self.navigationController?.navigationItem.title = ""
         
-        self.theTableView.reloadData()
+        let _ = self.floatButton
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.floatButton.close()
     }
     
     /*

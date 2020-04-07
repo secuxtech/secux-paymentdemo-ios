@@ -27,6 +27,7 @@
 		2E042A4523D02D0B0051E74E /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E042A4423D02D0B0051E74E /* AccountTableViewCell.swift */; };
 		2E042A4923D02EAC0051E74E /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E042A4823D02EAC0051E74E /* UITableViewCell+Extension.swift */; };
 		2E042A4B23D02EF00051E74E /* PaymentHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E042A4A23D02EF00051E74E /* PaymentHistoryTableViewCell.swift */; };
+		2E0DC915243C224D00E8EF42 /* MnemonicWordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0DC914243C224D00E8EF42 /* MnemonicWordCollectionViewCell.swift */; };
 		2E146678242B278A0070F22A /* CoinTokenSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E146677242B278A0070F22A /* CoinTokenSelectionViewController.swift */; };
 		2E14667A242B29D90070F22A /* CoinTokenSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E146679242B29D90070F22A /* CoinTokenSelectionTableViewCell.swift */; };
 		2E67166B24173081004D2862 /* CoinTokenAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E67166A24173081004D2862 /* CoinTokenAccount.swift */; };
@@ -87,6 +88,7 @@
 		2E042A4823D02EAC0051E74E /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
 		2E042A4A23D02EF00051E74E /* PaymentHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		2E090F7C2419D1D6003D4AA3 /* MySecuXPay.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MySecuXPay.entitlements; sourceTree = "<group>"; };
+		2E0DC914243C224D00E8EF42 /* MnemonicWordCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicWordCollectionViewCell.swift; sourceTree = "<group>"; };
 		2E146677242B278A0070F22A /* CoinTokenSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTokenSelectionViewController.swift; sourceTree = "<group>"; };
 		2E146679242B29D90070F22A /* CoinTokenSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTokenSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		2E67166A24173081004D2862 /* CoinTokenAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTokenAccount.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				2EEAD107242AECE100964FE0 /* CoinTokenSelectionView.swift */,
 				2E146679242B29D90070F22A /* CoinTokenSelectionTableViewCell.swift */,
 				2EAE9A99243B16950013C648 /* MnemonicWordTableViewCell.swift */,
+				2E0DC914243C224D00E8EF42 /* MnemonicWordCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				2E042A2C23D0286F0051E74E /* BaseViewController.swift in Sources */,
 				2EAE9A98243ADD330013C648 /* BindWalletAccountViewController.swift in Sources */,
 				2E042A3F23D02C9C0051E74E /* PaymentHistoryViewController.swift in Sources */,
+				2E0DC915243C224D00E8EF42 /* MnemonicWordCollectionViewCell.swift in Sources */,
 				2ED14D02241B3BE900E91095 /* PaymentReceiptViewController.swift in Sources */,
 				2EA7D87C2418D7A300827C24 /* AccountSettingTitleView.swift in Sources */,
 				2ED14D06241B91A300E91095 /* UIView+Extension.swift in Sources */,

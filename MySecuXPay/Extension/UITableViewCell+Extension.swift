@@ -14,3 +14,11 @@ public extension UITableViewCell {
         return String(describing: self)
     }
 }
+
+
+public extension UICollectionViewCell {
+    /// Generated cell identifier derived from class name
+    static func cellIdentifier() -> String {
+        return String(describing: self)
+    }
+}

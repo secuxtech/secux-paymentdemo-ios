@@ -61,10 +61,9 @@ class LoginViewController: BaseViewController {
         super.viewWillAppear(animated)
         self.navigationController?.navigationItem.title = ""
         
+        /*
         let localAuthContext = LAContext()
-        
-        if //localAuthContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil){
-            localAuthContext.canEvaluatePolicy(.deviceOwnerAuthentication, error: nil){
+        if localAuthContext.canEvaluatePolicy(.deviceOwnerAuthentication, error: nil){
             
             let biometricType = localAuthContext.biometryType == LABiometryType.faceID ? "Face ID" : "Touch ID"
             logw("Supported Biometric type is: \( biometricType )")
@@ -76,6 +75,9 @@ class LoginViewController: BaseViewController {
                 }
             }
         }
+        */
+        
+        self.theLoginView.biometricLoginAction()
     }
     
     override func viewDidLayoutSubviews() {

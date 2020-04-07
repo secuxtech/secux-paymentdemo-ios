@@ -16,6 +16,9 @@ class Setting: NSObject {
 
     
     let testFlag = false
+    
+    var loginAccount = ""
+    var loginPwd = ""
    
     
     static let shared: Setting = {
@@ -27,10 +30,27 @@ class Setting: NSObject {
     private override init(){
         super.init()
         print("Setting init")
+        
+        self.loadSettings()
     }
     
     deinit {
         print("Setting deinit")
+    }
+    
+    
+    func loadSettings(){
+        
+        loginAccount = UserDefaults.standard.value(forKey: "Account") as? String ?? ""
+        loginPwd = UserDefaults.standard.value(forKey: "Password") as? String ?? ""
+        
+    }
+    
+    func saveSetting(){
+        
+        UserDefaults.standard.set(loginAccount, forKey: "Account")
+        UserDefaults.standard.set(loginPwd, forKey: "Password")
+        
     }
 
 }

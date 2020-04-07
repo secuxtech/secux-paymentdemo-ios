@@ -273,7 +273,8 @@ class BindWalletAccountViewController: BaseViewController {
     }
     
     @objc func createNewAccountButtonTapped(){
-        
+        let vc = CreateWalletAccountViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func restoreAccountButtonTapped(){

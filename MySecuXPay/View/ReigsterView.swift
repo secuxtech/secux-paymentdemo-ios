@@ -84,6 +84,7 @@ class RegisterView: UIView{
         input.textColor = .white
         input.layer.borderColor = UIColor.white.cgColor
         input.layer.borderWidth = 1
+        input.tintColor = .white
         
         input.leftPadding = 10
         input.font = UIFont(name: "Arial", size: 19.0)
@@ -139,6 +140,7 @@ class RegisterView: UIView{
         input.textColor = .white
         input.layer.borderColor = UIColor.white.cgColor
         input.layer.borderWidth = 1
+        input.tintColor = .white
         
         input.leftPadding = 10
         input.font = UIFont(name: "Arial", size: 19.0)
@@ -199,6 +201,7 @@ class RegisterView: UIView{
         input.textColor = .white
         input.layer.borderColor = UIColor.white.cgColor
         input.layer.borderWidth = 1
+        input.tintColor = .white
         
         input.isSecureTextEntry = true
         //input.leftImage = UIImage(named: "pwdIcon")
@@ -263,6 +266,7 @@ class RegisterView: UIView{
         input.textColor = .white
         input.layer.borderColor = UIColor.white.cgColor
         input.layer.borderWidth = 1
+        input.tintColor = .white
         
         input.leftPadding = 10
         input.font = UIFont(name: "Arial", size: 19.0)

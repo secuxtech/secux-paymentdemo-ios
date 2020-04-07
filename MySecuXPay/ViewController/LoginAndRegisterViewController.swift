@@ -232,7 +232,7 @@ class LoginAndRegisterViewController: BaseViewController{
         super.viewWillAppear(animated)
         self.navigationController?.navigationItem.title = ""
         
-        self.theLoginView.setFocus()
+        //self.theLoginView.setFocus()
     }
     
     override func viewDidLayoutSubviews() {
