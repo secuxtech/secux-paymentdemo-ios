@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class CreateWalletAccountViewController: BaseViewController {
     
     let maxInputFieldLen: CGFloat = 400
@@ -153,7 +154,7 @@ class CreateWalletAccountViewController: BaseViewController {
     }()
     
     var coinType = "DASH"
-    var seed = [String]()
+    var wordArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -180,6 +181,29 @@ class CreateWalletAccountViewController: BaseViewController {
     
         }
         */
+        
+     
+        
+        let generatedWords = DSWallet.generateRandomSeed()
+        self.wordArray = generatedWords.components(separatedBy: " ")
+        print("\(generatedWords)")
+        
+        let seed = DSBIP39Mnemonic.sharedInstance()?.deriveKey(fromPhrase: "split liquid same food invite winter tank vacuum beyond vibrant wash wife comic system manual", withPassphrase: nil)
+        print("\(seed?.hexDescription ?? "")")
+        
+        let chain = DSChain.mainnet()
+        
+        let wallet = DSWallet.standardWallet(withSeedPhrase: "split liquid same food invite winter tank vacuum beyond vibrant wash wife comic system manual", setCreationDate: Date.timeIntervalBetween1970AndReferenceDate, for: chain, storeSeedPhrase: false, isTransient: false)
+        
+       
+        
+        let tt = DSDerivationPath.serializedPrivateMaster(fromSeed: seed, for: chain)
+        print("\(tt ?? "")")
+        
+        //let path = DSFundsDerivationPath.bip44DerivationPath(on: chain, forAccountNumber: 0)
+        //path.address(at: IndexPath(row: 0, section: 0))
+        
+        
     }
     
     @objc func nextButtonTapped(){
@@ -197,7 +221,7 @@ extension CreateWalletAccountViewController: UICollectionViewDelegate, UICollect
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return seed.count
+        return self.wordArray.count
     }
     //cellForItemAt indexPath
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -205,9 +229,8 @@ extension CreateWalletAccountViewController: UICollectionViewDelegate, UICollect
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MnemonicWordCollectionViewCell.cellIdentifier(), for: indexPath)
         
         if let commonCell = cell as? MnemonicWordCollectionViewCell{
-            commonCell.setup(num:indexPath.row + 1, word:seed[indexPath.row])
+            commonCell.setup(num:indexPath.row + 1, word:self.wordArray[indexPath.row])
             
-       
         }
         
         return cell

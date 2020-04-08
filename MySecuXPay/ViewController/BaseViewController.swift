@@ -70,6 +70,7 @@ class BaseViewController: UIViewController {
     
     func isProgressVisible() -> Bool{
         return !self.theProgress.isHidden
+        
     }
     
     func hideProgress(){
