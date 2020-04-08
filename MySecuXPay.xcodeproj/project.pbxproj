@@ -41,6 +41,7 @@
 		2E6716752417929E004D2862 /* AccountListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6716742417929E004D2862 /* AccountListViewController.swift */; };
 		2E67167A24179C07004D2862 /* LoginAndRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E67167924179C07004D2862 /* LoginAndRegisterViewController.swift */; };
 		2E81F93123D056D800BEB11E /* paysuccess.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2E81F93023D056D800BEB11E /* paysuccess.wav */; };
+		2E839B3E243D78B000532C89 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E839B3D243D78B000532C89 /* Data+Extension.swift */; };
 		2E845E0423D00C710043D0FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E845E0323D00C710043D0FA /* AppDelegate.swift */; };
 		2E845E0623D00C710043D0FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E845E0523D00C710043D0FA /* SceneDelegate.swift */; };
 		2E845E0823D00C710043D0FA /* PaymentMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E845E0723D00C710043D0FA /* PaymentMainViewController.swift */; };
@@ -117,6 +118,7 @@
 		2E6716742417929E004D2862 /* AccountListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListViewController.swift; sourceTree = "<group>"; };
 		2E67167924179C07004D2862 /* LoginAndRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAndRegisterViewController.swift; sourceTree = "<group>"; };
 		2E81F93023D056D800BEB11E /* paysuccess.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = paysuccess.wav; sourceTree = "<group>"; };
+		2E839B3D243D78B000532C89 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
 		2E845E0023D00C710043D0FA /* MyEvPay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyEvPay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E845E0323D00C710043D0FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E845E0523D00C710043D0FA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				2E042A4823D02EAC0051E74E /* UITableViewCell+Extension.swift */,
 				2EA7D87524188B6100827C24 /* File.swift */,
 				2ED14D05241B91A300E91095 /* UIView+Extension.swift */,
+				2E839B3D243D78B000532C89 /* Data+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -484,6 +487,7 @@
 				2ECD31072421CAE4000BF97B /* ChangePasswordViewController.swift in Sources */,
 				2EA7D87E2418E68900827C24 /* LoginViewController.swift in Sources */,
 				2E042A2A23D028120051E74E /* PaymentDetailsViewController.swift in Sources */,
+				2E839B3E243D78B000532C89 /* Data+Extension.swift in Sources */,
 				2E042A1723D0165A0051E74E /* TitleView.swift in Sources */,
 				2E67167324179147004D2862 /* MainTabBarController.swift in Sources */,
 				2E042A1823D0165A0051E74E /* UIRoundedButtonWithGradientAndShadow.swift in Sources */,

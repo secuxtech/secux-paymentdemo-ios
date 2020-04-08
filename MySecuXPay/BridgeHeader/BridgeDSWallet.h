@@ -13,3 +13,11 @@
 #endif /* BridgeDSWallet_h */
 
 #import <DashSync/DSWallet.h>
+#import <DashSync/DSBIP39Mnemonic.h>
+
+#import <CoreData/CoreDataDefines.h>
+#import <CoreData/NSManagedObjectContext.h>
+#import <DashSync/DSChain.h>
+#import <DashSync/DSDerivationPath.h>
+#import <DashSync/DSFundsDerivationPath.h>
+#import <DashSync/DSAccount.h>
