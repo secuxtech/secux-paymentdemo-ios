@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2E845DFF23D00C710043D0FA"
-               BuildableName = "MyEvPay.app"
+               BuildableName = "SecuX EvPay.app"
                BlueprintName = "MySecuXPay"
                ReferencedContainer = "container:MySecuXPay.xcodeproj">
             </BuildableReference>
@@ -31,7 +31,7 @@
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "Release"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2E845DFF23D00C710043D0FA"
-            BuildableName = "MyEvPay.app"
+            BuildableName = "SecuX EvPay.app"
             BlueprintName = "MySecuXPay"
             ReferencedContainer = "container:MySecuXPay.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2E845DFF23D00C710043D0FA"
-            BuildableName = "MyEvPay.app"
+            BuildableName = "SecuX EvPay.app"
             BlueprintName = "MySecuXPay"
             ReferencedContainer = "container:MySecuXPay.xcodeproj">
          </BuildableReference>
