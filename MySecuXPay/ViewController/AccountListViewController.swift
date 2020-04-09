@@ -117,7 +117,7 @@ class AccountListViewController: BaseViewController{
         floaty.itemSize = 50
         floaty.itemSpace = 12
         floaty.paddingX = 14
-        floaty.paddingY = 64
+        floaty.paddingY = 74
         
         
         floaty.addItem("Unbind", icon: UIImage(named: "logout_btn")!, handler: { item in
@@ -162,11 +162,15 @@ class AccountListViewController: BaseViewController{
         super.viewWillAppear(animated)
         self.navigationController?.navigationItem.title = ""
         
+        #if DEBUG
         let _ = self.floatButton
+        #endif
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        #if DEBUG
         self.floatButton.close()
+        #endif
     }
     
     /*
