@@ -12,6 +12,7 @@ PODS:
   - DSDynamicOptions (0.1.0)
   - DWAlertController (0.2.1)
   - Floaty (4.2.0)
+  - JGProgressHUD (2.1)
   - secp256k1_dash (0.1.2)
   - secux-paymentkit (1.0.3):
     - SPManager (~> 0.0.2)
@@ -21,6 +22,7 @@ PODS:
 DEPENDENCIES:
   - DashSync (from `https://github.com/dashevo/dashsync-iOS/`, commit `01fba86`)
   - Floaty
+  - JGProgressHUD
   - secux-paymentkit (~> 1.0.3)
   - swiftScan (from `https://github.com/MxABC/swiftScan.git`)
 
@@ -31,6 +33,7 @@ SPEC REPOS:
     - DSDynamicOptions
     - DWAlertController
     - Floaty
+    - JGProgressHUD
     - secp256k1_dash
     - secux-paymentkit
     - SPManager
@@ -57,11 +60,12 @@ SPEC CHECKSUMS:
   DSDynamicOptions: 6a37eb496daee3c067e086b5b236d77707e9a3ee
   DWAlertController: 5f4cd8adf90336331c054857f709f5f8d4b16a5b
   Floaty: e2bd5a0f6f7f70899e26ff2da31081c8bee8d1b0
+  JGProgressHUD: aa403e9a5b45cae98903c4600cccdd98c0c3ec90
   secp256k1_dash: 7fdbc23e3e8a27d522ec211b874d97fb091c2b23
   secux-paymentkit: 95a8a236e840eb5bd59ec711cafb3fb05276dfcc
   SPManager: 90be8b63c4e4440a131b3a2ecd6042cc9d01633b
   swiftScan: d7f91607b1a47cc04e6eb654c2c01e2e940e337d
 
-PODFILE CHECKSUM: a3cee46ca36fdcc8b0e8aec7e34c75b4f1307c64
+PODFILE CHECKSUM: 00fa32f725fac877de921575e1d7707886fcb841
 
 COCOAPODS: 1.9.0.beta.2

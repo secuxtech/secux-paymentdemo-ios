@@ -46,8 +46,6 @@
 		2E845E0B23D00C710043D0FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E845E0923D00C710043D0FA /* Main.storyboard */; };
 		2E845E0D23D00C730043D0FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E845E0C23D00C730043D0FA /* Assets.xcassets */; };
 		2E845E1023D00C730043D0FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E845E0E23D00C730043D0FA /* LaunchScreen.storyboard */; };
-		2E8E41C6243F2E2D00A81094 /* JGProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E8E41C5243F2E2D00A81094 /* JGProgressHUD.framework */; };
-		2E8E41C7243F2E2D00A81094 /* JGProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E8E41C5243F2E2D00A81094 /* JGProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2EA7D870241876EA00827C24 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA7D86F241876EA00827C24 /* LoginView.swift */; };
 		2EA7D872241876F700827C24 /* ReigsterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA7D871241876F700827C24 /* ReigsterView.swift */; };
 		2EA7D874241878DA00827C24 /* IconUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA7D873241878D900827C24 /* IconUITextField.swift */; };
@@ -76,7 +74,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2E8E41C7243F2E2D00A81094 /* JGProgressHUD.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -126,7 +123,6 @@
 		2E845E0C23D00C730043D0FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E845E0F23D00C730043D0FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2E845E1123D00C730043D0FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2E8E41C5243F2E2D00A81094 /* JGProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JGProgressHUD.framework; path = MySecuXPay/Lib/JGProgressHUD.framework; sourceTree = "<group>"; };
 		2EA7D86F241876EA00827C24 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		2EA7D871241876F700827C24 /* ReigsterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReigsterView.swift; sourceTree = "<group>"; };
 		2EA7D873241878D900827C24 /* IconUITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconUITextField.swift; sourceTree = "<group>"; };
@@ -158,7 +154,6 @@
 			files = (
 				2EE8E2C32431A26B007E665C /* CoreNFC.framework in Frameworks */,
 				0A8C1F65070FA7A6F7BB6192 /* libPods-MySecuXPay.a in Frameworks */,
-				2E8E41C6243F2E2D00A81094 /* JGProgressHUD.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,7 +295,6 @@
 		57917E7933EED693D43270F4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2E8E41C5243F2E2D00A81094 /* JGProgressHUD.framework */,
 				2EE8E2C22431A26B007E665C /* CoreNFC.framework */,
 				D8961EE798F46A9174CF9460 /* libPods-MySecuXPay.a */,
 			);

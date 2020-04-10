@@ -1,0 +1,258 @@
+
+/* No comment provided by engineer. */
+"\n         total %@ (%@)" = "\n         σύνολο %1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"\n(local requested amount: %@)" = "\n(τοπικό ποσό που ζητήθηκε: %@)";
+
+/* No comment provided by engineer. */
+"\n\n     amount %@ (%@)" = "\n\n     ποσό %1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"\nADDRESS ALREADY USED\nDash addresses are intended for single use only\n\nre-use reduces privacy for both you and the recipient and can result in loss if the recipient doesn't directly control the address" = "\nADDRESS ALREADY USED\nDash addresses are intended for single use only\n\nre-use reduces privacy for both you and the recipient and can result in loss if the recipient doesn't directly control the address";
+
+/* No comment provided by engineer. */
+"\nnetwork fee +%@ (%@)" = "\nτέλος δικτύου +%1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to reclaim this masternode?" = "Είστε σίγουροι ότι θέλετε να ανακτήσετε αυτό το masternode;";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to register a masternode at %@:%d?" = "Είστε σίγουροι ότι θέλετε να καταχωρήσετε ένα masternode στο %1$@:%2$d;";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to register the username %@ and spend %@ on credits?" = "Είστε σίγουροι ότι θέλετε να καταχωρήσετε το όνομα χρήστη %1$@ και να ξοδέψετε %2$@ σε credits?";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to reset this user?" = "Είστε σίγουροι ότι θέλετε να επαναφέρετε αυτόν τον χρήστη;";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to topup %@ and spend %@ on credits?" = "Είστε σίγουροι ότι θέλετε να φορτίσετε %1$@ και να ξοδέψετε %2$@ σε credits;";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to update this masternode to %@:%d?" = "Είστε σίγουροι ότι θέλετε να ενημερώσετε αυτό το masternode στο %1$@:%2$d;";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to update this masternode to pay to %@?" = "Είστε σίγουροι ότι θέλετε να ενημερώσετε αυτό το masternode να πληρώσει στο %@;";
+
+/* No comment provided by engineer. */
+"Bad password, try again" = "Bad password, try again";
+
+/* No comment provided by engineer. */
+"Bad payment request" = "Bad payment request";
+
+/* No comment provided by engineer. */
+"Bad payment request URL" = "Bad payment request URL";
+
+/* No comment provided by engineer. */
+"Bad payment URL" = "Bad payment URL";
+
+/* No comment provided by engineer. */
+"Cancel" = "Ακύρωση";
+
+/* No comment provided by engineer. */
+"Confirm" = "Επιβεβαίωση";
+
+/* No comment provided by engineer. */
+"Confirm PIN" = "Confirm PIN";
+
+/* No comment provided by engineer. */
+"Connect timeout" = "Connect timeout";
+
+/* No comment provided by engineer. */
+"Couldn't make payment" = "Couldn't make payment";
+
+/* No comment provided by engineer. */
+"Dash payments can't be less than %@" = "Dash payments can't be less than %@";
+
+/* No comment provided by engineer. */
+"Dash transaction not signed" = "Dash transaction not signed";
+
+/* No comment provided by engineer. */
+"Dash transaction outputs can't be less than %@" = "Dash transaction outputs can't be less than %@";
+
+/* No comment provided by engineer. */
+"Devnet" = "Devnet";
+
+/* No comment provided by engineer. */
+"Double spend" = "Double spend";
+
+/* The server is not working */
+"Down" = "Down";
+
+/* No comment provided by engineer. */
+"Enter old PIN" = "Enter old PIN";
+
+/* No comment provided by engineer. */
+"Error from payment request server %@" = "Σφάλμα από διακομιστή του αιτήματος πληρωμής %@";
+
+/* No comment provided by engineer. */
+"Error signing transaction" = "Error signing transaction";
+
+/* No comment provided by engineer. */
+"Ignore" = "Ignore";
+
+/* No comment provided by engineer. */
+"Instant payment" = "Instant payment";
+
+/* No comment provided by engineer. */
+"InstantSend requires enough inputs with 6 confirmations, send anyways as regular transaction?" = "Το InstantSend απαιτεί αρκετές εισόδους με 6 επιβεβαιώσεις, να σταλθεί ούτως ή άλλως ως απλή συναλλαγή;";
+
+/* No comment provided by engineer. */
+"Insufficient funds" = "Insufficient funds";
+
+/* No comment provided by engineer. */
+"Insufficient funds for Dash network fee" = "Insufficient funds for Dash network fee";
+
+/* No comment provided by engineer. */
+"Internal Error" = "Εσωτερικό σφάλμα";
+
+/* No comment provided by engineer. */
+"Invalid DAPI Response" = "Μη έγκυρη απόκριση DAPI";
+
+/* No comment provided by engineer. */
+"Invalid Params" = "Μη έγκυρες Παράμετροι";
+
+/* No comment provided by engineer. */
+"Invalid Request" = "Μη έγκυρο Αίτημα";
+
+/* No comment provided by engineer. */
+"Mainnet" = "Mainnet";
+
+/* No comment provided by engineer. */
+"Method Not Found" = "Η Μέθοδος Δεν Βρέθηκε";
+
+/* No comment provided by engineer. */
+"Missing certificate" = "Missing certificate";
+
+/* No comment provided by engineer. */
+"No attempts remaining" = "No attempts remaining";
+
+/* No comment provided by engineer. */
+"No peers found" = "No peers found";
+
+/* No comment provided by engineer. */
+"Not a valid private key" = "Not a valid private key";
+
+/* No comment provided by engineer. */
+"Not connected to the Dash network" = "Not connected to the Dash network";
+
+/* No comment provided by engineer. */
+"OK" = "Εντάξει";
+
+/* No comment provided by engineer. */
+"Parse Error" = "Σφάλμα Ανάλυσης";
+
+/* No comment provided by engineer. */
+"Passcode" = "Passcode";
+
+/* No comment provided by engineer. */
+"Password" = "Password";
+
+/* No comment provided by engineer. */
+"Password protected key" = "Password protected key";
+
+/* No comment provided by engineer. */
+"Payee identity isn't certified" = "Payee identity isn't certified";
+
+/* No comment provided by engineer. */
+"PIN for %@" = "PIN for %@";
+
+/* Please authenticate to create your Testnet wallet */
+"Please authenticate to create your %@ wallet" = "Please authenticate to create your %@ wallet";
+
+/* No comment provided by engineer. */
+"Recovery phrase" = "Φράση ανάκτησης";
+
+/* No comment provided by engineer. */
+"Reduce payment amount by\n%@ (%@)?" = "Reduce payment amount by\n%1$@ (%2$@)?";
+
+/* No comment provided by engineer. */
+"Request expired" = "Request expired";
+
+/* No comment provided by engineer. */
+"Requested network \"%@\" not currently in use" = "Requested network \"%@\" not currently in use";
+
+/* No comment provided by engineer. */
+"Rescan" = "Rescan";
+
+/* No comment provided by engineer. */
+"Reset" = "Επαναφορά";
+
+/* No comment provided by engineer. */
+"Retry" = "Επανάληψη";
+
+/* No comment provided by engineer. */
+"Send" = "Αποστολή";
+
+/* No comment provided by engineer. */
+"Server Error" = "Σφάλμα διακομιστή!";
+
+/* No comment provided by engineer. */
+"Set PIN" = "Set PIN";
+
+/* No comment provided by engineer. */
+"Testnet" = "Testnet";
+
+/* No comment provided by engineer. */
+"This payment address is already in your wallet" = "This payment address is already in your wallet";
+
+/* No comment provided by engineer. */
+"This private key is already in your wallet" = "This private key is already in your wallet";
+
+/* No comment provided by engineer. */
+"This private key is empty" = "This private key is empty";
+
+/* No comment provided by engineer. */
+"This request requires an instant payment but you do not have enough inputs with 6 confirmations required by InstantSend, you may ask the merchant to accept a normal transaction or wait a few minutes." = "Αυτό το αίτημα απαιτεί άμεση πληρωμή αλλά δεν έχετε αρκετές εισόδους με 6 επιβεβαιώσεις που απαιτούνται από το InstantSend, μπορείτε να ζητήσετε από τον έμπορο να δεχτεί μια κανονική συναλλαγή ή να περιμένει λίγα λεπτά.";
+
+/* No comment provided by engineer. */
+"Transaction canceled, network timeout" = "Transaction canceled, network timeout";
+
+/* No comment provided by engineer. */
+"Transaction fees would cost more than the funds available on this private key (due to tiny \"dust\" deposits)" = "Transaction fees would cost more than the funds available on this private key (due to tiny \"dust\" deposits)";
+
+/* No comment provided by engineer. */
+"Transaction rejected" = "Transaction rejected";
+
+/* No comment provided by engineer. */
+"Try again in %@" = "Try again in %@";
+
+/* No comment provided by engineer. */
+"Unexpected response from %@" = "Unexpected response from %@";
+
+/* No comment provided by engineer. */
+"Unknown address" = "Unknown address";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Άγνωστο Σφάλμα";
+
+/* No comment provided by engineer. */
+"Unknown JSON-RPC Response" = "Άγνωστη απόκριση JSON-RPC";
+
+/* No comment provided by engineer. */
+"Unrecognized address" = "Unrecognized address";
+
+/* No comment provided by engineer. */
+"Unsupported signature type" = "Unsupported signature type";
+
+/* No comment provided by engineer. */
+"Untrusted certificate" = "Untrusted certificate";
+
+/* The server is up and running */
+"Up" = "Up";
+
+/* Updating Price */
+"Updating Price" = "Ανανέωση Τιμής";
+
+/* No comment provided by engineer. */
+"Wallet disabled" = "Το πορτοφόλι απενεργοποιήθηκε";
+
+/* No comment provided by engineer. */
+"WARNING" = "ΠΡΟΕΙΔΟΠΟΙΗΣΗ";
+
+/* No comment provided by engineer. */
+"Wipe" = "Wipe";
+
+/* No comment provided by engineer. */
+"Your wallet may be out of sync.\nThis can often be fixed by rescanning the blockchain." = "Το πορτοφόλι σας μπορεί να είναι εκτός συγχρονισμού.\n Αυτό μπορεί συχνά να διορθωθεί με την επανασάρωση των μπλόκ συναλλαγών.";

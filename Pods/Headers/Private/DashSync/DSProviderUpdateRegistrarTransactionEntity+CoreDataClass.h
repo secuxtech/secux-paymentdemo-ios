@@ -1,0 +1,1 @@
+../../../DashSync/DashSync/Models/Entities/DSProviderUpdateRegistrarTransactionEntity+CoreDataClass.h

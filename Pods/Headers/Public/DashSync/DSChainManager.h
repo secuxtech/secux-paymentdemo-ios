@@ -1,0 +1,1 @@
+../../../DashSync/DashSync/Models/Managers/Chain Managers/DSChainManager.h

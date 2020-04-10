@@ -1,0 +1,1 @@
+../../../DashSync/DashSync/Models/Entities/DSBlockchainUserResetTransactionEntity+CoreDataClass.h

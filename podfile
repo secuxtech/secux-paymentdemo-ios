@@ -9,4 +9,5 @@ target 'MySecuXPay' do
   pod 'secux-paymentkit','~> 1.0.3'
   pod 'Floaty'
   pod 'DashSync', :git => 'https://github.com/dashevo/dashsync-iOS/', :commit => '01fba86'
+  pod 'JGProgressHUD'
 end

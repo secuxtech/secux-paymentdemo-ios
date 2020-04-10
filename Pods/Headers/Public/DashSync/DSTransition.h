@@ -1,0 +1,1 @@
+../../../DashSync/DashSync/Models/Transactions/Base/DSTransition.h

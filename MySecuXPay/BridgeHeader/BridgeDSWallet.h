@@ -12,6 +12,7 @@
 
 #endif /* BridgeDSWallet_h */
 
+
 #import <DashSync/DSWallet.h>
 #import <DashSync/DSBIP39Mnemonic.h>
 
@@ -21,3 +22,4 @@
 #import <DashSync/DSDerivationPath.h>
 #import <DashSync/DSFundsDerivationPath.h>
 #import <DashSync/DSAccount.h>
+#import <JGProgressHUD.h>

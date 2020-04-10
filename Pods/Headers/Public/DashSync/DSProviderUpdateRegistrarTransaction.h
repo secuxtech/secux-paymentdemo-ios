@@ -1,0 +1,1 @@
+../../../DashSync/DashSync/Models/Transactions/Provider/DSProviderUpdateRegistrarTransaction.h

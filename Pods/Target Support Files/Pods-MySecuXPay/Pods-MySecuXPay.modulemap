@@ -1,4 +1,4 @@
-framework module Pods_MySecuXPay {
+module Pods_MySecuXPay {
   umbrella header "Pods-MySecuXPay-umbrella.h"
 
   export *
