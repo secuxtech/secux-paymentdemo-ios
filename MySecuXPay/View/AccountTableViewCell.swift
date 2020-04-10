@@ -29,7 +29,11 @@ class AccountTableViewCell: UITableViewCell{
         bkview.layer.shadowRadius = 3.0
         
         //bkview.layer.borderColor = UIColor(red: 0.62, green: 0.62, blue: 0.62,alpha:1).cgColor
-        //bkview.layer.borderWidth = 0.2
+        //bkview.layer.borderWidth = 2
+        
+        //let tap = UITapGestureRecognizer(target: self, action: #selector(onTapped))
+        //bkview.addGestureRecognizer(tap)
+      
         
         self.contentView.addSubview(bkview)
         
@@ -147,6 +151,7 @@ class AccountTableViewCell: UITableViewCell{
         return indicator
     }()
     
+    
     var theAccount : CoinTokenAccount?
     
     func setup(account: CoinTokenAccount){
@@ -221,6 +226,21 @@ class AccountTableViewCell: UITableViewCell{
     func removeAccountBalanceObserver(){
         
         //self.theAccount?.formatedBalance.removeObserver()
+    }
+    
+    @objc func onTapped(flag:Bool){
+        if flag{
+            self.bkView.layer.borderColor = UISetting.shared.buttonColor.cgColor
+            self.bkView.layer.borderWidth = 2
+            self.bkView.layer.setNeedsDisplay()
+            
+        }else{
+            self.bkView.layer.borderColor = UISetting.shared.buttonColor.cgColor
+            self.bkView.layer.borderWidth = 0
+            self.bkView.layer.setNeedsDisplay()
+        }
+        
+       
     }
     
     required init?(coder aDecoder: NSCoder) {

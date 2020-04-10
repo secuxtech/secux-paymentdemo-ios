@@ -27,6 +27,7 @@ class SecuXServerRequestHandler: RestRequestHandler {
     static let getDeviceInfoUrl = baseURL + "/api/Terminal/GetDeviceInfo"
     static let getSupportedSymbol = baseURL + "/api/Terminal/GetSupportedSymbol"
     static let getChainAccountList = baseURL + "/api/Consumer/GetChainAccountList"
+    static let bindChainAccountUrl = baseURL + "/api/Consumer/BindingChainAccount"
     
     private static var theToken = ""
     
@@ -225,6 +226,31 @@ class SecuXServerRequestHandler: RestRequestHandler {
         
         let param = ["coinType": cointType, "symbol": token, "page":page, "count":pageItemCount] as [String : Any]
         return self.postRequestSync(urlstr: SecuXServerRequestHandler.transferHistoryUrl, param: param, token: SecuXServerRequestHandler.theToken)
+    }
+    
+    
+    func bindAccount(coinType: String, address: String, desc: String)->(SecuXRequestResult, Data?){
+        logw("bindAccount \(address)")
+        
+        if SecuXServerRequestHandler.theToken.count == 0{
+            logw("no token")
+            return (SecuXRequestResult.SecuXRequestNoToken, nil)
+        }
+        
+        let param = ["coinType": coinType, "account": address, "desc": desc, "actionType":"Binding"] as [String : Any]
+        return self.postRequestSync(urlstr: SecuXServerRequestHandler.bindChainAccountUrl, param: param, token: SecuXServerRequestHandler.theToken)
+    }
+    
+    func unbindAccount(coinType: String, address: String)->(SecuXRequestResult, Data?){
+        logw("unbindAccount \(address)")
+        
+        if SecuXServerRequestHandler.theToken.count == 0{
+            logw("no token")
+            return (SecuXRequestResult.SecuXRequestNoToken, nil)
+        }
+        
+        let param = ["coinType": coinType, "account": address, "desc": "", "actionType":"Unbind"] as [String : Any]
+        return self.postRequestSync(urlstr: SecuXServerRequestHandler.bindChainAccountUrl, param: param, token: SecuXServerRequestHandler.theToken)
     }
     
 }

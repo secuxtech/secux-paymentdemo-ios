@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class CreateWalletAccountViewController: BaseViewController {
     
     let maxInputFieldLen: CGFloat = 400
@@ -188,42 +187,50 @@ class CreateWalletAccountViewController: BaseViewController {
         self.wordArray = generatedWords.components(separatedBy: " ")
         print("\(generatedWords)")
         
-        let seed = DSBIP39Mnemonic.sharedInstance()?.deriveKey(fromPhrase: "meadow harsh flavor noise faculty shiver execute muscle hill broom uphold essay behind yellow enrich", withPassphrase: nil)
+        let seed = DSBIP39Mnemonic.sharedInstance()?.deriveKey(fromPhrase: "pupil wild pulp follow practice future upset donate trigger expand bachelor lucky permit board design", withPassphrase: nil)
         print("\(seed?.hexDescription ?? "")")
         
-        let chain = DSChain.mainnet()
+        //let chain = DSChain.mainnet()
+        let chain = DSChain.testnet()
         
-        let wallet = DSWallet.standardWallet(withSeedPhrase: "meadow harsh flavor noise faculty shiver execute muscle hill broom uphold essay behind yellow enrich", setCreationDate: Date.timeIntervalBetween1970AndReferenceDate, for: chain, storeSeedPhrase: false, isTransient: false)
+        let wallet = DSWallet.standardWallet(withSeedPhrase: "pupil wild pulp follow practice future upset donate trigger expand bachelor lucky permit board design", setCreationDate: Date.timeIntervalBetween1970AndReferenceDate, for: chain, storeSeedPhrase: false, isTransient: false)
         
     
         let account = wallet?.account(withNumber: 0)
         
         
-        let derivationPath = account?.defaultDerivationPath
-        let path = derivationPath?.privateKeyString(at: 0, internal: false, fromSeed: seed!)
-        let bip44addrs = account?.bip44DerivationPath?.allChangeAddresses
+        //let derivationPath = account?.defaultDerivationPath
+        //let path = derivationPath?.privateKeyString(at: 0, internal: false, fromSeed: seed!)
+        //let bip44addrs = account?.bip44DerivationPath?.allChangeAddresses
         
-        //let pk = account?.bip44DerivationPath?.serializedPrivateKeys(atIndexPaths: <#T##[Any]#>, fromSeed: <#T##Data#>)
-        //if let pathArr = account?.derivationPaths{
-        //    for path in pathArr{
-        //        print(path.stringRepresentation)
-        //    }
-        //}
         
         print(account?.bip32DerivationPath?.stringRepresentation ?? "")
         print(account?.bip44DerivationPath?.stringRepresentation ?? "")
         
-        let privkey1 = account?.bip44DerivationPath?.serializedExtendedPrivateKey(fromSeed: seed)
+        //let privkey1 = account?.bip44DerivationPath?.serializedExtendedPrivateKey(fromSeed: seed)
         account?.bip44DerivationPath?.generateExtendedPublicKey(fromSeed: seed!, storeUnderWalletUniqueId: nil)
-        let pubkey2 = account?.bip44DerivationPath?.serializedExtendedPublicKey()
+        //let pubkey2 = account?.bip44DerivationPath?.serializedExtendedPublicKey()
         
-        let privkeyArr = account?.bip44DerivationPath?.serializedPrivateKeys([0, 1, 2, 3, 4, 5, 9], internal: false, fromSeed: seed!)
-        let pubkey3 = account?.bip44DerivationPath?.publicKeyData(at: 0, internal: false)
-        print(pubkey3?.hexDescription ?? "")
         
+        var addressArr = [String]()
         for i in 0 ... 10{
-            let address = account?.bip44DerivationPath?.address(at: UInt32(i), internal: false)
-            print(address)
+            if let address = account?.bip44DerivationPath?.address(at: UInt32(i), internal: false){
+                print("\(i) \(address)")
+                addressArr.append(address)
+            }
+        }
+        
+        var pubkeyArr = [Data]()
+        for i in 0 ... 10{
+            if let pubkey = account?.bip44DerivationPath?.publicKeyData(at:UInt32(i), internal: false){
+                print("\(i) \(pubkey.hexDescription)")
+                pubkeyArr.append(pubkey)
+            }
+        }
+        
+        let privkeyArr = account?.bip44DerivationPath?.serializedPrivateKeys([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], internal: false, fromSeed: seed!)
+        for i in 0 ... 10{
+            print(privkeyArr![i])
         }
         
         /*
@@ -266,6 +273,8 @@ class CreateWalletAccountViewController: BaseViewController {
         
         //let path = DSFundsDerivationPath.bip44DerivationPath(on: chain, forAccountNumber: 0)
         //path.address(at: IndexPath(row: 0, section: 0))
+        
+        
         
         
         

@@ -123,6 +123,35 @@ class AccountListViewController: BaseViewController{
         floaty.addItem("Unbind", icon: UIImage(named: "logout_btn")!, handler: { item in
             //self.logout()
             floaty.close()
+            
+            guard let account = self.theSelectedCell?.theAccount else{
+                self.showMessageInMainThread(title: "No account", message: "")
+                return
+            }
+            
+            let alert = UIAlertController(title: "Unbind \(account.token) account?", message: "", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "CANCEL", style: .cancel, handler: nil)
+            
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: {
+                action in
+                
+                let (ret, data) = self.theAccountManager.unbindAccount(coinType: account.coinType, accountAddress: account.accountName)
+                if ret == SecuXRequestResult.SecuXRequestOK, let account = MyAccount.shared.theUserAccount{
+                    let _ = self.theAccountManager.getCoinAccountList(userAccount: account)
+                    MyAccount.shared.setUserAccount(userAccount: account)
+                    self.theTableView.reloadData()
+                }else{
+                    var errorMsg = ""
+                    if let data = data, data.count > 0{
+                        errorMsg = String(data: data, encoding: .utf8) ?? ""
+                    }
+                    self.showMessage(title: "Unbind failed!", message: errorMsg)
+                }
+            })
+            
+            alert.addAction(cancelAction)
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: nil)
         })
         
         floaty.addItem("Bind", icon: UIImage(named: "account_info_btn")!, handler: { item in
@@ -145,6 +174,7 @@ class AccountListViewController: BaseViewController{
     
     
     let theAccountManager = SecuXAccountManager()
+    var theSelectedCell : AccountTableViewCell?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -152,19 +182,19 @@ class AccountListViewController: BaseViewController{
         
         self.view.backgroundColor = UISetting.shared.vcBKColor
       
-        
-        self.theTableView.reloadData()
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationItem.title = ""
         
+        self.theTableView.reloadData()
+        
+        
         #if DEBUG
         let _ = self.floatButton
         #endif
+    
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -221,11 +251,9 @@ class AccountListViewController: BaseViewController{
 extension AccountListViewController: UITableViewDelegate, UITableViewDataSource {
 
 
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        
-        return MyAccount.shared.theCoinTokenAccountArray!.count
+        return MyAccount.shared.theCoinTokenAccountArray?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -255,30 +283,27 @@ extension AccountListViewController: UITableViewDelegate, UITableViewDataSource 
                 }
             }
             
+            if indexPath.row == 0{
+                commonCell.onTapped(flag: true)
+                self.theSelectedCell = commonCell
+            }else{
+                commonCell.onTapped(flag: false)
+            }
         }
         
         return cell
-        
     }
 
-    /*
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        //tableView.deselectRow(at: indexPath, animated: true)
         
-        //if let cell = tableView.dequeueReusableCell(withIdentifier: PaymentHistoryTableViewCell.cellIdentifier(), for:indexPath) as? PaymentHistoryTableViewCell{
-        //    cell.onTapped()
-        //}
-        
-        
-        let historyItem = self.paymentInfoArr[indexPath.row]
-        if historyItem.detailsUrl.count > 0{
-            let vc = TransactionDetailsViewController()
-            vc.detailURL = historyItem.detailsUrl
-            self.navigationController?.pushViewController(vc, animated: false)
+        self.theSelectedCell?.onTapped(flag: false)
+        if let cell = tableView.cellForRow(at: indexPath)as? AccountTableViewCell{
+            cell.onTapped(flag:true)
+            self.theSelectedCell = cell
         }
         
     }
-    */
-
     
 }

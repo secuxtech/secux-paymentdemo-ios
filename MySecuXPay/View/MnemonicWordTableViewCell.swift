@@ -106,6 +106,7 @@ class MnemonicWordTableViewCell: UITableViewCell {
     
     var cellNum = 0
     var delegate : MnemonicWordTableViewCellDelegate?
+    var isValid = false
 
     func setup(num: Int, word: String){
         print("setup \(num) \(word)")
@@ -152,16 +153,19 @@ extension MnemonicWordTableViewCell: UITextFieldDelegate{
     
     func textFieldDidEndEditing(_ textField: UITextField){
         
-        let word = self.wordInput.text
+        let word = self.wordInput.text?.trimmingCharacters(in: .whitespaces)
         if let word = word?.lowercased(), word.count > 0{
-            self.wordInput.text = word
-            let wordList = [String]() //Mnemonic.wordList(for: Mnemonic.Language.english).map(String.init)
             
-            if !wordList.contains(word){
-                self.wordInput.layer.borderColor = UIColor.red.cgColor
-
-            }else{
+            self.wordInput.text = word
+            //let wordList = [String]() //Mnemonic.wordList(for: Mnemonic.Language.english).map(String.init)
+            
+            //if !wordList.contains(word){
+            if DSBIP39Mnemonic.sharedInstance()?.wordIsValid(word) ?? false{
                 self.wordInput.layer.borderColor = UIColor.gray.cgColor
+                self.isValid = true
+            }else{
+                self.wordInput.layer.borderColor = UIColor.red.cgColor
+                self.isValid = false
             }
             self.delegate?.inputWord(num: self.cellNum, word: word)
             
@@ -169,6 +173,7 @@ extension MnemonicWordTableViewCell: UITextFieldDelegate{
             self.wordInput.layer.borderColor = UIColor.gray.cgColor
             
             self.delegate?.inputWord(num: self.cellNum, word: "")
+            self.isValid = false
         }
        
         

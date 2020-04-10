@@ -15,6 +15,8 @@ class MyAccount : NSObject{
     
     var theCoinTokenAccountArray : [CoinTokenAccount]?
     
+    var theCoinAddressSeedDict = [String : String]()
+    
     var passwordChanged = false
     
     static let shared: MyAccount = {
@@ -26,6 +28,8 @@ class MyAccount : NSObject{
     private override init(){
         super.init()
         print("MyAccount init")
+        
+        
     }
     
     deinit {
@@ -36,6 +40,8 @@ class MyAccount : NSObject{
         self.theUserAccount = userAccount
         self.theCoinTokenAccountArray = CoinTokenAccount.getCoinTokenAccounts(userAccount: userAccount)
         print("setUserAccount done coinTokenArray count = \(self.theCoinTokenAccountArray?.count ?? 0)")
+        
+        loadCoinAddressAndSeedDict()
     }
     
     public func getCoinTokenAccount(coinType:String, token:String) -> CoinTokenAccount?{
@@ -49,9 +55,7 @@ class MyAccount : NSObject{
                 return account
             }
         }
-        
-        
-        
+
         return nil
     }
     
@@ -102,5 +106,49 @@ class MyAccount : NSObject{
         return accountArrRet
     }
     
+    public func updateCoinAddressAndSeedDict(address: String, seed: Data){
+        self.theCoinAddressSeedDict[address] = seed.hexDescription
+        
+        do{
+            let jsonData = try JSONSerialization.data(withJSONObject: self.theCoinAddressSeedDict, options: .prettyPrinted)
+            if let jsonDataString = String(data: jsonData, encoding: .utf8){
+                if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first,
+                   let fileName = self.theUserAccount?.name{
+
+                    let fileURL = dir.appendingPathComponent(fileName + ".json")
+
+                    do {
+                        try jsonDataString.write(to: fileURL, atomically: false, encoding: .utf8)
+                    }catch {
+                        logw("Write to file \(fileURL) failed. error: \(error.localizedDescription)")
+                    }
+                }
+            }
+        }catch{
+            let errormsg = error.localizedDescription
+            logw("MyAccount updateCoinAddressAndSeedDict generate json from dict \(errormsg)")
+        }
+    }
+    
+    public func loadCoinAddressAndSeedDict(){
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first,
+           let fileName = self.theUserAccount?.name{
+
+            let fileURL = dir.appendingPathComponent(fileName + ".json")
+
+            do {
+                let jsonString = try String(contentsOf: fileURL, encoding: .utf8)
+                if let jsonData = jsonString.data(using: .utf8),
+                   let dict = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String:String]{
+                    
+                    self.theCoinAddressSeedDict = dict
+                    
+                }
+            }catch {
+                let errormsg = error.localizedDescription
+                logw("MyAccount loadCoinAddressAndSeedDict generate dict from file failed!\(errormsg)")
+            }
+        }
+    }
     
 }

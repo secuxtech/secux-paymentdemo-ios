@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import secux_paymentkit
+
 
 class RestoreWalletAccountViewController: BaseViewController {
     
@@ -172,9 +174,22 @@ class RestoreWalletAccountViewController: BaseViewController {
         
         self.view.backgroundColor = UISetting.shared.titleBKColor
         
-        for _ in 1...24{
+        for _ in 1...12{
             wordArray.append("")
         }
+        
+        wordArray[0] = "bar"
+        wordArray[1] = "course"
+        wordArray[2] = "harbor"
+        wordArray[3] = "bargain"
+        wordArray[4] = "load"
+        wordArray[5] = "magic"
+        wordArray[6] = "grunt"
+        wordArray[7] = "soldier"
+        wordArray[8] = "mean"
+        wordArray[9] = "initial"
+        wordArray[10] = "salad"
+        wordArray[11] = "fuel"
         
         let _ = self.restoreButton
         self.theTableView.reloadData()
@@ -186,45 +201,75 @@ class RestoreWalletAccountViewController: BaseViewController {
     
     @objc func restoreButtonTapped(){
         
-        /*
-        var idx = 0
-        for word in self.wordArray{
-            
-            if word.count > 0{
-                let wordList = Mnemonic.wordList(for: Mnemonic.Language.english).map(String.init)
-                
-                if !wordList.contains(word){
-                    self.showMessage(title: "Word #\(idx) is incorrect", message: "")
-                    return
-                }else{
-                    
+        var wordsPhrase = ""
+        for i in 0...11{
+            if let cell = self.theTableView.cellForRow(at: IndexPath(row: i, section: 0)) as? MnemonicWordTableViewCell{
+                if !cell.isValid{
+                    //self.showMessage(title: "Word \(i+1) is invalid!", message: "")
+                    //return
                 }
-            }else{
-                self.showMessage(title: "Please input word #\(idx)", message: "")
-                return
             }
             
-            idx += 1
+            wordsPhrase.append("\(self.wordArray[i]) ")
         }
-        */
         
-        /*
-        //pod 'DashKit.swift'
-        if let words = try? Mnemonic.generate(strength: Mnemonic.Strength.veryHigh){
-            self.wordArray = words
-            if let dashKit = try? DashKit(withWords: self.wordArray, walletId: "dash-wallet-id", syncMode: .api, networkType: .mainNet){
-                let keymgr = dashKit.bitcoinCore.publicKeyManager
-                
+        
+        wordsPhrase = DSBIP39Mnemonic.sharedInstance()?.normalizePhrase(wordsPhrase) ?? ""
+        guard let seed = DSBIP39Mnemonic.sharedInstance()?.deriveKey(fromPhrase: wordsPhrase, withPassphrase: nil) else{
+            logw("generate seed failef")
+            self.showMessage(title: "Generate seed failed!", message: "")
+            return
+        }
+        print("\(seed.hexDescription ?? "")")
+
+        //let chain = DSChain.mainnet()
+        let chain = DSChain.testnet()
+        let wallet = DSWallet.standardWallet(withSeedPhrase: wordsPhrase, setCreationDate: Date.timeIntervalBetween1970AndReferenceDate, for: chain, storeSeedPhrase: false, isTransient: false)
+
+
+        let account = wallet?.account(withNumber: 0)
+        
+        print(account?.bip44DerivationPath?.stringRepresentation ?? "")
+
+        account?.bip44DerivationPath?.generateExtendedPublicKey(fromSeed: seed, storeUnderWalletUniqueId: nil)
+        
+        var addressArr = [String]()
+        for i in 0 ... 10{
+            if let address = account?.bip44DerivationPath?.address(at: UInt32(i), internal: false){
+                print("\(i) \(address)")
+                addressArr.append(address)
+            }
+        }
+        
+        var pubkeyArr = [Data]()
+        for i in 0 ... 10{
+            if let pubkey = account?.bip44DerivationPath?.publicKeyData(at:UInt32(i), internal: false){
+                print("\(i) \(pubkey.hexDescription)")
+                pubkeyArr.append(pubkey)
+            }
+        }
+        
+        let privkeyArr = account?.bip44DerivationPath?.serializedPrivateKeys([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], internal: false, fromSeed: seed)
+        for i in 0 ... 10{
+            print(privkeyArr![i])
+        }
+        
+        
+        let accManager = SecuXAccountManager()
+        let (ret, data) = accManager.bindNewAccount(coinType: "DASH", accountAddress: addressArr[0], name: "DASH-test1")
+        if ret == SecuXRequestResult.SecuXRequestOK, let account = MyAccount.shared.theUserAccount{
+            let _ = accManager.getCoinAccountList(userAccount: account)
+            MyAccount.shared.setUserAccount(userAccount: account)
+            MyAccount.shared.updateCoinAddressAndSeedDict(address: addressArr[0], seed: seed)
+        }else{
+            var errorMsg = ""
+            if let data = data, data.count > 0,
+               let msg = String(data: data, encoding: .utf8){
+                errorMsg = "Error: " +  msg
             }
             
-            let seed = Mnemonic.seed(mnemonic: self.wordArray)
-            
-            let hmac = Kit.hmacsha512(data: seed, key: "Bitcoin seed".data(using: .ascii)!)
-            
-            let network = MainNet()
-            //let hdWallet = HDWallet(seed: seed, coinType: network.coinType, xPrivKey: network.xPrivKey, xPubKey: network.xPubKey, gapLimit: 20, purpose: bip.purpose)
+            self.showMessage(title: "Bind account failed!", message: errorMsg)
         }
-        */
     }
     
 }

@@ -226,6 +226,11 @@ class LoginAndRegisterViewController: BaseViewController{
         
         self.getSupportedCoinTokenList()
         
+        #if DEBUG
+        let accMgr = SecuXAccountManager()
+        accMgr.setBaseServer(url: "https://pmsweb-test.secux.io")
+        #endif
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

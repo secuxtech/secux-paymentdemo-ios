@@ -183,9 +183,9 @@ extension SettingViewController : AccountSettingTitleViewDelegate{
             action in
             
             let accMgr = SecuXAccountManager()
-            //accMgr.setBaseServer(url: "https://pmsweb-test.secux.io")
+            accMgr.setBaseServer(url: "https://pmsweb-test.secux.io")
             
-            accMgr.setBaseServer(url: "https://pmsweb-sandbox.secuxtech.com")
+            //accMgr.setBaseServer(url: "https://pmsweb-sandbox.secuxtech.com")
             
             self.logout()
         })

@@ -340,4 +340,14 @@ open class SecuXAccountManager{
         
         return (ret, historyArr)
     }
+    
+    public func bindNewAccount(coinType: String, accountAddress: String, name:String) -> (SecuXRequestResult, Data?){
+        
+        return secuXSvrReqHandler.bindAccount(coinType: coinType, address: accountAddress, desc: name)
+    }
+    
+    public func unbindAccount(coinType: String, accountAddress: String) -> (SecuXRequestResult, Data?){
+        
+        return secuXSvrReqHandler.unbindAccount(coinType: coinType, address: accountAddress)
+    }
 }

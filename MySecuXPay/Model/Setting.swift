@@ -19,7 +19,7 @@ class Setting: NSObject {
     
     var loginAccount = ""
     var loginPwd = ""
-   
+    
     
     static let shared: Setting = {
         let shared = Setting()
