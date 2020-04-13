@@ -432,7 +432,7 @@ class RegisterView: UIView{
         
         DispatchQueue.global(qos: .default).async {
             let accManager = SecuXAccountManager()
-            let usrAcc = SecuXUserAccount(email: email.lowercased(), phone: "", password: String(pwd))
+            let usrAcc = SecuXUserAccount(email: email.lowercased(), password: String(pwd))
             
             //var (ret, data) = accManager.registerUserAccount(userAccount: usrAcc, coinType: self.coinTokenSelView.coin, token: self.coinTokenSelView.token)
             
