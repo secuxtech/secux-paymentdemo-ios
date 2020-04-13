@@ -220,7 +220,7 @@ class RestoreWalletAccountViewController: BaseViewController {
             self.showMessage(title: "Generate seed failed!", message: "")
             return
         }
-        print("\(seed.hexDescription ?? "")")
+        print("\(seed.hexDescription )")
 
         //let chain = DSChain.mainnet()
         let chain = DSChain.testnet()
