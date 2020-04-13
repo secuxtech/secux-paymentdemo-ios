@@ -266,7 +266,7 @@ class LoginAndRegisterViewController: BaseViewController{
                 sleep(2)
                 self.showMessageInMainThread(title: "Get supported coin&token from server failed!", message: error)
                 self.getSupportedCoinTokenList()
-                
+             
                 return
             }
             
@@ -281,7 +281,13 @@ class LoginAndRegisterViewController: BaseViewController{
                     }
                     
                 }
+                
+                //for item in coinTokenArr{
+                //    print("coin=\(item.coin) token=\(item.token)")
+                //}
             }
+            
+            
         }
     }
     
