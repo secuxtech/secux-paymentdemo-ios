@@ -313,9 +313,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2E845DFF23D00C710043D0FA /* MySecuXPay */ = {
+		2E845DFF23D00C710043D0FA /* SecuX EvPay */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2E845E1423D00C730043D0FA /* Build configuration list for PBXNativeTarget "MySecuXPay" */;
+			buildConfigurationList = 2E845E1423D00C730043D0FA /* Build configuration list for PBXNativeTarget "SecuX EvPay" */;
 			buildPhases = (
 				3BCF45014E2D6C9E6F368417 /* [CP] Check Pods Manifest.lock */,
 				2E845DFC23D00C710043D0FA /* Sources */,
@@ -329,7 +329,7 @@
 			);
 			dependencies = (
 			);
-			name = MySecuXPay;
+			name = "SecuX EvPay";
 			productName = MySecuXPay;
 			productReference = 2E845E0023D00C710043D0FA /* SecuX EvPay.app */;
 			productType = "com.apple.product-type.application";
@@ -349,7 +349,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2E845DFB23D00C710043D0FA /* Build configuration list for PBXProject "MySecuXPay" */;
+			buildConfigurationList = 2E845DFB23D00C710043D0FA /* Build configuration list for PBXProject "SecuX EvPay" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -362,7 +362,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2E845DFF23D00C710043D0FA /* MySecuXPay */,
+				2E845DFF23D00C710043D0FA /* SecuX EvPay */,
 			);
 		};
 /* End PBXProject section */
@@ -695,7 +695,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2E845DFB23D00C710043D0FA /* Build configuration list for PBXProject "MySecuXPay" */ = {
+		2E845DFB23D00C710043D0FA /* Build configuration list for PBXProject "SecuX EvPay" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2E845E1223D00C730043D0FA /* Debug */,
@@ -704,7 +704,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2E845E1423D00C730043D0FA /* Build configuration list for PBXNativeTarget "MySecuXPay" */ = {
+		2E845E1423D00C730043D0FA /* Build configuration list for PBXNativeTarget "SecuX EvPay" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2E845E1523D00C730043D0FA /* Debug */,

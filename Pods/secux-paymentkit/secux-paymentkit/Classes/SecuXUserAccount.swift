@@ -45,8 +45,6 @@ public class SecuXUserAccount{
         }else{
             self.alias = email
         }
-        
-     
     }
     
     public func getCoinAccount(coinType:String) -> [SecuXCoinAccount]{

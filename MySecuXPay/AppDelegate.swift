@@ -22,9 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.startMonitorNetwork()
         
-        let rootVC = LoginAndRegisterViewController();
+        let rootVC = LoginAndRegisterViewController()
         self.window?.rootViewController = rootVC
         
+
         return true
     }
 

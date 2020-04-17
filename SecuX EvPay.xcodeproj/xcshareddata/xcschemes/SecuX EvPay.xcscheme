@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2E845DFF23D00C710043D0FA"
                BuildableName = "SecuX EvPay.app"
-               BlueprintName = "MySecuXPay"
-               ReferencedContainer = "container:MySecuXPay.xcodeproj">
+               BlueprintName = "SecuX EvPay"
+               ReferencedContainer = "container:SecuX EvPay.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,8 +46,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2E845DFF23D00C710043D0FA"
             BuildableName = "SecuX EvPay.app"
-            BlueprintName = "MySecuXPay"
-            ReferencedContainer = "container:MySecuXPay.xcodeproj">
+            BlueprintName = "SecuX EvPay"
+            ReferencedContainer = "container:SecuX EvPay.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -63,8 +63,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2E845DFF23D00C710043D0FA"
             BuildableName = "SecuX EvPay.app"
-            BlueprintName = "MySecuXPay"
-            ReferencedContainer = "container:MySecuXPay.xcodeproj">
+            BlueprintName = "SecuX EvPay"
+            ReferencedContainer = "container:SecuX EvPay.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

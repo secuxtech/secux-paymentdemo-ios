@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:MySecuXPay.xcodeproj">
+      location = "self:SecuX EvPay.xcodeproj">
    </FileRef>
 </Workspace>
