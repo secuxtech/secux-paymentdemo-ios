@@ -1,4 +1,4 @@
-# SecuXPayDemo-iOS
+# SecuX EvPay
 
 SecuX EvPay is an iOS Demo APP, which uses the 'SecuXPaymentKit'. 
 
