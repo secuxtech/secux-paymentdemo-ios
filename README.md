@@ -7,9 +7,13 @@ To run the project, clone the repo, and run pod install from the project directo
 ## Screenshot
 
 <p float="center">
-<img src="Screenshot/screenshot2.jpeg" width="200">
-<img src="Screenshot/screenshot4.jpeg" width="200">
-<img src="Screenshot/screenshot3.jpeg" width="200">
-<img src="Screenshot/screenshot1.jpeg" width="200">
+<img src="Screenshot/1.png" width="200">
+<img src="Screenshot/2.png" width="200">
+<img src="Screenshot/3.png" width="200">
+<img src="Screenshot/4.png" width="200">
+<img src="Screenshot/5.png" width="200">
+<img src="Screenshot/6.png" width="200">
+<img src="Screenshot/7.png" width="200">
+<img src="Screenshot/8.png" width="200">
 </p>
 
