@@ -28,3 +28,10 @@ automatically dismiss GitHub alerts or configure an external scanner.
 The historical values are not repeated here. Removing a value from current source
 does not remove it from Git history. Published test phrases must never be reused
 for production funds.
+
+## Remaining payment credential cleanup
+
+- Removed test-login examples and the checked-in SDK administrator-password fallback. Configure fresh test credentials through `SecuXAccountManager.setAdminAccount(name:password:)`; missing configuration returns the existing missing-token result before HTTP. HTTP request/response logs that could expose credentials have also been removed.
+- This repository vendors SDK sources. Reinstalling older Pods can reintroduce the original behavior. Consume an updated upstream SDK before reinstalling dependencies.
+
+This cleanup removes the identified values/artifacts from the current branch. It does not revoke server accounts, rotate deployed device keys, rewrite Git history, remove old tags/releases, or automatically resolve scanner alerts. Treat previously published usable credentials as exposed and have their owners revoke or rotate them. Use new, narrowly scoped test credentials if development resumes.
